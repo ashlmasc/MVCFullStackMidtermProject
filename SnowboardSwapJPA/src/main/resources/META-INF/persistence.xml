@@ -5,12 +5,12 @@
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     
     <!-- entities -->
-	<!-- <class>com.skilldistillery.jpavideostore.entities.Customer</class> -->
+	<class>com.skilldistillery.snowboardswap.entities.User</class>
 	
     <properties>
-      <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/FIXME!!!!" />
-      <property name="jakarta.persistence.jdbc.user" value="FIXME"/>
-      <property name="jakarta.persistence.jdbc.password" value="FIXME" />
+      <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/snowswapdb" />
+      <property name="jakarta.persistence.jdbc.user" value="genuser"/>
+      <property name="jakarta.persistence.jdbc.password" value="genuser" />
       <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
 
 <!-- set back to false when going to production -->
