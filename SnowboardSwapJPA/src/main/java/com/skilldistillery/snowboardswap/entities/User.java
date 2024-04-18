@@ -24,6 +24,8 @@ public class User {
 	
 	private String password;
 	
+	private Boolean enabled;
+	
 	@CreationTimestamp
 	@Column(name = "create_at")
 	private LocalDateTime createdAt;
@@ -69,6 +71,16 @@ public class User {
 
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
+	}
+
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 
