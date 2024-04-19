@@ -26,10 +26,37 @@ public class User {
 	
 	private Boolean enabled;
 	
+	private String role;
+
 	@CreationTimestamp
 	@Column(name = "create_at")
 	private LocalDateTime createdAt;
+
 	
+	@CreationTimestamp
+	@Column(name = "updated_at")
+	private LocalDateTime updatedAt;
+	
+	
+	@Column(name= "first_name")
+	private String firstName;
+	
+	@Column(name= "last_name")
+	private String lastName;
+	
+	private String bio;
+	
+	
+	@Column(name= "address_id")
+	private int addressId;
+	
+	
+	@Column(name= "image_url")
+	private String imageUrl;
+	
+	
+	@Column(name= "address_id1")
+	private int AddressId1;
 	
 	public User() {}
 
@@ -82,6 +109,87 @@ public class User {
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
+	
+
+
+	public String getRole() {
+		return role;
+	}
+
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+	public String getBio() {
+		return bio;
+	}
+
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
+
+	public int getAddressId() {
+		return addressId;
+	}
+
+
+	public void setAddressId(int addressId) {
+		this.addressId = addressId;
+	}
+
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+
+	public int getAddressId1() {
+		return AddressId1;
+	}
+
+
+	public void setAddressId1(int addressId1) {
+		AddressId1 = addressId1;
+	}
 
 
 	@Override
@@ -105,9 +213,14 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", createdAt=" + createdAt
-				+ "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
+				+ ", role=" + role + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", bio=" + bio + ", addressId=" + addressId + ", imageUrl="
+				+ imageUrl + ", AddressId1=" + AddressId1 + "]";
 	}
+
+
+	
 	
 	
 	
