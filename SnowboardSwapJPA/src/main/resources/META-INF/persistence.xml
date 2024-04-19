@@ -6,6 +6,8 @@
     
     <!-- entities -->
 	<class>com.skilldistillery.snowboardswap.entities.User</class>
+	<class>com.skilldistillery.snowboardswap.entities.Event</class>
+	<class>com.skilldistillery.snowboardswap.entities.Address</class>
 	
     <properties>
       <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/snowswapdb" />
