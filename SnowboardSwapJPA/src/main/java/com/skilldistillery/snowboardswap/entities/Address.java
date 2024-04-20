@@ -22,7 +22,7 @@ public class Address {
     private String state;
 
     @Column(name = "postal_code")
-    private String postalCode;
+    private Integer postalCode;
 
     @Column(name = "phone_number")
     private String phoneNumber;
@@ -63,11 +63,11 @@ public class Address {
 		this.state = state;
 	}
 
-	public String getPostalCode() {
+	public Integer getPostalCode() {
 		return postalCode;
 	}
 
-	public void setPostalCode(String postalCode) {
+	public void setPostalCode(Integer postalCode) {
 		this.postalCode = postalCode;
 	}
 
