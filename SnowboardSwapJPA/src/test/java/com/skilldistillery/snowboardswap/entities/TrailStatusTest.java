@@ -13,7 +13,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class UserTest {
+class TrailStatusTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
@@ -37,14 +37,13 @@ class UserTest {
 
 	@AfterEach
 	void tearDown() throws Exception {
+		user = null;
 		em.close();
 	}
 
 	@Test
 	void test_User_entity_mapping() {
 		assertNotNull(user);
-		assertEquals(user.getUsername(), "admin");
-	
-}
-	
+		assertEquals("admin", user.getUsername());
+	}
 }
