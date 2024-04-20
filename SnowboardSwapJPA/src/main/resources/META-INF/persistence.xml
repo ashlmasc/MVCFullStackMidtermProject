@@ -5,10 +5,11 @@
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     
     <!-- entities -->
-	<class>com.skilldistillery.snowboardswap.entities.Address</class>
 	<class>com.skilldistillery.snowboardswap.entities.User</class>
-	<class>com.skilldistillery.snowboardswap.entities.Event</class>
 	<class>com.skilldistillery.snowboardswap.entities.Ride</class>
+	<class>com.skilldistillery.snowboardswap.entities.Address</class>
+	<class>com.skilldistillery.snowboardswap.entities.Event</class>
+	<class>com.skilldistillery.snowboardswap.entities.EventType</class>
 	<class>com.skilldistillery.snowboardswap.entities.Trail</class>
 	<class>com.skilldistillery.snowboardswap.entities.TrailStatus</class>
 	
@@ -21,7 +22,7 @@
 <!-- set back to false when going to production -->
       <property name="hibernate.show_sql" value="false" />
       <property name="hibernate.format_sql" value="false" />
-
+      
       <property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
       <property name="hibernate.c3p0.max_size" value="5" />
       <property name="hibernate.c3p0.min_size" value="0" />

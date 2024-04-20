@@ -1,6 +1,5 @@
 package com.skilldistillery.snowboardswap.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.AfterAll;
@@ -17,7 +16,7 @@ class TrailStatusTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private TrailStatus trailStatus;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,18 +31,18 @@ class TrailStatusTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		trailStatus = em.find(TrailStatus.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		user = null;
+		trailStatus = null;
 		em.close();
 	}
 
 	@Test
-	void test_User_entity_mapping() {
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
+	void test_TrailStatus_entity_mapping() {
+		assertNotNull(trailStatus);
+		//assertEquals("admin", user.getUsername());
 	}
 }

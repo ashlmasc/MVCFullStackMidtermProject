@@ -1,7 +1,6 @@
 package com.skilldistillery.snowboardswap.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -13,20 +12,15 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class UserTest {
+class EventTypeTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private EventType eventType;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		try {
-			emf = Persistence.createEntityManagerFactory("SnowboardSwapJPA");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		emf = Persistence.createEntityManagerFactory("SnowboardSwapJPA");
 	}
 
 	@AfterAll
@@ -37,19 +31,22 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		eventType = em.find(EventType.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		user = null;
+		eventType = null;
 		em.close();
 	}
 
 	@Test
-	void test_User_entity_mapping() {
-		assertNotNull(user);
-		//assertEquals(user.getUsername(), "admin");
-
+	void test_EventType_entity_mapping() {
+		assertNotNull(eventType);
+		//assertEquals(address.getStreet(), "509 Copper Rd");
+//        assertEquals("Frisco", address.getCity());
+//        assertEquals("80443", address.getPostalCode());
+//        assertEquals("866-841-2549", address.getPhoneNumber());
 	}
+
 }

@@ -44,7 +44,7 @@ public class Ride {
 	private String detail;
 	
 	
-	@Column(name="vehical_capacity")
+	@Column(name="vehicle_capacity")
 	private int vehicleCapacity;
 	
 	
@@ -66,7 +66,7 @@ public class Ride {
 	
 	
 	@Column(name="image_url")
-	private Text imageUrl;
+	private String imageUrl;
 
 
 	public Ride() {}
@@ -202,12 +202,12 @@ public class Ride {
 	}
 
 
-	public Text getImageUrl() {
+	public String getImageUrl() {
 		return imageUrl;
 	}
 
 
-	public void setImageUrl(Text imageUrl) {
+	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
 
@@ -239,10 +239,6 @@ public class Ride {
 				+ vehicleMake + ", vehicleModel=" + vehicleModel + ", arrivalAddressId=" + arrivalAddressId
 				+ ", updatedAt=" + updatedAt + ", imageUrl=" + imageUrl + "]";
 	}
-	
-	
-	
-	
 }
 
 
