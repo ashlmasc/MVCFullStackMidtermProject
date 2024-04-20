@@ -41,11 +41,15 @@ class LiftStatusTest {
 	}
 
 	@Test
-	void test_EventType_entity_mapping() {
+	void test_LiftStatus_entity_mapping() {
 		assertNotNull(liftStatus);
-		//assertEquals(address.getStreet(), "509 Copper Rd");
-//        assertEquals("Frisco", address.getCity());
-//        assertEquals("80443", address.getPostalCode());
-//        assertEquals("866-841-2549", address.getPhoneNumber());
+		assertEquals(2024, liftStatus.getOccurrenceDate().getYear());
+		assertEquals(4, liftStatus.getOccurrenceDate().getMonthValue());
+		assertEquals("Open", liftStatus.getStatus());
+	}
+	@Test
+	void test_LiftStatus_M21_lift() {
+		assertNotNull(liftStatus);
+		assertEquals("American Eagle", liftStatus.getLift().getName());
 	}
 }

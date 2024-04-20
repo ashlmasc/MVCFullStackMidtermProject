@@ -7,6 +7,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,6 +23,10 @@ public class TrailStatus {
 	private LocalDateTime occurrenceDate;
 	
 	private String status;
+	
+	@ManyToOne
+	@JoinColumn(name = "trail_id")
+	private Trail trail;
 	
 	public TrailStatus() {}
 
@@ -46,6 +52,14 @@ public class TrailStatus {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Trail getTrail() {
+		return trail;
+	}
+
+	public void setTrail(Trail trail) {
+		this.trail = trail;
 	}
 
 	@Override

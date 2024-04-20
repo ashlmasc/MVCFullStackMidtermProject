@@ -1,5 +1,6 @@
 package com.skilldistillery.snowboardswap.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -7,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Trail {
@@ -22,6 +24,9 @@ public class Trail {
 	
 	@Column(name="resort_id")
 	private int resortId;
+	
+	@OneToMany(mappedBy = "trail") 
+    private List<TrailStatus> statuses;
 
 	public Trail() {}
 
@@ -55,6 +60,14 @@ public class Trail {
 
 	public void setResortId(int resortId) {
 		this.resortId = resortId;
+	}
+
+	public List<TrailStatus> getStatuses() {
+		return statuses;
+	}
+
+	public void setStatuses(List<TrailStatus> statuses) {
+		this.statuses = statuses;
 	}
 
 	@Override

@@ -44,6 +44,13 @@ class TrailTest {
 	@Test
 	void test_Trail_entity_mapping() {
 		assertNotNull(trail);
-		//assertEquals("admin", user.getUsername());
+		assertEquals("17 Glade", trail.getName());
+		assertEquals("Most Difficult", trail.getDifficulty());
+	}
+	@Test
+	void test_Trail_status_12M() {
+		assertNotNull(trail);
+		assertNotNull(trail.getStatuses());
+		assertEquals("Open", trail.getStatuses().get(0).getStatus());
 	}
 }

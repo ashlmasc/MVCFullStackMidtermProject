@@ -57,4 +57,10 @@ class LiftTest {
 		assertNotNull(lift);
 		assertEquals("Telemix", lift.getLiftType().getType());
 	}
+	@Test
+	void test_Lift_status_12M() {
+		assertNotNull(lift);
+		assertNotNull(lift.getStatuses());
+		assertEquals(1, lift.getStatuses().size());
+	}
 }

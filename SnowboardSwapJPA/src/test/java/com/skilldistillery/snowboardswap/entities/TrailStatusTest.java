@@ -1,5 +1,6 @@
 package com.skilldistillery.snowboardswap.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.AfterAll;
@@ -43,6 +44,12 @@ class TrailStatusTest {
 	@Test
 	void test_TrailStatus_entity_mapping() {
 		assertNotNull(trailStatus);
-		//assertEquals("admin", user.getUsername());
+		assertEquals("Open", trailStatus.getStatus());
+	}
+	@Test
+	void test_TrailStatus_M21_trail() {
+		assertNotNull(trailStatus);
+		assertNotNull(trailStatus.getTrail());
+		assertEquals("17 Glade", trailStatus.getTrail().getName() );
 	}
 }
