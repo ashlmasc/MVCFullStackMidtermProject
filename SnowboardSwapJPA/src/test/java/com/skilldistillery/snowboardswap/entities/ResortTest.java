@@ -60,4 +60,10 @@ class ResortTest {
 		assertNotNull(resort.getAddress());
 		assertEquals("509 Copper Rd", resort.getAddress().getStreet());
 	}
+	@Test
+	void test_Resort_Ride_12M() {
+		assertNotNull(resort);
+		assertNotNull(resort.getRides());
+		assertEquals("Kia", resort.getRides().get(0).getVehicleMake());
+	}
 }

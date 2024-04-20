@@ -28,6 +28,9 @@ public class Resort {
 	@ManyToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
+	
+	@OneToMany(mappedBy = "resort") 
+    private List<Ride> rides;
 
 	public Resort() {
 	}
@@ -70,6 +73,14 @@ public class Resort {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public List<Ride> getRides() {
+		return rides;
+	}
+
+	public void setRides(List<Ride> rides) {
+		this.rides = rides;
 	}
 
 	@Override

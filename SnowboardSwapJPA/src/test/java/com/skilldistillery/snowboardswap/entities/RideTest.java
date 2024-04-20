@@ -1,5 +1,6 @@
 package com.skilldistillery.snowboardswap.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.AfterAll;
@@ -41,8 +42,16 @@ class RideTest {
 	}
 
 	@Test
-	void test_User_entity_mapping() {
+	void test_Ride_entity_mapping() {
 		assertNotNull(ride);
-
+		assertEquals(2024, ride.getDeparture().getYear());
+		assertEquals("Kia", ride.getVehicleMake());
+	}
+	
+	@Test
+	void test_Ride_Resort_M21() {
+		assertNotNull(ride);
+		assertNotNull(ride.getResort());
+		assertEquals(2024, ride.getDeparture().getYear());
 	}
 }

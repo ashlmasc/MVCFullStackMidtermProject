@@ -10,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Ride {
@@ -17,11 +19,9 @@ public class Ride {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
 	
 	@Column(name="sponsor_id")
 	private int sponsorId;
-	
 	
 	@Column(name="departure_address_id")
 	private int departureAddressId;
@@ -33,9 +33,6 @@ public class Ride {
 	@CreationTimestamp
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
-	
-	@Column(name="resort_id")
-	private int resortId;
 	
 	private int active;
 	
@@ -57,7 +54,6 @@ public class Ride {
 	@Column(name="arrival_address_id")
 	private int arrivalAddressId;
 	
-	
 	@CreationTimestamp
 	@Column(name="updated_at")
 	private LocalDateTime updatedAt;
@@ -65,10 +61,12 @@ public class Ride {
 	
 	@Column(name="image_url")
 	private String imageUrl;
-
+	
+	@ManyToOne
+	@JoinColumn(name = "resort_id")
+	private Resort resort;
 
 	public Ride() {}
-
 
 	public int getId() {
 		return id;
@@ -78,7 +76,6 @@ public class Ride {
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public int getSponsorId() {
 		return sponsorId;
@@ -119,21 +116,9 @@ public class Ride {
 		this.createdAt = createdAt;
 	}
 
-
-	public int getResortId() {
-		return resortId;
-	}
-
-
-	public void setResortId(int resortId) {
-		this.resortId = resortId;
-	}
-
-
 	public int getActive() {
 		return active;
 	}
-
 
 	public void setActive(int active) {
 		this.active = active;
@@ -209,6 +194,13 @@ public class Ride {
 		this.imageUrl = imageUrl;
 	}
 
+	public Resort getResort() {
+		return resort;
+	}
+
+	public void setResort(Resort resort) {
+		this.resort = resort;
+	}
 
 	@Override
 	public int hashCode() {
@@ -226,15 +218,5 @@ public class Ride {
 			return false;
 		Ride other = (Ride) obj;
 		return id == other.id;
-	}
-
-
-	@Override
-	public String toString() {
-		return "Ride [id=" + id + ", sponsorId=" + sponsorId + ", departureAddressId=" + departureAddressId
-				+ ", departure=" + departure + ", createdAt=" + createdAt + ", resortId=" + resortId + ", active="
-				+ active + ", detail=" + detail + ", vehicleCapacity=" + vehicleCapacity + ", vehicleMake="
-				+ vehicleMake + ", vehicleModel=" + vehicleModel + ", arrivalAddressId=" + arrivalAddressId
-				+ ", updatedAt=" + updatedAt + ", imageUrl=" + imageUrl + "]";
 	}
 }
