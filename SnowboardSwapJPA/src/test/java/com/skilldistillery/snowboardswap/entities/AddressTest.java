@@ -43,9 +43,9 @@ class AddressTest {
 	@Test
 	void test_address_entity_mapping() {
 		assertNotNull(address);
-		//assertEquals(address.getStreet(), "509 Copper Rd");
-//        assertEquals("Frisco", address.getCity());
-//        assertEquals("80443", address.getPostalCode());
-//        assertEquals("866-841-2549", address.getPhoneNumber());
+		assertEquals(address.getStreet(), "509 Copper Rd");
+		assertEquals("Frisco", address.getCity());
+        assertEquals(80443, address.getPostalCode());
+        assertEquals("866-841-2549", address.getPhoneNumber());
 	}
 }
