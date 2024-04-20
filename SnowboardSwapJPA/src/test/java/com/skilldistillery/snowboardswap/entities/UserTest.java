@@ -1,6 +1,5 @@
 package com.skilldistillery.snowboardswap.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.AfterAll;
@@ -49,15 +48,5 @@ class UserTest {
 	@Test
 	void test_User_entity_mapping() {
 		assertNotNull(user);
-<<<<<<< HEAD
-		assertNotNull(user.getUsername());
-		assertEquals("admin", user.getUsername());
-	
-}
-	
-=======
-		//assertEquals(user.getUsername(), "admin");
-
 	}
->>>>>>> 8c78b8253e6631105a75398afbaf2ac78edf4c19
 }
