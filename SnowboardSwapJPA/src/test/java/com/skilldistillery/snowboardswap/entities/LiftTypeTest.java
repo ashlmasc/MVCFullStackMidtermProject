@@ -1,6 +1,6 @@
 package com.skilldistillery.snowboardswap.entities;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -12,11 +12,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class TrailStatusTest {
+class LiftTypeTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private TrailStatus trailStatus;
+	private LiftType liftType;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,18 +31,21 @@ class TrailStatusTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		trailStatus = em.find(TrailStatus.class, 1);
+		liftType = em.find(LiftType.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		trailStatus = null;
+		liftType = null;
 		em.close();
 	}
 
 	@Test
-	void test_TrailStatus_entity_mapping() {
-		assertNotNull(trailStatus);
-		//assertEquals("admin", user.getUsername());
+	void test_LiftType_entity_mapping() {
+		assertNotNull(liftType);
+		//assertEquals(address.getStreet(), "509 Copper Rd");
+//        assertEquals("Frisco", address.getCity());
+//        assertEquals("80443", address.getPostalCode());
+//        assertEquals("866-841-2549", address.getPhoneNumber());
 	}
 }

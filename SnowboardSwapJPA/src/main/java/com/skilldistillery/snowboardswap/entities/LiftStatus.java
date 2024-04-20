@@ -6,37 +6,42 @@ import java.util.Objects;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="traill_status")
-public class TrailStatus {
-
+@Table(name="lift_status")
+public class LiftStatus {
+	
 	@Id
-	@GeneratedValue()
-	private int Id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	
 	@Column(name="occurrence_date")
 	private LocalDateTime occurrenceDate;
 	
 	private String status;
 	
-	public TrailStatus() {}
+	//FK: lift_id int
+
+	public LiftStatus() {
+		super();
+	}
 
 	public int getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 
-	public LocalDateTime getOccurenceDate() {
+	public LocalDateTime getOccurrenceDate() {
 		return occurrenceDate;
 	}
 
-	public void setOccurenceDate(LocalDateTime occurrenceDate) {
+	public void setOccurrenceDate(LocalDateTime occurrenceDate) {
 		this.occurrenceDate = occurrenceDate;
 	}
 
@@ -50,7 +55,7 @@ public class TrailStatus {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(Id);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -61,8 +66,12 @@ public class TrailStatus {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TrailStatus other = (TrailStatus) obj;
-		return Id == other.Id;
+		LiftStatus other = (LiftStatus) obj;
+		return id == other.id;
 	}
 
+	@Override
+	public String toString() {
+		return "LiftStatus [id=" + id + ", occurrenceDate=" + occurrenceDate + ", status=" + status + "]";
+	}
 }

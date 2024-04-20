@@ -5,14 +5,21 @@
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     
     <!-- entities -->
-	<class>com.skilldistillery.snowboardswap.entities.Address</class>
 	<class>com.skilldistillery.snowboardswap.entities.User</class>
+<<<<<<< HEAD
 	<class>com.skilldistillery.snowboardswap.entities.Event</class>
 	<class>com.skilldistillery.snowboardswap.entities.EventAttendee</class>
 	<class>com.skilldistillery.snowboardswap.entities.Resort</class>
+=======
+>>>>>>> 8c78b8253e6631105a75398afbaf2ac78edf4c19
 	<class>com.skilldistillery.snowboardswap.entities.Ride</class>
+	<class>com.skilldistillery.snowboardswap.entities.Address</class>
+	<class>com.skilldistillery.snowboardswap.entities.Event</class>
+	<class>com.skilldistillery.snowboardswap.entities.EventType</class>
 	<class>com.skilldistillery.snowboardswap.entities.Trail</class>
 	<class>com.skilldistillery.snowboardswap.entities.TrailStatus</class>
+	<class>com.skilldistillery.snowboardswap.entities.LiftStatus</class>
+	<class>com.skilldistillery.snowboardswap.entities.LiftType</class>
 	
     <properties>
       <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/snowswapdb" />
@@ -23,7 +30,7 @@
 <!-- set back to false when going to production -->
       <property name="hibernate.show_sql" value="false" />
       <property name="hibernate.format_sql" value="false" />
-
+      
       <property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
       <property name="hibernate.c3p0.max_size" value="5" />
       <property name="hibernate.c3p0.min_size" value="0" />

@@ -1,28 +1,25 @@
 package com.skilldistillery.snowboardswap.entities;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="traill_status")
-public class TrailStatus {
-
+@Table(name="lift_type")
+public class LiftType {
+	
 	@Id
 	@GeneratedValue()
 	private int Id;
 	
-	@Column(name="occurrence_date")
-	private LocalDateTime occurrenceDate;
-	
-	private String status;
-	
-	public TrailStatus() {}
+	private String type;
+
+	public LiftType() {
+		super();
+	}
 
 	public int getId() {
 		return Id;
@@ -32,20 +29,12 @@ public class TrailStatus {
 		Id = id;
 	}
 
-	public LocalDateTime getOccurenceDate() {
-		return occurrenceDate;
+	public String getType() {
+		return type;
 	}
 
-	public void setOccurenceDate(LocalDateTime occurrenceDate) {
-		this.occurrenceDate = occurrenceDate;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	@Override
@@ -61,8 +50,12 @@ public class TrailStatus {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TrailStatus other = (TrailStatus) obj;
+		LiftType other = (LiftType) obj;
 		return Id == other.Id;
 	}
 
+	@Override
+	public String toString() {
+		return "LiftType [Id=" + Id + ", type=" + type + "]";
+	}
 }

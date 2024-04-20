@@ -21,7 +21,12 @@ class UserTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("SnowboardSwapJPA");
+		try {
+			emf = Persistence.createEntityManagerFactory("SnowboardSwapJPA");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@AfterAll
@@ -44,9 +49,15 @@ class UserTest {
 	@Test
 	void test_User_entity_mapping() {
 		assertNotNull(user);
+<<<<<<< HEAD
 		assertNotNull(user.getUsername());
 		assertEquals("admin", user.getUsername());
 	
 }
 	
+=======
+		//assertEquals(user.getUsername(), "admin");
+
+	}
+>>>>>>> 8c78b8253e6631105a75398afbaf2ac78edf4c19
 }

@@ -3,8 +3,11 @@ package com.skilldistillery.snowboardswap.entities;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import org.apache.logging.log4j.core.tools.picocli.CommandLine.Help.Ansi.Text;
 import org.hibernate.annotations.CreationTimestamp;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8c78b8253e6631105a75398afbaf2ac78edf4c19
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,7 +45,7 @@ public class Ride {
 	private String detail;
 	
 	
-	@Column(name="vehical_capacity")
+	@Column(name="vehicle_capacity")
 	private int vehicleCapacity;
 	
 	
@@ -64,7 +67,7 @@ public class Ride {
 	
 	
 	@Column(name="image_url")
-	private Text imageUrl;
+	private String imageUrl;
 
 
 	public Ride() {}
@@ -200,12 +203,12 @@ public class Ride {
 	}
 
 
-	public Text getImageUrl() {
+	public String getImageUrl() {
 		return imageUrl;
 	}
 
 
-	public void setImageUrl(Text imageUrl) {
+	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
 
@@ -237,10 +240,6 @@ public class Ride {
 				+ vehicleMake + ", vehicleModel=" + vehicleModel + ", arrivalAddressId=" + arrivalAddressId
 				+ ", updatedAt=" + updatedAt + ", imageUrl=" + imageUrl + "]";
 	}
-	
-	
-	
-	
 }
 
 

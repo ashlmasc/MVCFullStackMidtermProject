@@ -45,6 +45,7 @@ public class Event {
     
     //FK: user_id INT
     
+  
     //FK: event_type_id INT
       
     //FK: address_id INT

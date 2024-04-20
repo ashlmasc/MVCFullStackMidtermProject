@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,7 +18,6 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
 	
 	private String username;
 	
@@ -29,12 +29,11 @@ public class User {
 	private String role;
 
 	@CreationTimestamp
-	@Column(name = "create_at")
+	@Column(name = "created_at")
 	private LocalDateTime createdAt;
-
 	
-	@CreationTimestamp
-	@Column(name = "updated_at")
+	@UpdateTimestamp
+	@Column(name = "update_at")
 	private LocalDateTime updatedAt;
 	
 	
@@ -46,17 +45,8 @@ public class User {
 	
 	private String bio;
 	
-	
-	@Column(name= "address_id")
-	private int addressId;
-	
-	
 	@Column(name= "image_url")
 	private String imageUrl;
-	
-	
-	@Column(name= "address_id1")
-	private int AddressId1;
 	
 	public User() {}
 
@@ -162,15 +152,6 @@ public class User {
 	}
 
 
-	public int getAddressId() {
-		return addressId;
-	}
-
-
-	public void setAddressId(int addressId) {
-		this.addressId = addressId;
-	}
-
 
 	public String getImageUrl() {
 		return imageUrl;
@@ -180,17 +161,6 @@ public class User {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-
-
-	public int getAddressId1() {
-		return AddressId1;
-	}
-
-
-	public void setAddressId1(int addressId1) {
-		AddressId1 = addressId1;
-	}
-
 
 	@Override
 	public int hashCode() {
@@ -211,13 +181,6 @@ public class User {
 	}
 
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
-				+ ", role=" + role + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", bio=" + bio + ", addressId=" + addressId + ", imageUrl="
-				+ imageUrl + ", AddressId1=" + AddressId1 + "]";
-	}
 
 
 	

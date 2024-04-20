@@ -17,7 +17,7 @@ class TrailTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private Trail trail;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,18 +32,18 @@ class TrailTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		trail = em.find(Trail.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		user = null;
+		trail = null;
 		em.close();
 	}
 
 	@Test
-	void test_User_entity_mapping() {
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
+	void test_Trail_entity_mapping() {
+		assertNotNull(trail);
+		//assertEquals("admin", user.getUsername());
 	}
 }
