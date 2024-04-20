@@ -53,4 +53,10 @@ class TrailTest {
 		assertNotNull(trail.getStatuses());
 		assertEquals("Open", trail.getStatuses().get(0).getStatus());
 	}
+	@Test
+	void test_Trail_resort_M21() {
+		assertNotNull(trail);
+		assertNotNull(trail.getResort());
+		assertEquals("Copper Mountain", trail.getResort().getName());
+	}
 }

@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -22,11 +24,12 @@ public class Trail {
 	
 	private String difficulty;
 	
-	@Column(name="resort_id")
-	private int resortId;
-	
 	@OneToMany(mappedBy = "trail") 
     private List<TrailStatus> statuses;
+	
+	@ManyToOne
+	@JoinColumn(name = "resort_id")
+	private Resort resort;
 
 	public Trail() {}
 
@@ -54,20 +57,20 @@ public class Trail {
 		this.difficulty = difficulty;
 	}
 
-	public int getResortId() {
-		return resortId;
-	}
-
-	public void setResortId(int resortId) {
-		this.resortId = resortId;
-	}
-
 	public List<TrailStatus> getStatuses() {
 		return statuses;
 	}
 
 	public void setStatuses(List<TrailStatus> statuses) {
 		this.statuses = statuses;
+	}
+
+	public Resort getResort() {
+		return resort;
+	}
+
+	public void setResort(Resort resort) {
+		this.resort = resort;
 	}
 
 	@Override
@@ -86,18 +89,4 @@ public class Trail {
 		Trail other = (Trail) obj;
 		return id == other.id;
 	}
-
-	@Override
-	public String toString() {
-		return "Trail [id=" + id + ", name=" + name + ", difficulty=" + difficulty + ", resortId=" + resortId + "]";
-	}
-
-	
-
-
-	
-	
-	
-	
-
 }

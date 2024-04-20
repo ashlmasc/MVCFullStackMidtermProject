@@ -1,6 +1,8 @@
 package com.skilldistillery.snowboardswap.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -43,8 +45,13 @@ class ResortTest {
 	@Test
 	void test_User_entity_mapping() {
 		assertNotNull(resort);
-		
-	
-}
+		assertEquals("https://www.coppercolorado.com/", resort.getWebsite());
 
+	}
+	@Test
+	void test_Resort_trail_12M() {
+		assertNotNull(resort);
+		assertNotNull(resort.getTrails());
+		assertTrue(resort.getTrails().size() > 4);
+	}
 }

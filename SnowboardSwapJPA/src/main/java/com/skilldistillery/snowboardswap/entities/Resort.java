@@ -1,11 +1,13 @@
 package com.skilldistillery.snowboardswap.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Resort {
@@ -17,6 +19,9 @@ public class Resort {
 	private String website;
 
 	private String name;
+	
+	@OneToMany(mappedBy = "resort") 
+    private List<Trail> trails;
 
 	public Resort() {
 	}
@@ -43,6 +48,14 @@ public class Resort {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<Trail> getTrails() {
+		return trails;
+	}
+
+	public void setTrails(List<Trail> trails) {
+		this.trails = trails;
 	}
 
 	@Override
