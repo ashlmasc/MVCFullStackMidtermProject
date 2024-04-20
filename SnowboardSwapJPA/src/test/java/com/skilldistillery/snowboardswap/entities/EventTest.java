@@ -1,6 +1,7 @@
 package com.skilldistillery.snowboardswap.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -43,5 +44,11 @@ class EventTest {
 	@Test
 	void test_User_entity_mapping() {
 		assertNotNull(event);
+		assertEquals("Lets enjou the slopes together.", event.getDescription());
+		assertEquals("Lets enjou the slopes together.", event.getDescription());
+		assertEquals(2024, event.getEventStart().getYear());
+		assertEquals(5, event.getEventStart().getMonthValue());
+		assertEquals(14, event.getEventStart().getDayOfMonth());
+		assertEquals("https://cdn.ski/seq5OnNnD6LfpXu0.jpg", event.getImageUrl());
 	}
 }
