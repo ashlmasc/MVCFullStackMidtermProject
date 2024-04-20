@@ -40,6 +40,9 @@ public class Address {
     
     @OneToMany(mappedBy = "address") 
     private List<Event> events;
+    
+    @OneToMany(mappedBy = "address") 
+    private List<User> users;
 
 	public Address() {
 		super();
@@ -123,6 +126,14 @@ public class Address {
 
 	public void setEvents(List<Event> events) {
 		this.events = events;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 
 	@Override

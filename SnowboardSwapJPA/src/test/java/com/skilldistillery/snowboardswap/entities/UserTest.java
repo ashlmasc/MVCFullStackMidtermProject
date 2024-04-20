@@ -60,4 +60,10 @@ class UserTest {
 		assertNotNull(user.getEvents());
 		assertTrue(user.getEvents().size() > 0);
 	}
+	@Test
+	void test_User_address_M21() {
+		assertNotNull(user);
+		assertNotNull(user.getAddress());
+		assertEquals("Lakewood", user.getAddress().getCity());
+	}
 }

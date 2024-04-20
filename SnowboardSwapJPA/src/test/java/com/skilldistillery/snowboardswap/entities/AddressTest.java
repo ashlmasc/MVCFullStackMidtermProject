@@ -76,4 +76,11 @@ class AddressTest {
 		assertNotNull(address.getEvents());
 		assertEquals("Group get together", address.getEvents().get(0).getName());
 	}
+	@Test
+	void test_address_user_12M() {
+		address = em.find(Address.class, 2);
+		assertNotNull(address);
+		assertNotNull(address.getUsers());
+		assertEquals("Kim", address.getUsers().get(0).getFirstName());
+	}
 }
