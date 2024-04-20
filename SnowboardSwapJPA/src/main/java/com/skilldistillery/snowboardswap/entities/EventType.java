@@ -1,11 +1,13 @@
 package com.skilldistillery.snowboardswap.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,6 +18,9 @@ public class EventType {
 	private int id;
 	
 	private String type;
+	
+	@OneToMany(mappedBy = "eventType") 
+    private List<Event> events;
 
 	public EventType() {
 		super();
@@ -35,6 +40,14 @@ public class EventType {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
 	}
 
 	@Override

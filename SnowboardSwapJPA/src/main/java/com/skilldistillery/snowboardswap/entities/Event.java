@@ -10,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Event {
@@ -43,11 +45,12 @@ public class Event {
     @Column(name = "image_url")
     private String imageUrl;
     
-    //FK: user_id INT
-    
-  
     //FK: event_type_id INT
+    @ManyToOne
+	@JoinColumn(name = "event_type_id")
+	private EventType eventType;
       
+  //FK: user_id INT
     //FK: address_id INT
     
 	public Event() {
@@ -132,6 +135,14 @@ public class Event {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public EventType getEventType() {
+		return eventType;
+	}
+
+	public void setEventType(EventType eventType) {
+		this.eventType = eventType;
 	}
 
 	@Override

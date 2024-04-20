@@ -43,10 +43,13 @@ class EventTypeTest {
 	@Test
 	void test_EventType_entity_mapping() {
 		assertNotNull(eventType);
-		//assertEquals(address.getStreet(), "509 Copper Rd");
-//        assertEquals("Frisco", address.getCity());
-//        assertEquals("80443", address.getPostalCode());
-//        assertEquals("866-841-2549", address.getPhoneNumber());
+		assertEquals("Group get together", eventType.getEvents().get(0).getName());
+	}
+	@Test
+	void test_EventType_Event_12M() {
+		assertNotNull(eventType);
+		assertNotNull(eventType.getEvents());
+		assertEquals("Group get together", eventType.getEvents().get(0).getName());
 	}
 
 }

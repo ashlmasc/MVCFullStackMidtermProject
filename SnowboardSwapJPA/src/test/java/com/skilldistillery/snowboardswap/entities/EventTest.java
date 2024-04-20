@@ -42,7 +42,7 @@ class EventTest {
 	}
 
 	@Test
-	void test_User_entity_mapping() {
+	void test_Event_entity_mapping() {
 		assertNotNull(event);
 		assertEquals("Lets enjou the slopes together.", event.getDescription());
 		assertEquals("Lets enjou the slopes together.", event.getDescription());
@@ -50,5 +50,11 @@ class EventTest {
 		assertEquals(5, event.getEventStart().getMonthValue());
 		assertEquals(14, event.getEventStart().getDayOfMonth());
 		assertEquals("https://cdn.ski/seq5OnNnD6LfpXu0.jpg", event.getImageUrl());
+	}
+	@Test
+	void test_Event_eventType_M21() {
+		assertNotNull(event);
+		assertNotNull(event.getEventType());
+		assertEquals("Meetup", event.getEventType().getType());
 	}
 }
