@@ -1,6 +1,8 @@
 package com.skilldistillery.snowboardswap.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -20,12 +22,7 @@ class UserTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		try {
-			emf = Persistence.createEntityManagerFactory("SnowboardSwapJPA");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		emf = Persistence.createEntityManagerFactory("SnowboardSwapJPA");
 	}
 
 	@AfterAll
@@ -48,5 +45,13 @@ class UserTest {
 	@Test
 	void test_User_entity_mapping() {
 		assertNotNull(user);
+		assertEquals("Kim", user.getFirstName());
+		assertEquals("Possible", user.getLastName());
+	}
+	@Test
+	void test_User_ride_12M() {
+		assertNotNull(user);
+		assertNotNull(user.getRides());
+		assertTrue(user.getRides().size() > 0);
 	}
 }

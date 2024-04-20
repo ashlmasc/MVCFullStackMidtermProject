@@ -66,4 +66,10 @@ class RideTest {
 		assertNotNull(ride.getArrivalAddress());
 		assertEquals("509 Copper Rd", ride.getArrivalAddress().getStreet());
 	}
+	@Test
+	void test_Ride_User_M21() {
+		assertNotNull(ride);
+		assertNotNull(ride.getUser());
+		assertEquals("Kim", ride.getUser().getFirstName());
+	}
 }

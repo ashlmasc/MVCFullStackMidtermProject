@@ -1,6 +1,7 @@
 package com.skilldistillery.snowboardswap.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -11,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -47,6 +49,9 @@ public class User {
 	
 	@Column(name= "image_url")
 	private String imageUrl;
+	
+	@OneToMany(mappedBy = "user") 
+    private List<Ride> rides;
 	
 	public User() {}
 
@@ -162,6 +167,16 @@ public class User {
 		this.imageUrl = imageUrl;
 	}
 
+	public List<Ride> getRides() {
+		return rides;
+	}
+
+
+	public void setRides(List<Ride> rides) {
+		this.rides = rides;
+	}
+
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -179,13 +194,4 @@ public class User {
 		User other = (User) obj;
 		return id == other.id;
 	}
-
-
-
-
-	
-	
-	
-	
-	
 }

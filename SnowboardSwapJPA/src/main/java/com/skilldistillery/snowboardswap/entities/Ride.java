@@ -20,9 +20,6 @@ public class Ride {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="sponsor_id")
-	private int sponsorId;
-	
 	@CreationTimestamp
 	private LocalDateTime departure;
 	
@@ -66,7 +63,11 @@ public class Ride {
 	@ManyToOne
 	@JoinColumn(name = "arrival_address_id")
 	private Address arrivalAddress;
-
+	
+	@ManyToOne
+	@JoinColumn(name = "sponsor_id")
+	private User user;
+	
 	public Ride() {}
 
 	public int getId() {
@@ -76,15 +77,6 @@ public class Ride {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getSponsorId() {
-		return sponsorId;
-	}
-
-
-	public void setSponsorId(int sponsorId) {
-		this.sponsorId = sponsorId;
 	}
 
 	public LocalDateTime getDeparture() {
@@ -197,11 +189,18 @@ public class Ride {
 		this.arrivalAddress = arrivalAddress;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
