@@ -12,6 +12,7 @@
 	<class>com.skilldistillery.snowboardswap.entities.EventType</class>
 	<class>com.skilldistillery.snowboardswap.entities.Trail</class>
 	<class>com.skilldistillery.snowboardswap.entities.TrailStatus</class>
+	<class>com.skilldistillery.snowboardswap.entities.Lift</class>
 	
     <properties>
       <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/snowswapdb" />

@@ -42,12 +42,12 @@ class LiftTest {
 	}
 
 	@Test
-	void test_Trail_entity_mapping() {
+	void test_Lift_entity_mapping() {
 		assertNotNull(lift);
-		// assertEquals("admin", user.getUsername());
 	}
 
-	void test_Trail_has_name() {
+	@Test
+	void test_Lift_has_name() {
 		assertNotNull(lift);
 		assertEquals("American Eagle", lift.getName());
 	}
