@@ -8,6 +8,8 @@
 	<class>com.skilldistillery.snowboardswap.entities.Address</class>
 	<class>com.skilldistillery.snowboardswap.entities.User</class>
 	<class>com.skilldistillery.snowboardswap.entities.Event</class>
+	<class>com.skilldistillery.snowboardswap.entities.EventAttendee</class>
+	<class>com.skilldistillery.snowboardswap.entities.Resort</class>
 	<class>com.skilldistillery.snowboardswap.entities.Ride</class>
 	<class>com.skilldistillery.snowboardswap.entities.Trail</class>
 	<class>com.skilldistillery.snowboardswap.entities.TrailStatus</class>

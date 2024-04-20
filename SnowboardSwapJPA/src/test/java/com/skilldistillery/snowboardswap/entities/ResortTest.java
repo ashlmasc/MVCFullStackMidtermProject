@@ -1,6 +1,5 @@
 package com.skilldistillery.snowboardswap.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.AfterAll;
@@ -13,11 +12,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class UserTest {
+class ResortTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private Resort resort;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,21 +31,20 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		resort = em.find(Resort.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		user = null;
+		resort = null;
 		em.close();
 	}
 
 	@Test
 	void test_User_entity_mapping() {
-		assertNotNull(user);
-		assertNotNull(user.getUsername());
-		assertEquals("admin", user.getUsername());
+		assertNotNull(resort);
+		
 	
 }
-	
+
 }
