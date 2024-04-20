@@ -51,4 +51,10 @@ class LiftTest {
 		assertNotNull(lift);
 		assertEquals("American Eagle", lift.getName());
 	}
+	
+	@Test
+	void test_Lift_has_status_M21() {
+		assertNotNull(lift);
+		assertEquals("Telemix", lift.getLiftType().getType());
+	}
 }
