@@ -53,6 +53,9 @@ public class User {
 	@OneToMany(mappedBy = "user") 
     private List<Ride> rides;
 	
+	@OneToMany(mappedBy = "sponsor") 
+    private List<Event> events;
+	
 	public User() {}
 
 
@@ -174,6 +177,16 @@ public class User {
 
 	public void setRides(List<Ride> rides) {
 		this.rides = rides;
+	}
+
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
 	}
 
 

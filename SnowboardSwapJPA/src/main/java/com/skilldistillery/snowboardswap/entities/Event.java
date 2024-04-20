@@ -51,10 +51,13 @@ public class Event {
       
   //FK: user_id INT
     
-    //FK: address_id INT
     @ManyToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
+    
+    @ManyToOne
+	@JoinColumn(name = "user_id")
+	private User sponsor;
     
 	public Event() {
 		super();
@@ -154,6 +157,14 @@ public class Event {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public User getSponsor() {
+		return sponsor;
+	}
+
+	public void setSponsor(User sponsor) {
+		this.sponsor = sponsor;
 	}
 
 	@Override

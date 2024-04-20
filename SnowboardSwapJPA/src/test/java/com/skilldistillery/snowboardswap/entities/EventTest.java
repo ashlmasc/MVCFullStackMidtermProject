@@ -63,4 +63,10 @@ class EventTest {
 		assertNotNull(event.getAddress());
 		assertEquals("509 Copper Rd", event.getAddress().getStreet());
 	}
+	@Test
+	void test_Event_User_M21() {
+		assertNotNull(event);
+		assertNotNull(event.getSponsor());
+		assertEquals("Kim", event.getSponsor().getFirstName());
+	}
 }

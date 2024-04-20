@@ -54,4 +54,10 @@ class UserTest {
 		assertNotNull(user.getRides());
 		assertTrue(user.getRides().size() > 0);
 	}
+	@Test
+	void test_User_event_12M() {
+		assertNotNull(user);
+		assertNotNull(user.getEvents());
+		assertTrue(user.getEvents().size() > 0);
+	}
 }
