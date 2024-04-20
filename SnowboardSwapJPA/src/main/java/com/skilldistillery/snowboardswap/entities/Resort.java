@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -22,6 +24,10 @@ public class Resort {
 	
 	@OneToMany(mappedBy = "resort") 
     private List<Trail> trails;
+	
+	@ManyToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
 
 	public Resort() {
 	}
@@ -56,6 +62,14 @@ public class Resort {
 
 	public void setTrails(List<Trail> trails) {
 		this.trails = trails;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	@Override

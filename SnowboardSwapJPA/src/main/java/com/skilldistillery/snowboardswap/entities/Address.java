@@ -1,5 +1,6 @@
 package com.skilldistillery.snowboardswap.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -7,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Address {
@@ -26,6 +28,9 @@ public class Address {
 
     @Column(name = "phone_number")
     private String phoneNumber;
+    
+    @OneToMany(mappedBy = "address") 
+    private List<Resort> resorts;
 
 	public Address() {
 		super();
@@ -77,6 +82,14 @@ public class Address {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	public List<Resort> getResorts() {
+		return resorts;
+	}
+
+	public void setResorts(List<Resort> resorts) {
+		this.resorts = resorts;
 	}
 
 	@Override

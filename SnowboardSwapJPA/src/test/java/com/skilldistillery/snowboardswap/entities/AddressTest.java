@@ -48,4 +48,10 @@ class AddressTest {
         assertEquals(80443, address.getPostalCode());
         assertEquals("866-841-2549", address.getPhoneNumber());
 	}
+	@Test
+	void test_address_resort_12M() {
+		assertNotNull(address);
+		assertNotNull(address.getResorts());
+		assertEquals("Copper Mountain", address.getResorts().get(0).getName());
+	}
 }

@@ -54,4 +54,10 @@ class ResortTest {
 		assertNotNull(resort.getTrails());
 		assertTrue(resort.getTrails().size() > 4);
 	}
+	@Test
+	void test_Resort_Address_M21() {
+		assertNotNull(resort);
+		assertNotNull(resort.getAddress());
+		assertEquals("509 Copper Rd", resort.getAddress().getStreet());
+	}
 }
