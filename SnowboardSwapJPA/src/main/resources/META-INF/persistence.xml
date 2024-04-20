@@ -5,13 +5,17 @@
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     
     <!-- entities -->
-	<class>com.skilldistillery.snowboardswap.entities.User</class>
-	<class>com.skilldistillery.snowboardswap.entities.Ride</class>
 	<class>com.skilldistillery.snowboardswap.entities.Address</class>
 	<class>com.skilldistillery.snowboardswap.entities.Event</class>
 	<class>com.skilldistillery.snowboardswap.entities.EventType</class>
+	<class>com.skilldistillery.snowboardswap.entities.Lift</class>
+	<class>com.skilldistillery.snowboardswap.entities.LiftStatus</class>
+	<class>com.skilldistillery.snowboardswap.entities.LiftType</class>
+	<class>com.skilldistillery.snowboardswap.entities.Ride</class>
 	<class>com.skilldistillery.snowboardswap.entities.Trail</class>
 	<class>com.skilldistillery.snowboardswap.entities.TrailStatus</class>
+	<class>com.skilldistillery.snowboardswap.entities.User</class>
+	<class>com.skilldistillery.snowboardswap.entities.Resort</class>
 	
     <properties>
       <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/snowswapdb" />

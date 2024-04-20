@@ -238,15 +238,3 @@ public class Ride {
 				+ ", updatedAt=" + updatedAt + ", imageUrl=" + imageUrl + "]";
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
