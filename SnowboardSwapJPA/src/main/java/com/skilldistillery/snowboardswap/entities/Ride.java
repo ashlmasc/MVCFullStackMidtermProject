@@ -23,9 +23,6 @@ public class Ride {
 	@Column(name="sponsor_id")
 	private int sponsorId;
 	
-	@Column(name="departure_address_id")
-	private int departureAddressId;
-
 	@CreationTimestamp
 	private LocalDateTime departure;
 	
@@ -50,10 +47,6 @@ public class Ride {
 	@Column(name="vehicle_model")
 	private String vehicleModel;
 	
-	
-	@Column(name="arrival_address_id")
-	private int arrivalAddressId;
-	
 	@CreationTimestamp
 	@Column(name="updated_at")
 	private LocalDateTime updatedAt;
@@ -65,6 +58,14 @@ public class Ride {
 	@ManyToOne
 	@JoinColumn(name = "resort_id")
 	private Resort resort;
+	
+	@ManyToOne
+	@JoinColumn(name = "departure_address_id")
+	private Address departureAddress;
+	
+	@ManyToOne
+	@JoinColumn(name = "arrival_address_id")
+	private Address arrivalAddress;
 
 	public Ride() {}
 
@@ -85,17 +86,6 @@ public class Ride {
 	public void setSponsorId(int sponsorId) {
 		this.sponsorId = sponsorId;
 	}
-
-
-	public int getDepartureAddressId() {
-		return departureAddressId;
-	}
-
-
-	public void setDepartureAddressId(int departureAddressId) {
-		this.departureAddressId = departureAddressId;
-	}
-
 
 	public LocalDateTime getDeparture() {
 		return departure;
@@ -164,17 +154,6 @@ public class Ride {
 		this.vehicleModel = vehicleModel;
 	}
 
-
-	public int getArrivalAddressId() {
-		return arrivalAddressId;
-	}
-
-
-	public void setArrivalAddressId(int arrivalAddressId) {
-		this.arrivalAddressId = arrivalAddressId;
-	}
-
-
 	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
@@ -200,6 +179,22 @@ public class Ride {
 
 	public void setResort(Resort resort) {
 		this.resort = resort;
+	}
+
+	public Address getDepartureAddress() {
+		return departureAddress;
+	}
+
+	public void setDepartureAddress(Address departureAddress) {
+		this.departureAddress = departureAddress;
+	}
+
+	public Address getArrivalAddress() {
+		return arrivalAddress;
+	}
+
+	public void setArrivalAddress(Address arrivalAddress) {
+		this.arrivalAddress = arrivalAddress;
 	}
 
 	@Override

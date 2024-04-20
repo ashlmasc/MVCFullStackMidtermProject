@@ -31,6 +31,12 @@ public class Address {
     
     @OneToMany(mappedBy = "address") 
     private List<Resort> resorts;
+    
+    @OneToMany(mappedBy = "departureAddress") 
+    private List<Ride> departureRides;
+    
+    @OneToMany(mappedBy = "arrivalAddress") 
+    private List<Ride> arrivalRides;
 
 	public Address() {
 		super();
@@ -90,6 +96,22 @@ public class Address {
 
 	public void setResorts(List<Resort> resorts) {
 		this.resorts = resorts;
+	}
+
+	public List<Ride> getDepartureRides() {
+		return departureRides;
+	}
+
+	public void setDepartureRides(List<Ride> departureRides) {
+		this.departureRides = departureRides;
+	}
+
+	public List<Ride> getArrivalRides() {
+		return arrivalRides;
+	}
+
+	public void setArrivalRides(List<Ride> arrivalRides) {
+		this.arrivalRides = arrivalRides;
 	}
 
 	@Override

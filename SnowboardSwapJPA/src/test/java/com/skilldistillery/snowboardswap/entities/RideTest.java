@@ -54,4 +54,16 @@ class RideTest {
 		assertNotNull(ride.getResort());
 		assertEquals(2024, ride.getDeparture().getYear());
 	}
+	@Test
+	void test_Ride_Address_departure_M21() {
+		assertNotNull(ride);
+		assertNotNull(ride.getDepartureAddress());
+		assertEquals("6701 W Alameda Ave", ride.getDepartureAddress().getStreet());
+	}
+	@Test
+	void test_Ride_Address_arrival_M21() {
+		assertNotNull(ride);
+		assertNotNull(ride.getArrivalAddress());
+		assertEquals("509 Copper Rd", ride.getArrivalAddress().getStreet());
+	}
 }

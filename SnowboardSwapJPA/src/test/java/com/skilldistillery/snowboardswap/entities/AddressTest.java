@@ -1,6 +1,8 @@
 package com.skilldistillery.snowboardswap.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -45,13 +47,28 @@ class AddressTest {
 		assertNotNull(address);
 		assertEquals(address.getStreet(), "509 Copper Rd");
 		assertEquals("Frisco", address.getCity());
-        assertEquals(80443, address.getPostalCode());
-        assertEquals("866-841-2549", address.getPhoneNumber());
+		assertEquals(80443, address.getPostalCode());
+		assertEquals("866-841-2549", address.getPhoneNumber());
 	}
+
 	@Test
 	void test_address_resort_12M() {
 		assertNotNull(address);
 		assertNotNull(address.getResorts());
 		assertEquals("Copper Mountain", address.getResorts().get(0).getName());
+	}
+
+	@Test
+	void test_address_rideDeparture_12M() {
+		address = em.find(Address.class, 2);
+		assertNotNull(address);
+		assertNotNull(address.getDepartureRides());
+		assertEquals("Kia", address.getDepartureRides().get(0).getVehicleMake());
+	}
+	@Test
+	void test_address_ride_arrival_12M() {
+		assertNotNull(address);
+		assertNotNull(address.getArrivalRides());
+		assertEquals("Kia", address.getArrivalRides().get(0).getVehicleMake());
 	}
 }
