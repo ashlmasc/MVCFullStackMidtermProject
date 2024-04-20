@@ -1,6 +1,7 @@
 package com.skilldistillery.snowboardswap.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -11,6 +12,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -49,8 +52,6 @@ public class Event {
 	@JoinColumn(name = "event_type_id")
 	private EventType eventType;
       
-  //FK: user_id INT
-    
     @ManyToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
@@ -58,6 +59,12 @@ public class Event {
     @ManyToOne
 	@JoinColumn(name = "user_id")
 	private User sponsor;
+    
+    @ManyToMany
+	@JoinTable(name = "event_attendee", 
+		joinColumns = @JoinColumn(name = "event_id"), 
+		inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private List<User> eventAttendees;
     
 	public Event() {
 		super();
@@ -165,6 +172,14 @@ public class Event {
 
 	public void setSponsor(User sponsor) {
 		this.sponsor = sponsor;
+	}
+
+	public List<User> getEventAttendees() {
+		return eventAttendees;
+	}
+
+	public void setEventAttendees(List<User> eventAttendees) {
+		this.eventAttendees = eventAttendees;
 	}
 
 	@Override

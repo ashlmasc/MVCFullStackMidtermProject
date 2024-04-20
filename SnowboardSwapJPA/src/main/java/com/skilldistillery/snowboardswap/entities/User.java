@@ -13,6 +13,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -59,6 +61,9 @@ public class User {
 	@ManyToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
+	
+	@ManyToMany(mappedBy = "eventAttendees")
+	private List<Event> guestlist;
 
 	public User() {
 	}
@@ -173,6 +178,14 @@ public class User {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public List<Event> getGuestlist() {
+		return guestlist;
+	}
+
+	public void setGuestlist(List<Event> guestlist) {
+		this.guestlist = guestlist;
 	}
 
 	@Override

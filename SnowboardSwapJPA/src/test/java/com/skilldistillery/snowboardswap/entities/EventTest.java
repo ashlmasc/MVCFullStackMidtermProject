@@ -69,4 +69,10 @@ class EventTest {
 		assertNotNull(event.getSponsor());
 		assertEquals("Kim", event.getSponsor().getFirstName());
 	}
+	@Test
+	void test_Event_User_M2M() {
+		assertNotNull(event);
+		assertNotNull(event.getEventAttendees());
+		assertEquals("Kim", event.getEventAttendees().get(0).getFirstName());
+	}
 }

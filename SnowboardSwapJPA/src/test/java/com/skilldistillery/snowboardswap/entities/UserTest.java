@@ -66,4 +66,10 @@ class UserTest {
 		assertNotNull(user.getAddress());
 		assertEquals("Lakewood", user.getAddress().getCity());
 	}
+	@Test
+	void test_User_event_M2M() {
+		assertNotNull(user);
+		assertNotNull(user.getGuestlist());
+		assertEquals("Group get together", user.getGuestlist().get(0).getName());
+	}
 }
