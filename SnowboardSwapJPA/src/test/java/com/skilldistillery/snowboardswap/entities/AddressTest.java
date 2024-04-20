@@ -70,4 +70,10 @@ class AddressTest {
 		assertNotNull(address.getArrivalRides());
 		assertEquals("Kia", address.getArrivalRides().get(0).getVehicleMake());
 	}
+	@Test
+	void test_address_event_12M() {
+		assertNotNull(address);
+		assertNotNull(address.getEvents());
+		assertEquals("Group get together", address.getEvents().get(0).getName());
+	}
 }

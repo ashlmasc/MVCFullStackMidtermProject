@@ -57,4 +57,10 @@ class EventTest {
 		assertNotNull(event.getEventType());
 		assertEquals("Meetup", event.getEventType().getType());
 	}
+	@Test
+	void test_Event_address_M21() {
+		assertNotNull(event);
+		assertNotNull(event.getAddress());
+		assertEquals("509 Copper Rd", event.getAddress().getStreet());
+	}
 }

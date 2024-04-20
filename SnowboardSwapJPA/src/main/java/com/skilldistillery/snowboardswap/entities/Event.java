@@ -45,13 +45,16 @@ public class Event {
     @Column(name = "image_url")
     private String imageUrl;
     
-    //FK: event_type_id INT
     @ManyToOne
 	@JoinColumn(name = "event_type_id")
 	private EventType eventType;
       
   //FK: user_id INT
+    
     //FK: address_id INT
+    @ManyToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
     
 	public Event() {
 		super();
@@ -143,6 +146,14 @@ public class Event {
 
 	public void setEventType(EventType eventType) {
 		this.eventType = eventType;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	@Override

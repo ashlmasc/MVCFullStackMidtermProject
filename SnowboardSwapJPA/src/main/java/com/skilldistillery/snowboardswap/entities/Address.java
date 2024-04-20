@@ -37,6 +37,9 @@ public class Address {
     
     @OneToMany(mappedBy = "arrivalAddress") 
     private List<Ride> arrivalRides;
+    
+    @OneToMany(mappedBy = "address") 
+    private List<Event> events;
 
 	public Address() {
 		super();
@@ -112,6 +115,14 @@ public class Address {
 
 	public void setArrivalRides(List<Ride> arrivalRides) {
 		this.arrivalRides = arrivalRides;
+	}
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
 	}
 
 	@Override
