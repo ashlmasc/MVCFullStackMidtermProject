@@ -48,4 +48,9 @@ public class UserController {
 		session.removeAttribute("loggedInUser");
 		return "logout";
 	}
+	
+	@GetMapping("register.do")
+	public String showRegistrationForm() {
+	    return "accountRegister"; 
+	}
 }
