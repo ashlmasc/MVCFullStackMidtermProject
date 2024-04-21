@@ -47,7 +47,7 @@
 					<ul class="dropdown-menu" >	
 						<c:if test="${sessionScope.loggedInUser ne null }">
 							<a class="dropdown-item" href="account">Account</a>
-							<a class="dropdown-item" href="logout">Logout</a>
+							<a class="dropdown-item" href="logout.do">Logout</a>
 						</c:if>
 
 						<c:if test="${sessionScope.loggedInUser eq null}">
