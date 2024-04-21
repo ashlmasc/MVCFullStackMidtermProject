@@ -29,11 +29,4 @@ public class SiteController {
 		return mv;
 	}
 
-	@GetMapping({ "resorts" })
-	public ModelAndView rideShare() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("resortInfo");
-		return mv;
-	}
-
 }
