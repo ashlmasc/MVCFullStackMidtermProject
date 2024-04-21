@@ -28,8 +28,4 @@ public class SiteController {
 		mv.setViewName("accountRegister");
 		return mv;
 	}
-<<<<<<< HEAD
-
-=======
->>>>>>> 35ee9aca37c2f222c25d28fde9cfd728d9b7b7f2
 }
