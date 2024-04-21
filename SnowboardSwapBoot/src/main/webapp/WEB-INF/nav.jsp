@@ -47,7 +47,7 @@
 						</c:if>
 
 						<c:if test="${sessionScope.loggedInUser eq null}">
-							<a class="dropdown-item" href="accountRegister">Register</a>
+							<a class="dropdown-item" href="register">Register</a>
 							<a class="dropdown-item" href="login">Login</a>
 						</c:if>
 

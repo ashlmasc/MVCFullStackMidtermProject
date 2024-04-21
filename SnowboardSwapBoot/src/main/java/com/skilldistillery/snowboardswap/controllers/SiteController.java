@@ -36,7 +36,7 @@ public class SiteController {
 		return mv;
 	}
 
-	@GetMapping({ "resortInfo" })
+	@GetMapping({ "resorts" })
 	public ModelAndView rideShare() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("resortInfo");
