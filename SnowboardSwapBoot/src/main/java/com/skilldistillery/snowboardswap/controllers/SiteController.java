@@ -15,4 +15,32 @@ public class SiteController {
 		return mv;
 	}
 
+	@GetMapping({ "login" })
+	public ModelAndView login() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("login");
+		return mv;
+	}
+
+	@GetMapping({ "register" })
+	public ModelAndView register() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("accountRegister");
+		return mv;
+	}
+
+	@GetMapping({ "rideshare" })
+	public ModelAndView profile() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("rideshare");
+		return mv;
+	}
+
+	@GetMapping({ "resortInfo" })
+	public ModelAndView rideShare() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("resortInfo");
+		return mv;
+	}
+
 }
