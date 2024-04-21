@@ -6,7 +6,7 @@
 <title>SnowBoardSwap</title>
 </head>
 <body>
-<jsp:include page="nav.jsp">
+<jsp:include page="nav.jsp"/>
 
 <p>HOME JSP WORKING</p>
 </body>
