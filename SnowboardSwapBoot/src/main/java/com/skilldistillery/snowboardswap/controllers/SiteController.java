@@ -29,13 +29,6 @@ public class SiteController {
 		return mv;
 	}
 
-	@GetMapping({ "rideshare" })
-	public ModelAndView profile() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("rideshare");
-		return mv;
-	}
-
 	@GetMapping({ "resorts" })
 	public ModelAndView rideShare() {
 		ModelAndView mv = new ModelAndView();
