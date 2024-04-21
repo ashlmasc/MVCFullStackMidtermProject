@@ -32,7 +32,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 
 		User authenticatedUser = userDAO.authenticateUser("admin", "sspass");
-//		User authenticatedUser = userDAO.authenticatedUser(user.getUsername(), user.getPassword());
+		//User authenticatedUser = userDAO.authenticatedUser(user.getUsername(), user.getPassword());
 		if (authenticatedUser != null) {
 			session.setAttribute("loggedInUser", authenticatedUser);
 			mv.setViewName("profile");
