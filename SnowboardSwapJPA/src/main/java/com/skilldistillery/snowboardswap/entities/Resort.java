@@ -1,5 +1,7 @@
 package com.skilldistillery.snowboardswap.entities;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,16 +23,16 @@ public class Resort {
 	private String website;
 
 	private String name;
-	
-	@OneToMany(mappedBy = "resort") 
-    private List<Trail> trails;
-	
+
+	@OneToMany(mappedBy = "resort")
+	private List<Trail> trails;
+
 	@ManyToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
-	
-	@OneToMany(mappedBy = "resort") 
-    private List<Ride> rides;
+
+	@OneToMany(mappedBy = "resort")
+	private List<Ride> rides;
 
 	public Resort() {
 	}
@@ -90,12 +92,15 @@ public class Resort {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		Resort other = (Resort) obj;
 		return id == other.id;
 	}
@@ -105,6 +110,22 @@ public class Resort {
 		return "Resort [id=" + id + ", website=" + website + ", name=" + name + "]";
 	}
 
-	
-	
+	public String getMapURL() {
+		String mapURL = "";
+
+		if (address != null) {
+			mapURL = address.getStreet() + " " + address.getCity() + " " + address.getState() + " "
+					+ address.getPostalCode();
+
+			try {
+				mapURL = URLEncoder.encode(mapURL, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return mapURL;
+	}
+
 }
