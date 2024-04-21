@@ -4,12 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>SnowBoardSwap</title>
+    <title>User Profile</title>
 </head>
 <body>
-<jsp:include page="nav.jsp">
-
-<p>${loggedInUser.username}</p>
+    <h1>Welcome, <c:out value="${loggedInUser.username}"/>!</h1>
+    <p>Your details are below:</p>
+    <!-- Add more user details as needed -->
+    
+    <a href="logout.do">Logout</a>
 </body>
 </html>
