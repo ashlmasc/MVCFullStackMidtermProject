@@ -14,33 +14,38 @@ import jakarta.servlet.http.HttpSession;
 public class UserController {
 
 	private UserDAO userDAO;
-	
+
 	public UserController(UserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
 	
+	@GetMapping("login.do")
+	  public String showLoginForm(HttpSession session) {
+		if(session == null) {
+			return "home";
+		}
+		return "login";
+	  }
+
 	@PostMapping("login.do")
 	public ModelAndView login(User user, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		
-		User authenticatedUser = userDAO.authenticateUser("admin" , "sspass");
+
+		User authenticatedUser = userDAO.authenticateUser("admin", "sspass");
 //		User authenticatedUser = userDAO.authenticatedUser(user.getUsername(), user.getPassword());
-		if(authenticatedUser != null) {
+		if (authenticatedUser != null) {
 			session.setAttribute("loggedInUser", authenticatedUser);
 			mv.setViewName("profile");
 		} else {
-			//TODO
-			//mv.setViewName("error");
-			//mv.setViewName("register");
-			
-			
+			mv.addObject("loginFailed", true);
+			mv.setViewName("login");
 		}
-		
 		return mv;
 	}
+
 	@GetMapping("logout.do")
-	  public String logout(HttpSession session) {
+	public String logout(HttpSession session) {
 		session.removeAttribute("loggedInUser");
 		return "logout";
-	  }
+	}
 }
