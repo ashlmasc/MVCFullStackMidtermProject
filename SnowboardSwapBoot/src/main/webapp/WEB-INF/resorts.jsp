@@ -114,6 +114,9 @@
 
 
 		</c:forEach>
+		
+		
+		
 	</main>
 	<footer> </footer>
 

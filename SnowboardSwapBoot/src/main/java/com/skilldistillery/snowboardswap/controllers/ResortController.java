@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.skilldistillery.snowboardswap.data.AddressDAO;
 import com.skilldistillery.snowboardswap.data.ResortDAO;
 import com.skilldistillery.snowboardswap.entities.Address;
 import com.skilldistillery.snowboardswap.entities.Resort;
@@ -16,9 +17,11 @@ import com.skilldistillery.snowboardswap.entities.Resort;
 public class ResortController {
 
 	private ResortDAO resortDAO;
+	private AddressDAO addressDAO;
 
-	public ResortController(ResortDAO resortDAO) {
+	public ResortController(ResortDAO resortDAO, AddressDAO addressDAO) {
 		this.resortDAO = resortDAO;
+		this.addressDAO = addressDAO;
 	}
 
 	@GetMapping({ "resorts" })
@@ -48,6 +51,8 @@ public class ResortController {
 	@PostMapping("addResort")
 	public ModelAndView addResort(Resort resort, Address address) {
 
+		address = addressDAO.addAddress(address);
+		resort.setAddress(address);
 		resort = resortDAO.addResort(resort);
 		System.out.println(resort + "***");
 		System.out.println("****");
