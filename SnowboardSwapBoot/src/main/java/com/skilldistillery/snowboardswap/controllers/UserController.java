@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.snowboardswap.data.AddressDAO;
 import com.skilldistillery.snowboardswap.data.UserDAO;
@@ -20,8 +19,9 @@ public class UserController {
 	private UserDAO userDAO;
 	private AddressDAO addressDAO;
 
-	public UserController(UserDAO userDAO) {
+	public UserController(UserDAO userDAO, AddressDAO addressDAO) {
 		this.userDAO = userDAO;
+		this.addressDAO = addressDAO;
 	}
 	
 	@GetMapping("login.do")
@@ -29,23 +29,17 @@ public class UserController {
 		if(session == null) {
 			return "home";
 		}
-		return "login";
+		return "profile";
 	  }
 
+	
 	@PostMapping("login.do")
-	public ModelAndView login(User user, HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-
-		User authenticatedUser = userDAO.authenticateUser("admin", "sspass");
-		//User authenticatedUser = userDAO.authenticateUser(user.getUsername(), user.getPassword());
+	public String login(User user, HttpSession session, Model model) {
+		User authenticatedUser = userDAO.authenticateUser(user.getUsername(), user.getPassword());
 		if (authenticatedUser != null) {
 			session.setAttribute("loggedInUser", authenticatedUser);
-			mv.setViewName("profile");
-		} else {
-			mv.addObject("loginFailed", true);
-			mv.setViewName("login");
 		}
-		return mv;
+		return "profile";
 	}
 	
 	@GetMapping("logout.do")
