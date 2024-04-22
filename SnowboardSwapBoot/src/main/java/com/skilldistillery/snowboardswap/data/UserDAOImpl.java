@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.snowboardswap.entities.Address;
 import com.skilldistillery.snowboardswap.entities.User;
 
 import jakarta.persistence.EntityManager;
@@ -41,14 +42,14 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User updateUserProfile(User user) {
+	public User updateUserProfile(User user, Address address) {
 		User updateUser = em.find(User.class, user);
-		updateUser.setFirstName(user.getFirstName());
 		updateUser.setLastName(user.getLastName());
-		updateUser.setFirstName(user.getFirstName());
-		updateUser.setFirstName(user.getFirstName());
+		updateUser.setUsername(user.getUsername());
+		updateUser.setPassword(user.getPassword());
+		updateUser.setAddress(user.getAddress());
 		
-		return null;
+		return updateUser;
 	}
 	
 	// Find a user by their ID
