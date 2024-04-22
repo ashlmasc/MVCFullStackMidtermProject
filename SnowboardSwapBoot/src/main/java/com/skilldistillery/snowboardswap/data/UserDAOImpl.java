@@ -37,10 +37,16 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User registerUser(User user) {
 		em.persist(user);
-		
-		
 		return user;
 	}
+
+	@Override
+	public User updateUserProfile(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 	
 	
 	
