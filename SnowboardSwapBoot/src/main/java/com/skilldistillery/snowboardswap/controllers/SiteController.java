@@ -1,8 +1,14 @@
 package com.skilldistillery.snowboardswap.controllers;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import ch.qos.logback.core.util.Duration;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class SiteController {
@@ -20,6 +26,16 @@ public class SiteController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("login");
 		return mv;
+	}
+	
+	@PostMapping("mainPage.do")
+	public String mainPage(HttpSession session) {
+		// Get loginTime and cast
+		LocalDateTime loginTime = (LocalDateTime) session.getAttribute("loginTime");
+		if (loginTime != null) {
+			session.setAttribute("timeOnSite", loginTime);
+		}
+		return "WEB-INF/display.jsp";
 	}
 
 	@GetMapping({ "register" })

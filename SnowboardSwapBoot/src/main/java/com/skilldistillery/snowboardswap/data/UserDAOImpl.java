@@ -33,6 +33,16 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return authenticatedUser;
 	}
+
+	@Override
+	public User registerUser(User user) {
+		em.persist(user);
+		
+		
+		return user;
+	}
+	
+	
 	
 	
 
