@@ -62,13 +62,23 @@ public class UserController {
 		user.setUsername(username);
 		user.setPassword(password);
 		user.setAddress(address);
-//		user.getAddress().setState(city);
-//		user.getAddress().setState(state);
 		
-		System.out.println("*******************************************************");
 		userDAO.registerUser(user);
 		return "profile";
+	}
+	
+	@PostMapping({"updateProfile.do"})
+	public String updateProfile(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("username") String username, @RequestParam("password") String password, Address address,  Model model) {
+		User user = new User();
+		address = addressDAO.addAddress(address);
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setUsername(username);
+		user.setPassword(password);
+		user.setAddress(address);
 		
+		userDAO.registerUser(user);
+		return "profile";
 		
 	}
 }
