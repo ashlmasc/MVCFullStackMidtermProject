@@ -9,4 +9,7 @@ public interface UserDAO {
 	User registerUser(User user);
 	
 	User updateUserProfile(User user);
+	
+	// Method to find a user by ID
+    User findById(int id);
 }
