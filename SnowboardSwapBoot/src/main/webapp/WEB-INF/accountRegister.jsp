@@ -27,7 +27,7 @@
                 <input type="text" name="lastName" placeholder="Last Name" required>
                 <input type="text" name="username" placeholder="Username" required>
                 <input type="password" name="password" placeholder="Password" required>
-                <input type="text" name="cityLocation" placeholder="City/Location">
+                <input type="text" name="city" placeholder="City">
                 <button type="submit">Register/Submit</button>
             </form>
         </div>

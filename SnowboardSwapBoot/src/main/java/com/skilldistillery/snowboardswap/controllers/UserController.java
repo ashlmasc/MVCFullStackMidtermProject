@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.skilldistillery.snowboardswap.data.AddressDAO;
 import com.skilldistillery.snowboardswap.data.UserDAO;
 import com.skilldistillery.snowboardswap.entities.Address;
 import com.skilldistillery.snowboardswap.entities.User;
@@ -17,6 +18,7 @@ import jakarta.servlet.http.HttpSession;
 public class UserController {
 
 	private UserDAO userDAO;
+	private AddressDAO addressDAO;
 
 	public UserController(UserDAO userDAO) {
 		this.userDAO = userDAO;
@@ -58,18 +60,20 @@ public class UserController {
 	
 	
 	@PostMapping({"register.do"})
-	public String showRegistrationForm(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("city") String city, @RequestParam("state") String state, Address address,  Model model) {
+	public String showRegistrationForm(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("username") String username, @RequestParam("password") String password, Address address,  Model model) {
 		User user = new User();
+		address = addressDAO.addAddress(address);
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
 		user.setUsername(username);
 		user.setPassword(password);
-		user.getAddress().setCity(city);
-		user.getAddress().setState(state);
+		user.setAddress(address);
+//		user.getAddress().setState(city);
+//		user.getAddress().setState(state);
 		
 		System.out.println("*******************************************************");
 		userDAO.registerUser(user);
-		return "accountRegister";
+		return "profile";
 		
 		
 	}

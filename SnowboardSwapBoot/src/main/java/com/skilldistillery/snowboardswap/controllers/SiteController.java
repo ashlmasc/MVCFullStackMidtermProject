@@ -23,16 +23,7 @@ public class SiteController {
 		mv.setViewName("login");
 		return mv;
 	}
-	
-//	@PostMapping("mainPage.do")
-//	public String mainPage(HttpSession session) {
-//		// Get loginTime and cast
-//		LocalDateTime loginTime = (LocalDateTime) session.getAttribute("loginTime");
-//		if (loginTime != null) {
-//			session.setAttribute("timeOnSite", loginTime);
-//		}
-//		return "display.jsp";
-//	}
+
 
 	@GetMapping({ "register" })
 	public ModelAndView register() {
