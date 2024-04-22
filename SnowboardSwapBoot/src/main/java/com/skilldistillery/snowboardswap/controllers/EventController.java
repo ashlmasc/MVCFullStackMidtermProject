@@ -20,21 +20,21 @@ public class EventController {
     }
 	
     //Basic GetMapping to just show the webpage
-	@GetMapping("event")
-    public String showEvents() {
-        return "event";
-    }
+//	@GetMapping("event")
+//    public String showEvents() {
+//        return "event";
+//    }
 	
 //	Find an event by ID: This method will retrieve a single event by its ID.
-	@GetMapping("event.do")
+	@GetMapping("eventDetail")
 	public String getEvent(@RequestParam("eventId") int id, Model model) {
 	    Event event = eventDAO.findEventById(id);
 	    model.addAttribute("event", event);
-	    return "event"; 
+	    return "eventDetail"; 
 	}
 	
 //	List all events: This GetMapping will retrieve all events from the database.
-	@GetMapping("event.do")
+	@GetMapping("event")
     public String listEvents(Model model) {
         List<Event> events = eventDAO.findAllEvents();
         model.addAttribute("allEvents", events);
