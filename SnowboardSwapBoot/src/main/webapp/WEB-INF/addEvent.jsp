@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %> 
-<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -14,6 +14,10 @@
 <div class="container mt-5">
     <h2 class="display-4 text-center mb-4">Add New Event</h2>
     <form action="addEvent" method="post" enctype="multipart/form-data">
+    	
+    	<!-- User id -->
+    	<input type="hidden" name="userId" value="${userId}">
+    
         <!-- Event Name -->
         <div class="form-group">
             <label for="name">Event Name</label>
@@ -29,7 +33,8 @@
          <!-- Dropdown for selecting event type -->
 	    <div class="form-group">
 	        <label for="eventType">Event Type</label>
-	        <select class="form-control" id="eventType" name="eventType">
+	        <select name="eventTypeId" required>
+			    <option value="">Select Event Type</option>
 			    <c:forEach items="${eventTypes}" var="type">
 			        <option value="${type.id}">${type.type}</option>
 			    </c:forEach>
