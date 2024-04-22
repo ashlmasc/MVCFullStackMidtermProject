@@ -4,6 +4,7 @@ import com.skilldistillery.snowboardswap.entities.User;
 
 public interface UserDAO {
 
-	User authenticateUser(String userName, String password);
+	User authenticateUser(String username, String password);
 	
+	User registerUser(User user);
 }

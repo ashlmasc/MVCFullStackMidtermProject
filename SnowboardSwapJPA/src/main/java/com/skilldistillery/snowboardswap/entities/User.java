@@ -32,6 +32,8 @@ public class User {
 	private Boolean enabled;
 
 	private String role;
+	
+	private String email;
 
 	@CreationTimestamp
 	@Column(name = "created_at")
@@ -186,6 +188,16 @@ public class User {
 
 	public void setGuestlist(List<Event> guestlist) {
 		this.guestlist = guestlist;
+	}
+	
+	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override
