@@ -33,8 +33,6 @@ public class User {
 
 	private String role;
 	
-	private String email;
-
 	@CreationTimestamp
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
@@ -189,16 +187,7 @@ public class User {
 	public void setGuestlist(List<Event> guestlist) {
 		this.guestlist = guestlist;
 	}
-	
-	
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	@Override
 	public int hashCode() {
