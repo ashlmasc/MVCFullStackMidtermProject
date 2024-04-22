@@ -30,8 +30,8 @@ public class EventDAOImpl implements EventDAO {
 
 	@Override
 	public Event createEvent(Event event) {
-		// TODO Auto-generated method stub
-		return null;
+		em.persist(event); // Persist the part entity to the database
+	    return event; // The persisted part will now have a generated ID
 	}
 
 	@Override

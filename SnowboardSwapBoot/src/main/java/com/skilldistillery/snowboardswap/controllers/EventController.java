@@ -100,5 +100,4 @@ public class EventController {
 	
 //	Update an event: This method will update an existing event in the database.
 //	Delete an event: This method will remove an event from the database.
-//	Find an event by ID: This method will retrieve a single event by its ID.
 }
