@@ -42,7 +42,8 @@
 
 		<c:forEach var="trail" items="${resort.trails}">
 
-			<p>${trail.name}]</p>
+			<p>${trail.name}</p>
+			<p></p>
 		</c:forEach>
 
 
