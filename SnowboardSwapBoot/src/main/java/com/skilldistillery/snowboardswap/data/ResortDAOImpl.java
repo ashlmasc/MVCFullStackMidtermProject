@@ -27,10 +27,26 @@ public class ResortDAOImpl implements ResortDAO {
 
 	@Override
 	public Resort getResortByID(int id) {
+		Resort resort;
 
-		String jpql = "SELECT resort FROM Resort resort";
+		String jpql = "SELECT resort FROM Resort resort JOIN FETCH resort.trails where resort.id = :resortId";
 
-		return em.find(Resort.class, id);
+		em.find(Resort.class, id);
+
+		resort = em.createQuery(jpql, Resort.class)
+
+				.setParameter("resortId", id)
+
+				.getSingleResult();
+
+		return resort;
+	}
+
+	@Override
+	public Resort addResort(Resort resort) {
+		em.persist(resort);
+
+		return resort;
 	}
 
 }
