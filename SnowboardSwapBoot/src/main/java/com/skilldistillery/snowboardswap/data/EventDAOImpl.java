@@ -19,14 +19,13 @@ public class EventDAOImpl implements EventDAO {
 
 	@Override
 	public Event findEventById(int eventId) {
-		// TODO Auto-generated method stub
-		return null;
+		Event event = em.find(Event.class, eventId);
+		return event;
 	}
 
 	@Override
 	public List<Event> findAllEvents() {
-		// TODO Auto-generated method stub
-		return null;
+		return em.createQuery("SELECT event FROM Event event", Event.class).getResultList();
 	}
 
 	@Override
@@ -46,14 +45,4 @@ public class EventDAOImpl implements EventDAO {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
-	// TODO
-//	List all events: This method will retrieve all events from the database.
-//	Add an event: This method will persist a new event to the database.
-//	Update an event: This method will update an existing event in the database.
-//	Delete an event: This method will remove an event from the database.
-//	Find an event by ID: This method will retrieve a single event by its ID.
-	
-	
-
 }

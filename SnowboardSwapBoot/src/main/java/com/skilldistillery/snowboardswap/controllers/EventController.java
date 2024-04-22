@@ -1,9 +1,13 @@
 package com.skilldistillery.snowboardswap.controllers;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.skilldistillery.snowboardswap.data.EventDAO;
+import com.skilldistillery.snowboardswap.entities.Event;
 
 @Controller
 public class EventController {
@@ -20,8 +24,14 @@ public class EventController {
         return "event";
     }
 	
-	// TODO
-//	List all events: This method will retrieve all events from the database.
+//	List all events: This GetMapping will retrieve all events from the database.
+	@GetMapping("events.do")
+    public String listEvents(Model model) {
+        List<Event> events = eventDAO.findAllEvents();
+        model.addAttribute("allEvents", events);
+        return "event";
+    }
+	
 //	Add an event: This method will persist a new event to the database.
 //	Update an event: This method will update an existing event in the database.
 //	Delete an event: This method will remove an event from the database.
