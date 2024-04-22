@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.snowboardswap.data.ResortDAO;
+import com.skilldistillery.snowboardswap.entities.Address;
 import com.skilldistillery.snowboardswap.entities.Resort;
 
 @Controller
@@ -43,4 +45,13 @@ public class ResortController {
 		return mv;
 	}
 
+	@PostMapping("addResort")
+	public ModelAndView addResort(Resort resort, Address address) {
+
+		resort = resortDAO.addResort(resort);
+		System.out.println(resort + "***");
+		System.out.println("****");
+
+		return null;
+	}
 }

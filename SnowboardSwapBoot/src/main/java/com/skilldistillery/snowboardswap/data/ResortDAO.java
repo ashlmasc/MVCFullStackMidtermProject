@@ -10,4 +10,6 @@ public interface ResortDAO {
 
 	Resort getResortByID(int id);
 
+	Resort addResort(Resort resort);
+
 }

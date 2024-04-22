@@ -18,21 +18,21 @@ public class UserController {
 	public UserController(UserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
-	
+
 	@GetMapping("login.do")
-	  public String showLoginForm(HttpSession session) {
-		if(session == null) {
+	public String showLoginForm(HttpSession session) {
+		if (session == null) {
 			return "home";
 		}
 		return "login";
-	  }
+	}
 
 	@PostMapping("login.do")
 	public ModelAndView login(User user, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
 		User authenticatedUser = userDAO.authenticateUser("admin", "sspass");
-		//User authenticatedUser = userDAO.authenticatedUser(user.getUsername(), user.getPassword());
+//		User authenticatedUser = userDAO.authenticatedUser(user.getUsername(), user.getPassword());
 		if (authenticatedUser != null) {
 			session.setAttribute("loggedInUser", authenticatedUser);
 			mv.setViewName("profile");
@@ -48,9 +48,9 @@ public class UserController {
 		session.removeAttribute("loggedInUser");
 		return "logout";
 	}
-	
+
 	@GetMapping("register.do")
 	public String showRegistrationForm() {
-	    return "accountRegister"; 
+		return "accountRegister";
 	}
 }

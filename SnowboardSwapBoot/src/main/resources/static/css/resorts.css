@@ -1,0 +1,10 @@
+img{
+	
+	max-width: 150px;
+}
+
+.resort-card{
+	display: flex;
+	flex-flow: column;
+	
+}

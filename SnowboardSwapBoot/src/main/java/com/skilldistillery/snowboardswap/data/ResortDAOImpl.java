@@ -33,4 +33,12 @@ public class ResortDAOImpl implements ResortDAO {
 		return em.find(Resort.class, id);
 	}
 
+	@Override
+	public Resort addResort(Resort resort) {
+
+		em.persist(resort);
+
+		return resort;
+	}
+
 }
