@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
   
 <!DOCTYPE html>
 <html>
@@ -31,7 +32,7 @@
         <c:forEach var="event" items="${allEvents}">
             <div>
                 <p>${event.name}</p>
-                <a href="eventDetail?eventId=${event.id}">View Details</a>
+<%--                 <a href="eventDetail?eventId=${event.id}">View Details</a> --%>
                 <!-- Add more details and actions as needed; just an example of basic buttons based off wireframe -->
 <!--                 <button>Create event/meetup</button> -->
 <!--                 <button>Interested</button> -->
@@ -41,6 +42,8 @@
             </div>
         </c:forEach>
     </div>
+    
+    <a href="addEvent">Add New Event</a>
     
 </body>
 </html>
