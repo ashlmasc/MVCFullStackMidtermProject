@@ -26,7 +26,7 @@
 	<jsp:include page="nav.jsp" />
 
 	<main>
-		<%-- <c:if test="${sessionScope.loggedInUser ne null }"> --%>
+		<c:if test="${sessionScope.loggedInUser ne null }">
 			<button class="btn btn-primary" type="button"
 				data-bs-toggle="offcanvas" data-bs-target="#addResortForm"
 				aria-controls="offcanvasWithBothOptions">Add new resort</button>
@@ -85,7 +85,7 @@
 					</form>
 				</div>
 			</div>
-		<%-- </c:if> --%>
+		</c:if>
 
 
 

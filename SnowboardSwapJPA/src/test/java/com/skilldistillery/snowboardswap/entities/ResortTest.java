@@ -48,22 +48,32 @@ class ResortTest {
 		assertEquals("https://www.coppercolorado.com/", resort.getWebsite());
 
 	}
+
 	@Test
 	void test_Resort_trail_12M() {
 		assertNotNull(resort);
 		assertNotNull(resort.getTrails());
 		assertTrue(resort.getTrails().size() > 4);
 	}
+
 	@Test
 	void test_Resort_Address_M21() {
 		assertNotNull(resort);
 		assertNotNull(resort.getAddress());
 		assertEquals("509 Copper Rd", resort.getAddress().getStreet());
 	}
+
 	@Test
 	void test_Resort_Ride_12M() {
 		assertNotNull(resort);
 		assertNotNull(resort.getRides());
 		assertEquals("Kia", resort.getRides().get(0).getVehicleMake());
+	}
+
+	@Test
+	void test_Resort_lifts_12M() {
+		assertNotNull(resort);
+		assertNotNull(resort.getLifts());
+		assertTrue(resort.getLifts().size() > 1);
 	}
 }

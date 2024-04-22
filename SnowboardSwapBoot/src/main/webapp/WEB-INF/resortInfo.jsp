@@ -25,27 +25,47 @@
 	<header></header>
 	<jsp:include page="nav.jsp" />
 	<main>
-
-		${resort.name}
+		<p>${resort.name}</p>
 		<a href="${resort.website}">To Website</a>
-		<p>${resort.address.street}</p>
-		<p>${resort.address.city}</p>
-		<p>${resort.address.state}</p>
-		<p>${resort.address.state}</p>
-		<p>${resort.address.postalCode}</p>
-		<p>${resort.address.postalCode}</p>
+		<p>${resort.address.street},${resort.address.city},
+			${resort.address.state} ${resort.address.postalCode}</p>
 		<p>${resort.address.phoneNumber}</p>
-	
+
 		<a
 			href="https://www.google.com/maps/search/?api=1&query=${resort.getMapURL()}">Map
-			Lgreink</a>
+			Pin</a>
 
-		<c:forEach var="trail" items="${resort.trails}">
+		<ul>
+			<p>Trails</p>
 
-			<p>${trail.name}</p>
-			<p></p>
-		</c:forEach>
+			<c:forEach var="trail" items="${resort.trails}">
+					
+				<li>
+				<c:if test="${sessionScope.loggedInUser ne null }">
+					<a href=""> Edit</a>
+					${trail.name}|${trail.difficulty}
+				</c:if>
+				<c:if test="${sessionScope.loggedInUser eq null }">
+					${trail.name}|${trail.difficulty}
+				</c:if>
+				</li>
 
+			</c:forEach>
+
+		</ul>
+		<ul>
+			<p>Lifts</p>
+
+			<c:forEach var="lift" items="${resort.lifts}">
+
+				<li>${lift.name}<c:if test="${lift.getStatuses().size() > 0}">
+							 | ${lift.getStatuses().get(lift.getStatuses().size() - 1).status};
+						</c:if>
+				</li>
+
+			</c:forEach>
+
+		</ul>
 
 	</main>
 	<footer></footer>

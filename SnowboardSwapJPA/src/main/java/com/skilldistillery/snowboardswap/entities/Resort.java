@@ -34,6 +34,9 @@ public class Resort {
 	@OneToMany(mappedBy = "resort")
 	private List<Ride> rides;
 
+	@OneToMany(mappedBy = "resort")
+	private List<Lift> lifts;
+
 	public Resort() {
 	}
 
@@ -83,6 +86,14 @@ public class Resort {
 
 	public void setRides(List<Ride> rides) {
 		this.rides = rides;
+	}
+
+	public List<Lift> getLifts() {
+		return lifts;
+	}
+
+	public void setLifts(List<Lift> lifts) {
+		this.lifts = lifts;
 	}
 
 	@Override

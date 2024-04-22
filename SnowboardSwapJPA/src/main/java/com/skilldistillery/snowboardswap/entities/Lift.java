@@ -1,7 +1,7 @@
 package com.skilldistillery.snowboardswap.entities;
 
-import java.util.Objects;
 import java.util.List;
+import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,13 +22,17 @@ public class Lift {
 	private int id;
 
 	private String name;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "lift_type_id")
 	private LiftType liftType;
-	
-	@OneToMany(mappedBy = "lift") 
-    private List<LiftStatus> statuses;
+
+	@OneToMany(mappedBy = "lift")
+	private List<LiftStatus> statuses;
+
+	@ManyToOne
+	@JoinColumn(name = "resort_id")
+	private Resort resort;
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -66,6 +70,14 @@ public class Lift {
 
 	public void setStatuses(List<LiftStatus> statuses) {
 		this.statuses = statuses;
+	}
+
+	public Resort getResort() {
+		return resort;
+	}
+
+	public void setResort(Resort resort) {
+		this.resort = resort;
 	}
 
 	@Override
