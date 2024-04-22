@@ -19,4 +19,11 @@ public class EventController {
     public String showEvents() {
         return "event";
     }
+	
+	// TODO
+//	List all events: This method will retrieve all events from the database.
+//	Add an event: This method will persist a new event to the database.
+//	Update an event: This method will update an existing event in the database.
+//	Delete an event: This method will remove an event from the database.
+//	Find an event by ID: This method will retrieve a single event by its ID.
 }
