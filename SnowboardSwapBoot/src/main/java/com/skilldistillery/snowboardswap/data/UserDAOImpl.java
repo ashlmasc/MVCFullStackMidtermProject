@@ -42,7 +42,12 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User updateUserProfile(User user) {
-		// TODO Auto-generated method stub
+		User updateUser = em.find(User.class, user);
+		updateUser.setFirstName(user.getFirstName());
+		updateUser.setLastName(user.getLastName());
+		updateUser.setFirstName(user.getFirstName());
+		updateUser.setFirstName(user.getFirstName());
+		
 		return null;
 	}
 	
