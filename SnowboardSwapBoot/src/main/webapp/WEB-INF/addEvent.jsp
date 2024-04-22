@@ -1,0 +1,92 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %> 
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New Event</title>
+    <!-- Bootstrap CSS for consistency with other pages -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="display-4 text-center mb-4">Add New Event</h2>
+    <form action="addEvent" method="post" enctype="multipart/form-data">
+        <!-- Event Name -->
+        <div class="form-group">
+            <label for="name">Event Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter event name" required>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" placeholder="Describe the event" required></textarea>
+        </div>
+        
+         <!-- Dropdown for selecting event type -->
+	    <div class="form-group">
+	        <label for="eventType">Event Type</label>
+	        <select class="form-control" id="eventType" name="eventType">
+			    <c:forEach items="${eventTypes}" var="type">
+			        <option value="${type.id}">${type.type}</option>
+			    </c:forEach>
+			</select>
+	    </div>
+	    
+        <!-- Event Start Date/Time -->
+        <div class="form-group">
+            <label for="eventStart">Event Start Date and Time:</label>
+            <input type="datetime-local" class="form-control" id="eventStart" name="eventStart" required>
+        </div>
+
+        <!-- Event End Date/Time -->
+        <div class="form-group">
+            <label for="eventEnd">Event End Date and Time:</label>
+            <input type="datetime-local" class="form-control" id="eventEnd" name="eventEnd" required>
+        </div>
+        
+        <!-- Address Details -->
+		<div class="form-group">
+		    <label for="street">Street</label>
+		    <input type="text" class="form-control" id="street" name="street" placeholder="Street address" required>
+		</div>
+		<div class="form-group">
+		    <label for="city">City</label>
+		    <input type="text" class="form-control" id="city" name="city" placeholder="City" required>
+		</div>
+		<div class="form-group">
+		    <label for="state">State</label>
+		    <input type="text" class="form-control" id="state" name="state" placeholder="State" required>
+		</div>
+		<div class="form-group">
+		    <label for="postalCode">Postal Code</label>
+		    <input type="text" class="form-control" id="postalCode" name="postalCode" placeholder="Postal code">
+		</div>
+		<div class="form-group">
+		    <label for="phoneNumber">Phone Number</label>
+		    <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone number">
+		</div>
+		<!--   Submit button -->
+         <button type="submit" class="btn btn-primary" data-toggle="tooltip" title="Click to add the Event">Add Event</button>
+    </form>
+</div>
+        
+<!--         Cancel/Add Button -->
+<!--         <div class="text-center"> -->
+<!--         <a href="home.do" class="btn btn-secondary" data-toggle="tooltip" title="Cancel and return to the homepage">Cancel</a> -->
+
+<!-- Bootstrap JS, Popper.js, and jQuery for tooltips -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip(); // Initialize tooltips
+    });
+</script>
+
+</body>
+</html>
