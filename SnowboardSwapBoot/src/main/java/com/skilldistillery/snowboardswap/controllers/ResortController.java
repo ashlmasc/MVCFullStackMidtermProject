@@ -50,12 +50,25 @@ public class ResortController {
 
 	@PostMapping("addResort")
 	public ModelAndView addResort(Resort resort, Address address) {
+		ModelAndView mv = new ModelAndView();
 
 		address = addressDAO.addAddress(address);
 		resort.setAddress(address);
 		resort = resortDAO.addResort(resort);
 		System.out.println(resort + "***");
 		System.out.println("****");
+
+		mv.setViewName("resorts");
+		return mv;
+	}
+
+	@PostMapping("editResort")
+	public ModelAndView editResort(Resort resort, Address address, @RequestParam("addressId") int addressId) {
+
+		address.setId(addressId);
+		System.out.println(resort + "***");
+		System.out.println("*****" + resort.getAddress());
+		System.out.println(address);
 
 		return null;
 	}

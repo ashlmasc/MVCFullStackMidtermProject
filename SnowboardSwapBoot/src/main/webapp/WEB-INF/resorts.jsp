@@ -88,14 +88,6 @@
 		</c:if>
 
 
-
-
-
-
-
-
-
-
 		<c:forEach var="resort" items="${resorts}">
 
 			<div class="resort-card">
