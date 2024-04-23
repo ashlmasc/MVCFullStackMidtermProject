@@ -6,4 +6,6 @@ public interface AddressDAO {
 
 	Address addAddress(Address address);
 
+	Address editAddress(Address address);
+
 }

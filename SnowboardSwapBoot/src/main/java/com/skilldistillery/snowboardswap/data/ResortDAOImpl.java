@@ -46,7 +46,7 @@ public class ResortDAOImpl implements ResortDAO {
 		edResort.setName(resort.getName());
 		edResort.setWebsite(resort.getWebsite());
 
-		return resort;
+		return edResort;
 	}
 
 }

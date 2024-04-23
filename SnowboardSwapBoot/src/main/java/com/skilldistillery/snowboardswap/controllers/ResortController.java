@@ -73,6 +73,7 @@ public class ResortController {
 		address.setId(addressId);
 
 		resortDAO.editResort(resort);
+		addressDAO.editAddress(address);
 
 		System.out.println(resort + "***");
 		System.out.println("*****" + resort.getAddress());
