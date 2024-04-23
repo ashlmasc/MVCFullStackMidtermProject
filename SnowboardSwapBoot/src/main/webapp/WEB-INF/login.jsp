@@ -13,8 +13,8 @@
 <h2>Log In</h2>
 <form action="login.do" method="post">
 	<%-- Error messages --%>
-	<input type="text" name="userName">
-	<input type="password" name="password"/>
+	<input type="text" name="userName" value="admin">
+	<input type="password" name="password" value="sspass"/>
 	<input type="submit" value="Log In" > 
 </form>
 </body>
