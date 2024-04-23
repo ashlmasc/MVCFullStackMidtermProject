@@ -12,6 +12,8 @@
     <link rel="icon" href="<c:url value='/resources/images/favicon.ico'/>" type="image/x-icon">
 </head>
 <body>
+<%--Edit the file nav.jsp to change nav links --%>
+<jsp:include page="nav.jsp"/>
 
 <div class="container my-5">
     <h1 class="display-4 text-center mb-4">Events/Meetups List</h1>
