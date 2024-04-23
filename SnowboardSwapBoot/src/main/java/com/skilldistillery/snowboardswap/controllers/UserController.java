@@ -28,12 +28,22 @@ public class UserController {
 		this.addressDAO = addressDAO;
 	}
 
+	//Old one
+//	@GetMapping("login.do")
+//	public String showLoginForm(HttpSession session) {
+//		if (session.getAttribute("loggedInUser") != null) {
+//			return "redirect: profile";
+//		}
+//		return "profile";
+//	}
+	
+	//Ash update
 	@GetMapping("login.do")
 	public String showLoginForm(HttpSession session) {
-		if (session.getAttribute("loggedInUser") != null) {
-			return "redirect: profile";
-		}
-		return "profile";
+	    if (session.getAttribute("loggedInUser") == null) {
+	        return "login"; // Return the login page if the user is not logged in
+	    }
+	    return "redirect:profile";
 	}
 
 	@PostMapping("login.do")

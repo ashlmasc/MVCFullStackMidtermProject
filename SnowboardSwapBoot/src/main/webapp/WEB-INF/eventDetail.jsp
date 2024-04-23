@@ -37,15 +37,16 @@
             
             <!-- Update, Delete, and Return Links -->
             
-<!--             <div class="text-center mt-4"> -->
-<%--                 <a href="updateEvent.do?eventId=${event.id}" class="btn btn-primary">Update Event</a> --%>
-<!--                 <a href="listEvents.do" class="btn btn-secondary">Return to List</a> -->
-<!--                 <form action="deleteEvent.do" method="post" onsubmit="return confirm('Are you sure you want to delete this event?');" style="display: inline-block;"> -->
-<%--                     <input type="hidden" name="eventId" value="${event.id}"> --%>
-<!--                     <input type="submit" value="Delete Event" class="btn btn-danger"> -->
-<!--                 </form> -->
-<!--             </div> -->
+            <div class="text-center mt-4">
+                <a href="updateEvent?eventId=${event.id}" class="btn btn-primary">Update Event</a>
+                <a href="event" class="btn btn-secondary">Return to List</a>
+                <form action="deleteEvent" method="post" onsubmit="return confirm('Are you sure you want to delete this event?');" style="display: inline-block;">
+                    <input type="hidden" name="eventId" value="${event.id}">
+                    <input type="submit" value="Delete Event" class="btn btn-danger">
+                </form>
+            </div>
         </c:if>
+        
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>

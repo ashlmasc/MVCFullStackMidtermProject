@@ -20,7 +20,9 @@
         </c:when>
         <c:otherwise>
             <h2>Update Event</h2>
-            <form action="updateEvent" method="post" enctype="multipart/form-data">
+            <form action="updateEvent" method="post" >
+            
+            
                 <!-- Hidden field for event ID -->
                 <input type="hidden" name="eventId" value="${event.id}">
                 
