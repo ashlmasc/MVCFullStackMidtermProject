@@ -59,13 +59,10 @@
 
 		<c:forEach var="trail" items="${resort.trails}">
 
-			<li>${trail.name}|${trail.difficulty}
-			
-			<c:if
+			<li>${trail.name}|${trail.difficulty}<c:if
 					test="${sessionScope.loggedInUser ne null }">
 					<button type="button" data-bs-toggle="offcanvas"
-						data-bs-target="#editTrailForm${trail.id}"
-						aria-controls="">Edit</button>
+						data-bs-target="#editTrailForm${trail.id}" aria-controls="">Edit</button>
 
 
 					<div class="offcanvas offcanvas-start" data-bs-scroll="true"
@@ -99,13 +96,15 @@
 											<option value="Easiest">Easiest</option>
 										</c:if>
 										<c:if test="${trail.difficulty eq 'More Difficult'}">
-											<option selected value="More Difficult">More Difficult</option>
+											<option selected value="More Difficult">More
+												Difficult</option>
 										</c:if>
 										<c:if test="${trail.difficulty ne 'More Difficult'}">
 											<option value="More Difficult">More Difficult</option>
 										</c:if>
 										<c:if test="${trail.difficulty eq 'Most Difficult'}">
-											<option selected value="Most Difficult">Most Difficult</option>
+											<option selected value="Most Difficult">Most
+												Difficult</option>
 										</c:if>
 										<c:if test="${trail.difficulty ne 'Most Difficult'}">
 											<option value="Most Difficult">Most Difficult</option>
@@ -113,17 +112,18 @@
 										<c:if test="${trail.difficulty eq 'Extreme'}">
 											<option selected value="Extreme">Extreme</option>
 										</c:if>
-										
+
 										<c:if test="${trail.name ne 'Extreme'}">
 											<option value="Extreme">Extreme</option>
 										</c:if>
 										<c:if test="${trail.name eq 'Extreme Terrain'}">
-											<option selected value="Extreme Terrain">Extreme Terrain</option>
+											<option selected value="Extreme Terrain">Extreme
+												Terrain</option>
 										</c:if>
 										<c:if test="${trail.name ne 'Extreme Terrain'}">
 											<option value="Extreme Terrain">Extreme Terrain</option>
 										</c:if>
-									
+
 									</select>
 									<label for="floatingSelect">Difficulty</label>
 								</div>
@@ -154,12 +154,55 @@
 
 		<c:forEach var="lift" items="${resort.lifts}">
 
-			<li>${lift.name}| ${lift.liftType.type} <c:if
+			<li>${lift.name}|${lift.liftType.type}<c:if
 					test="${lift.getStatuses().size() > 0}">
 							 | ${lift.getStatuses().get(lift.getStatuses().size() - 1).status};
-						</c:if>
+			</c:if>
+
+				<button type="button" data-bs-toggle="offcanvas"
+					data-bs-target="#editLiftForm${lift.id}" aria-controls="">Edit</button>
+
 			</li>
 
+			<div class="offcanvas offcanvas-start" data-bs-scroll="true"
+				tabindex="-1" id="editLiftForm${lift.id}" aria-labelledby="">
+
+				<div class="offcanvas-header">
+					<h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
+
+						Edit Trail</h5>
+
+					<button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+						aria-label="Close"></button>
+				</div>
+
+				<div class="offcanvas-body">
+				
+				<form action="editLift" method="post">
+						<input type="hidden" name="id" value="${lift.id}">
+				
+						<div class="form-floating mb-3">
+							<input type="text" class="form-control" id="liftName"
+								placeholder="Name" name="name" value="${lift.name}">
+							<label for="liftName">Lift Name</label>
+						</div>
+
+						<div class="form-floating">
+							<select class="form-select" id="liftType"
+								aria-label="" name="liftTypeId">
+								<c:forEach var="type" items="${liftTypes}">
+									<option <c:if test="${lift.liftType.type eq type.type}">selected</c:if>  value="${type.id}">${type.type}</option>
+								</c:forEach>
+							</select>
+							<label for="liftType">Type</label>
+						</div>
+					
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+				
+				
+				</div>
+			</div>
 		</c:forEach>
 
 

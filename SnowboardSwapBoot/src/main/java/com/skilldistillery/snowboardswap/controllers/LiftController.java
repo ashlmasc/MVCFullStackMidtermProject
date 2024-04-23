@@ -45,4 +45,18 @@ public class LiftController {
 		return mv;
 	}
 
+	@PostMapping("editLift")
+	public ModelAndView editLift(Lift lift, HttpSession session, HttpServletRequest request,
+			@RequestParam("liftTypeId") int typeId) {
+		ModelAndView mv = new ModelAndView();
+
+		lift.setLiftType(liftTypeDAO.findLiftTypeByID(typeId));
+		liftDAO.editLift(lift);
+
+		session.setAttribute("referer", request.getHeader("Referer"));
+		String referer = session.getAttribute("referer") != null ? session.getAttribute("referer").toString() : "/";
+		mv.setViewName("redirect:" + referer);
+		return mv;
+	}
+
 }

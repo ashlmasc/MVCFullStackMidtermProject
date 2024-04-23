@@ -28,4 +28,17 @@ public class LiftDAOImpl implements LiftDAO {
 
 		return lift;
 	}
+
+	@Override
+	public Lift editLift(Lift lift) {
+
+		Lift editLift = findLiftByID(lift.getId());
+
+		editLift.setName(lift.getName());
+		editLift.setLiftType(lift.getLiftType());
+		;
+
+		return editLift;
+
+	}
 }

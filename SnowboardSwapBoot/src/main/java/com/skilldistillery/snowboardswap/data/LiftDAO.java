@@ -8,4 +8,6 @@ public interface LiftDAO {
 
 	Lift addLift(Lift lift);
 
+	Lift editLift(Lift lift);
+
 }
