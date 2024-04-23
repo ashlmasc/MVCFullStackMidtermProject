@@ -13,7 +13,7 @@ import jakarta.transaction.Transactional;
 @Service
 @Transactional
 public class EventDAOImpl implements EventDAO {
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
@@ -30,19 +30,37 @@ public class EventDAOImpl implements EventDAO {
 
 	@Override
 	public Event createEvent(Event event) {
-		// TODO Auto-generated method stub
-		return null;
+		em.persist(event); // Persist the event entity to the database
+		return event; // The persisted event will now have a generated ID
 	}
 
 	@Override
-	public Event updateEvent(int eventId, Event event) {
-		// TODO Auto-generated method stub
-		return null;
+	public Event updateEvent(int eventId, Event updatedEvent) {
+		Event existingEvent = em.find(Event.class, eventId);
+		if (existingEvent != null && updatedEvent != null) {
+			existingEvent.setName(updatedEvent.getName());
+			existingEvent.setDescription(updatedEvent.getDescription());
+			existingEvent.setEventStart(updatedEvent.getEventStart());
+			existingEvent.setEventEnd(updatedEvent.getEventEnd());
+			existingEvent.setEventType(updatedEvent.getEventType());
+			existingEvent.setAddress(updatedEvent.getAddress());
+			existingEvent.setActive(updatedEvent.isActive());
+			existingEvent.setImageUrl(updatedEvent.getImageUrl());
+			existingEvent.setLocationDescription(updatedEvent.getLocationDescription());
+			
+			// Explicitly merge the updated entity
+			em.merge(existingEvent);
+		}
+		return existingEvent;
 	}
 
 	@Override
-	public boolean deleteEvent(int eventId) {
-		// TODO Auto-generated method stub
+	public boolean deleteEvent(int id) {
+		Event event = em.find(Event.class, id);
+		if (event != null) {
+			em.remove(event);
+			return true;
+		}
 		return false;
 	}
 }
