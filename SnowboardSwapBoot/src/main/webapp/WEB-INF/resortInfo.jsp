@@ -89,40 +89,48 @@
 								<div class="form-floating">
 									<select class="form-select" id="difficulty"
 										aria-label="Trail difficulty" name="difficulty">
-										<c:if test="${trail.difficulty eq Easiest }">
-											<option selected value="Easiest">Easiest</option>
-										</c:if>
-										<c:if test="${trail.difficulty ne 'Easiest' }">
-											<option value="Easiest">Easiest</option>
-										</c:if>
-										<c:if test="${trail.difficulty eq 'More Difficult'}">
-											<option selected value="More Difficult">More
-												Difficult</option>
-										</c:if>
-										<c:if test="${trail.difficulty ne 'More Difficult'}">
-											<option value="More Difficult">More Difficult</option>
-										</c:if>
-										<c:if test="${trail.difficulty eq 'Most Difficult'}">
-											<option selected value="Most Difficult">Most
-												Difficult</option>
-										</c:if>
-										<c:if test="${trail.difficulty ne 'Most Difficult'}">
-											<option value="Most Difficult">Most Difficult</option>
-										</c:if>
-										<c:if test="${trail.difficulty eq 'Extreme'}">
-											<option selected value="Extreme">Extreme</option>
-										</c:if>
 
-										<c:if test="${trail.name ne 'Extreme'}">
-											<option value="Extreme">Extreme</option>
+										<option
+											<c:if test="${trail.difficulty eq Easiest }">
+											 selected 
 										</c:if>
-										<c:if test="${trail.name eq 'Extreme Terrain'}">
-											<option selected value="Extreme Terrain">Extreme
-												Terrain</option>
+											value="Easiest">Easiest</option>
+
+										<option
+											<c:if test="${trail.difficulty eq 'More Difficult'}">
+											selected 
 										</c:if>
-										<c:if test="${trail.name ne 'Extreme Terrain'}">
-											<option value="Extreme Terrain">Extreme Terrain</option>
+											value="More Difficult">More Difficult</option>
+
+
+
+										<option
+											<c:if test="${trail.difficulty eq 'Most Difficult'}">
+											selected 
 										</c:if>
+											value="Most Difficult">Most Difficult</option>
+
+
+
+										<option
+											<c:if test="${trail.difficulty eq 'Extreme'}">
+											selected 
+										</c:if>
+											value="Extreme">Extreme</option>
+
+
+										<option
+											<c:if test="${trail.name eq 'Extreme Terrain'}">
+											selected 
+										</c:if>
+											value="Extreme Terrain">Extreme Terrain</option>
+
+
+
+
+
+
+
 
 									</select>
 									<label for="floatingSelect">Difficulty</label>
@@ -177,10 +185,10 @@
 				</div>
 
 				<div class="offcanvas-body">
-				
-				<form action="editLift" method="post">
+
+					<form action="editLift" method="post">
 						<input type="hidden" name="id" value="${lift.id}">
-				
+
 						<div class="form-floating mb-3">
 							<input type="text" class="form-control" id="liftName"
 								placeholder="Name" name="name" value="${lift.name}">
@@ -188,19 +196,21 @@
 						</div>
 
 						<div class="form-floating">
-							<select class="form-select" id="liftType"
-								aria-label="" name="liftTypeId">
+							<select class="form-select" id="liftType" aria-label=""
+								name="liftTypeId">
 								<c:forEach var="type" items="${liftTypes}">
-									<option <c:if test="${lift.liftType.type eq type.type}">selected</c:if>  value="${type.id}">${type.type}</option>
+									<option
+										<c:if test="${lift.liftType.type eq type.type}">selected</c:if>
+										value="${type.id}">${type.type}</option>
 								</c:forEach>
 							</select>
 							<label for="liftType">Type</label>
 						</div>
-					
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</form>
-				
-				
+
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</form>
+
+
 				</div>
 			</div>
 		</c:forEach>
