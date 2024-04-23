@@ -41,4 +41,16 @@ public class TrailController {
 		mv.setViewName("redirect:" + referer);
 		return mv;
 	}
+
+	@PostMapping("editTrail")
+	public ModelAndView editTrail(Trail trail, HttpSession session, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+
+		trailDAO.editTrail(trail);
+
+		session.setAttribute("referer", request.getHeader("Referer"));
+		String referer = session.getAttribute("referer") != null ? session.getAttribute("referer").toString() : "/";
+		mv.setViewName("redirect:" + referer);
+		return mv;
+	}
 }

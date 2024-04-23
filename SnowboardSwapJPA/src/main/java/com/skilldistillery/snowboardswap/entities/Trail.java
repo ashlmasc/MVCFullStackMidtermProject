@@ -3,7 +3,6 @@ package com.skilldistillery.snowboardswap.entities;
 import java.util.List;
 import java.util.Objects;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,23 +14,23 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class Trail {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String name;
-	
+
 	private String difficulty;
-	
-	@OneToMany(mappedBy = "trail") 
-    private List<TrailStatus> statuses;
-	
+
+	@OneToMany(mappedBy = "trail")
+	private List<TrailStatus> statuses;
+
 	@ManyToOne
 	@JoinColumn(name = "resort_id")
 	private Resort resort;
 
-	public Trail() {}
+	public Trail() {
+	}
 
 	public int getId() {
 		return id;
@@ -79,13 +78,22 @@ public class Trail {
 	}
 
 	@Override
+	public String toString() {
+		return "Trail [id=" + id + ", name=" + name + ", difficulty=" + difficulty + ", statuses=" + statuses
+				+ ", resort=" + resort + "]";
+	}
+
+	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		Trail other = (Trail) obj;
 		return id == other.id;
 	}

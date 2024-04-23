@@ -28,4 +28,15 @@ public class TrailDAOImpl implements TrailDAO {
 
 		return trail;
 	}
+
+	@Override
+	public Trail editTrail(Trail trail) {
+
+		Trail editTrail = findTrailByID(trail.getId());
+
+		editTrail.setName(trail.getName());
+		editTrail.setDifficulty(trail.getDifficulty());
+
+		return editTrail;
+	}
 }

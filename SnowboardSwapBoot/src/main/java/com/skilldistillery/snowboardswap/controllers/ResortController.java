@@ -81,10 +81,6 @@ public class ResortController {
 		resortDAO.editResort(resort);
 		addressDAO.editAddress(address);
 
-		System.out.println(resort + "***");
-		System.out.println("*****" + resort.getAddress());
-		System.out.println(address);
-
 		session.setAttribute("referer", request.getHeader("Referer"));
 		String referer = session.getAttribute("referer") != null ? session.getAttribute("referer").toString() : "/";
 		mv.setViewName("redirect:" + referer);

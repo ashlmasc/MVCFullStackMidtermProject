@@ -8,4 +8,6 @@ public interface TrailDAO {
 
 	Trail addTrail(Trail trail);
 
+	Trail editTrail(Trail trail);
+
 }

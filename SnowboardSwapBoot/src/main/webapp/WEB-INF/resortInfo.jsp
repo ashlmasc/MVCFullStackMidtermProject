@@ -51,19 +51,91 @@
 		<c:if test="${sessionScope.loggedInUser ne null }">
 			<button type="button" data-bs-toggle="offcanvas"
 				data-bs-target="#addTrailForm" aria-controls="addTrailForm">
-				
-				Add Trail
-				
-				</button>
 
-			<jsp:include page="resort/resortEditForm.jsp" />
+				Add Trail</button>
 		</c:if>
 
 
 
 		<c:forEach var="trail" items="${resort.trails}">
 
-			<li>${trail.name}|${trail.difficulty}</li>
+			<li>${trail.name}|${trail.difficulty}
+			
+			<c:if
+					test="${sessionScope.loggedInUser ne null }">
+					<button type="button" data-bs-toggle="offcanvas"
+						data-bs-target="#editTrailForm${trail.id}"
+						aria-controls="">Edit</button>
+
+
+					<div class="offcanvas offcanvas-start" data-bs-scroll="true"
+						tabindex="-1" id="editTrailForm${trail.id}" aria-labelledby="">
+
+						<div class="offcanvas-header">
+							<h5 class="offcanvas-title" id="">Edit</h5>
+
+							<button type="button" class="btn-close"
+								data-bs-dismiss="offcanvas" aria-label="Close"></button>
+						</div>
+
+						<div class="offcanvas-body">
+							<form action="editTrail" method="post">
+								<%-- <input type="hidden" name="resortId" value="${resort.id}"> --%>
+								<input type="hidden" name="id" value="${trail.id}">
+
+								<div class="form-floating mb-3">
+									<input type="text" class="form-control" id="trailName"
+										placeholder="Name" name="name" value="${trail.name}">
+									<label for="trailName">Trail Name</label>
+								</div>
+
+								<div class="form-floating">
+									<select class="form-select" id="difficulty"
+										aria-label="Trail difficulty" name="difficulty">
+										<c:if test="${trail.difficulty eq Easiest }">
+											<option selected value="Easiest">Easiest</option>
+										</c:if>
+										<c:if test="${trail.difficulty ne 'Easiest' }">
+											<option value="Easiest">Easiest</option>
+										</c:if>
+										<c:if test="${trail.difficulty eq 'More Difficult'}">
+											<option selected value="More Difficult">More Difficult</option>
+										</c:if>
+										<c:if test="${trail.difficulty ne 'More Difficult'}">
+											<option value="More Difficult">More Difficult</option>
+										</c:if>
+										<c:if test="${trail.difficulty eq 'Most Difficult'}">
+											<option selected value="Most Difficult">Most Difficult</option>
+										</c:if>
+										<c:if test="${trail.difficulty ne 'Most Difficult'}">
+											<option value="Most Difficult">Most Difficult</option>
+										</c:if>
+										<c:if test="${trail.difficulty eq 'Extreme'}">
+											<option selected value="Extreme">Extreme</option>
+										</c:if>
+										
+										<c:if test="${trail.name ne 'Extreme'}">
+											<option value="Extreme">Extreme</option>
+										</c:if>
+										<c:if test="${trail.name eq 'Extreme Terrain'}">
+											<option selected value="Extreme Terrain">Extreme Terrain</option>
+										</c:if>
+										<c:if test="${trail.name ne 'Extreme Terrain'}">
+											<option value="Extreme Terrain">Extreme Terrain</option>
+										</c:if>
+									
+									</select>
+									<label for="floatingSelect">Difficulty</label>
+								</div>
+						</div>
+
+						<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+
+				</c:if>
+
+			</li>
 
 		</c:forEach>
 
@@ -75,17 +147,15 @@
 			<button type="button" data-bs-toggle="offcanvas"
 				data-bs-target="#addLiftForm" aria-controls="addLiftForm">
 
-				Add Lift
-				
-			</button>
+				Add Lift</button>
 
 			<jsp:include page="resort/resortEditForm.jsp" />
 		</c:if>
 
 		<c:forEach var="lift" items="${resort.lifts}">
 
-			<li>${lift.name} | ${lift.liftType.type}
-			<c:if test="${lift.getStatuses().size() > 0}">
+			<li>${lift.name}| ${lift.liftType.type} <c:if
+					test="${lift.getStatuses().size() > 0}">
 							 | ${lift.getStatuses().get(lift.getStatuses().size() - 1).status};
 						</c:if>
 			</li>

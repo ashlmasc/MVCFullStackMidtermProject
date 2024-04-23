@@ -44,4 +44,5 @@ public class LiftController {
 		mv.setViewName("redirect:" + referer);
 		return mv;
 	}
+
 }
