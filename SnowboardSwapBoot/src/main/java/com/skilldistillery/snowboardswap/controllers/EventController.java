@@ -146,8 +146,10 @@ public class EventController {
 	public String updateEvent(@ModelAttribute("event") Event updatedEvent, 
 	                          BindingResult result, 
 	                          @RequestParam("eventTypeId") int eventTypeId, 
+	                          @RequestParam("eventId") int eventId, // Added to capture the event ID from the form
 	                          @ModelAttribute("address") Address address, 
 	                          Model model) {
+		
 	    // Retrieve the event type from the database
 	    EventType eventType = eventTypeDAO.findEventTypeById(eventTypeId);
 	    if (eventType == null) {
@@ -155,8 +157,18 @@ public class EventController {
 	        return "updateEvent";
 	    }
 	    
+	 // Retrieve the original event from the database using eventId
+	    Event originalEvent = eventDAO.findEventById(eventId);
+	    if (originalEvent == null) {
+	        model.addAttribute("error", "Event not found.");
+	        return "updateEvent";
+	    }
+	    
 	    // Set the updated event's type
 	    updatedEvent.setEventType(eventType);
+	    
+	    // Set the updated event's ID to the original event's ID
+	    updatedEvent.setId(eventId); // this is what is need to update the correct one!!
 	    
 	    // Update the event's address
 	    Address savedAddress = addressDAO.addAddress(address);
@@ -168,7 +180,7 @@ public class EventController {
 	    
 	    // try/catch to handle any exceptions
 	    try {
-	        Event updatedEventResult = eventDAO.updateEvent(eventTypeId, updatedEvent);
+	        Event updatedEventResult = eventDAO.updateEvent(eventId, updatedEvent);
 	        if (updatedEventResult == null) {
 	            throw new RuntimeException("Failed to update event.");
 	        }

@@ -34,36 +34,42 @@
                     <label for="name">Event Name</label>
                     <input type="text" class="form-control" id="name" name="name" value="${event.name}" required>
                 </div>
+                
+                <div><strong>Event ID:</strong> ${event.id}</div>
                 <div class="form-group">
                     <label for="description">Description</label>
                     <textarea class="form-control" id="description" name="description" rows="3">${event.description}</textarea>
                 </div>
                 
 		 		<!-- Display formatted event start and end dates, using parse and format -->
+				<!-- Start Date -->
 				<c:if test="${not empty event.eventStart}">
 				    <fmt:parseDate value="${event.eventStart}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedStart" type="both"/>
 				    <div class="form-group">
-				        <label for="start">Start:</label>
-				        <input type="datetime-local" id="start" name="start" class="form-control" value="<fmt:formatDate value="${parsedStart}" pattern="yyyy-MM-dd'T'HH:mm" />">
+				        <label for="eventStart">Start:</label>
+				        <input type="datetime-local" id="eventStart" name="eventStart" class="form-control" value="<fmt:formatDate value="${parsedStart}" pattern="yyyy-MM-dd'T'HH:mm" />">
 				    </div>
 				</c:if>
 				
+				<!-- End Date -->
 				<c:if test="${not empty event.eventEnd}">
 				    <fmt:parseDate value="${event.eventEnd}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedEnd" type="both"/>
 				    <div class="form-group">
-				        <label for="end">End:</label>
-				        <input type="datetime-local" id="end" name="end" class="form-control" value="<fmt:formatDate value="${parsedEnd}" pattern="yyyy-MM-dd'T'HH:mm" />">
+				        <label for="eventEnd">End:</label>
+				        <input type="datetime-local" id="eventEnd" name="eventEnd" class="form-control" value="<fmt:formatDate value="${parsedEnd}" pattern="yyyy-MM-dd'T'HH:mm" />">
 				    </div>
 				</c:if>
 								                
-                <div class="form-group">
-                    <label for="eventType">Event Type</label>
-                    <select class="form-control" id="eventType" name="eventType" required>
-                        <c:forEach items="${eventTypes}" var="type">
-                            <option value="${type.id}" ${type.id == event.eventType.id ? 'selected' : ''}>${type.type}</option>
-                        </c:forEach>
-                    </select>
-                </div>
+ 			<!-- Dropdown for selecting event type -->
+		     <!-- Event Type -->
+		    <div class="form-group">
+		        <label for="eventTypeId">Event Type</label>
+		        <select name="eventTypeId" class="form-control" required>
+		            <c:forEach items="${eventTypes}" var="type">
+		                <option value="${type.id}">${type.type}</option>
+		            </c:forEach>
+		        </select>
+		    </div>
                 
                  <!-- Location Description -->
                 <div class="form-group">

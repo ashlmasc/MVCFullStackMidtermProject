@@ -13,6 +13,7 @@
     <div class="container mt-5">
         <c:if test="${not empty event}">
             <h1 class="display-4 text-center mb-4">${event.name} Details</h1>
+            <p><strong>Event ID:</strong> ${event.id}</p>
             <p><strong>Description:</strong> ${event.description}</p>
             
             <!-- Display formatted event start and end dates, using parse and format -->
@@ -34,6 +35,13 @@
             <p><strong>Active:</strong> ${event.active ? 'Yes' : 'No'}</p>
             <p><strong>Image:</strong> <c:if test="${not empty event.imageUrl}"><img src="${event.imageUrl}" alt="Event Image" style="width:300px;"/></c:if></p>
             
+            <!-- List of attendees -->
+            <p><strong>Attendees:</strong></p>
+            <ul>
+                <c:forEach items="${event.eventAttendees}" var="attendee">
+                    <li>${attendee.firstName} ${attendee.lastName}</li>
+                </c:forEach>
+            </ul>
             
             <!-- Update, Delete, and Return Links -->
             

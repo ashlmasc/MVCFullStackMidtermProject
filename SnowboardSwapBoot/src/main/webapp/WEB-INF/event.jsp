@@ -25,6 +25,7 @@
                 <c:forEach items="${allEvents}" var="event">
                     <li class="list-group-item">
                         <div><strong>Name:</strong> ${event.name}</div>
+                         <div><strong>Event ID:</strong> ${event.id}<div>
                         <div><strong>Description:</strong> ${event.description}</div>
                         <!-- Display formatted event start and end dates, using parse and format -->
 			            <c:if test="${not empty event.eventStart}">
