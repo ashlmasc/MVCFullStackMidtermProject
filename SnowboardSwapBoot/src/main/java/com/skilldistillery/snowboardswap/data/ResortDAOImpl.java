@@ -38,4 +38,15 @@ public class ResortDAOImpl implements ResortDAO {
 		return resort;
 	}
 
+	@Override
+	public Resort editResort(Resort resort) {
+
+		Resort edResort = getResortByID(resort.getId());
+
+		edResort.setName(resort.getName());
+		edResort.setWebsite(resort.getWebsite());
+
+		return resort;
+	}
+
 }

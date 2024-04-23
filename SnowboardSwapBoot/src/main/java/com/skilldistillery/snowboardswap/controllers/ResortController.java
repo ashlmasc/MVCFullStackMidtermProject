@@ -13,6 +13,9 @@ import com.skilldistillery.snowboardswap.data.ResortDAO;
 import com.skilldistillery.snowboardswap.entities.Address;
 import com.skilldistillery.snowboardswap.entities.Resort;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class ResortController {
 
@@ -58,18 +61,27 @@ public class ResortController {
 		System.out.println(resort + "***");
 		System.out.println("****");
 
-		mv.setViewName("resorts");
+		mv.setViewName("redirect:/resorts");
 		return mv;
 	}
 
 	@PostMapping("editResort")
-	public ModelAndView editResort(Resort resort, Address address, @RequestParam("addressId") int addressId) {
+	public ModelAndView editResort(Resort resort, Address address, @RequestParam("addressId") int addressId,
+			HttpSession session, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
 
 		address.setId(addressId);
+
+		resortDAO.editResort(resort);
+
 		System.out.println(resort + "***");
 		System.out.println("*****" + resort.getAddress());
 		System.out.println(address);
 
-		return null;
+		session.setAttribute("referer", request.getHeader("Referer"));
+		String referer = session.getAttribute("referer") != null ? session.getAttribute("referer").toString() : "/";
+		mv.setViewName("redirect:" + referer);
+		return mv;
+
 	}
 }

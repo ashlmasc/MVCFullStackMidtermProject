@@ -47,7 +47,8 @@
 			<div class="offcanvas-body">
 				<form action="editResort" method="post">
 					<input type="hidden" name="id" value="${resort.id}">
-						
+					<input type="hidden" name="addressId" value="${resort.address.id}">
+					
 					<div class="form-floating mb-3">
 						<input type="text" class="form-control" id="resortName"
 							placeholder="Name" name="name" value="${resort.name}">
@@ -60,7 +61,7 @@
 						<label for="website">Website</label>
 					</div>
 					
-					<input type="hidden" name="addressId" value="3">
+					
 					
 					<div class="form-floating">
 						<input type="text" class="form-control" id="resortStreet"
@@ -97,27 +98,6 @@
 		<%-- </c:if> --%>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		<p>${resort.name}</p>
 		<a href="${resort.website}">To Website</a>
 		<p>${resort.address.street},${resort.address.city},
@@ -125,7 +105,7 @@
 		<p>${resort.address.phoneNumber}</p>
 
 		<a
-			href="https://www.google.com/maps/search/?api=1&query=${resort.getMapURL()}">Map
+			href="https://www.google.com/maps/search/?api=1&query=${resort.getMapURL()}" target="_blank">Map
 			Pin</a>
 
 		<ul>

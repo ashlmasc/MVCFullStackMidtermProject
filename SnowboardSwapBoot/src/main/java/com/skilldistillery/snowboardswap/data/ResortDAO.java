@@ -12,4 +12,6 @@ public interface ResortDAO {
 
 	Resort addResort(Resort resort);
 
+	Resort editResort(Resort resort);
+
 }
