@@ -84,7 +84,7 @@
 
 		<c:forEach var="lift" items="${resort.lifts}">
 
-			<li>${lift.name}
+			<li>${lift.name} | ${lift.liftType.type}
 			<c:if test="${lift.getStatuses().size() > 0}">
 							 | ${lift.getStatuses().get(lift.getStatuses().size() - 1).status};
 						</c:if>

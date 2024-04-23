@@ -2,7 +2,7 @@ package com.skilldistillery.snowboardswap.data;
 
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.snowboardswap.entities.Trail;
+import com.skilldistillery.snowboardswap.entities.Lift;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -10,22 +10,22 @@ import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
-public class TrailDAOImpl implements TrailDAO {
+public class LiftDAOImpl implements LiftDAO {
 
 	@PersistenceContext
 	private EntityManager em;
 
 	@Override
-	public Trail findTrailByID(int id) {
+	public Lift findLiftByID(int id) {
 
-		return em.find(Trail.class, id);
+		return em.find(Lift.class, id);
 	}
 
 	@Override
-	public Trail addTrail(Trail trail) {
+	public Lift addLift(Lift lift) {
 
-		em.persist(trail);
+		em.persist(lift);
 
-		return trail;
+		return lift;
 	}
 }

@@ -102,7 +102,8 @@ public class Lift {
 
 	@Override
 	public String toString() {
-		return "Lift [id=" + id + ", name=" + name + "]";
+		return "Lift [id=" + id + ", name=" + name + ", liftType=" + liftType + ", statuses=" + statuses + ", resort="
+				+ resort + "]";
 	}
 
 }

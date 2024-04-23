@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.snowboardswap.data.AddressDAO;
+import com.skilldistillery.snowboardswap.data.LiftTypeDAO;
 import com.skilldistillery.snowboardswap.data.ResortDAO;
 import com.skilldistillery.snowboardswap.entities.Address;
+import com.skilldistillery.snowboardswap.entities.LiftType;
 import com.skilldistillery.snowboardswap.entities.Resort;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,10 +23,12 @@ public class ResortController {
 
 	private ResortDAO resortDAO;
 	private AddressDAO addressDAO;
+	private LiftTypeDAO liftTypeDAO;
 
-	public ResortController(ResortDAO resortDAO, AddressDAO addressDAO) {
+	public ResortController(ResortDAO resortDAO, AddressDAO addressDAO, LiftTypeDAO liftTypeDAO) {
 		this.resortDAO = resortDAO;
 		this.addressDAO = addressDAO;
+		this.liftTypeDAO = liftTypeDAO;
 	}
 
 	@GetMapping({ "resorts" })
@@ -44,9 +48,11 @@ public class ResortController {
 		ModelAndView mv = new ModelAndView();
 
 		Resort resort = resortDAO.getResortByID(id);
+		List<LiftType> liftTypes = liftTypeDAO.getLiftTypeList(id);
+		System.out.println(liftTypes.size());
 		System.out.println(resort.getName() + "yep");
 		mv.addObject("resort", resort);
-
+		mv.addObject("liftTypes", liftTypes);
 		mv.setViewName("resortInfo");
 		return mv;
 	}
