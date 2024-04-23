@@ -26,6 +26,10 @@
                 <!-- Hidden field for event ID -->
                 <input type="hidden" name="eventId" value="${event.id}">
                 
+                <!-- Hidden field for event type ID -->
+				<input type="hidden" name="eventTypeId" value="${event.eventType.id}">
+                
+                
                 <div class="form-group">
                     <label for="name">Event Name</label>
                     <input type="text" class="form-control" id="name" name="name" value="${event.name}" required>
@@ -35,18 +39,23 @@
                     <textarea class="form-control" id="description" name="description" rows="3">${event.description}</textarea>
                 </div>
                 
-		 		<!-- Event Start Date/Time -->
-		        <div class="form-group">
-		            <label for="eventStart">Event Start Date and Time:</label>
-		            <input type="datetime-local" class="form-control" id="eventStart" name="eventStart" required>
-		        </div>
-		
-		        <!-- Event End Date/Time -->
-		        <div class="form-group">
-		            <label for="eventEnd">Event End Date and Time:</label>
-		            <input type="datetime-local" class="form-control" id="eventEnd" name="eventEnd" required>
-		        </div>
-                
+		 		<!-- Display formatted event start and end dates, using parse and format -->
+				<c:if test="${not empty event.eventStart}">
+				    <fmt:parseDate value="${event.eventStart}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedStart" type="both"/>
+				    <div class="form-group">
+				        <label for="start">Start:</label>
+				        <input type="datetime-local" id="start" name="start" class="form-control" value="<fmt:formatDate value="${parsedStart}" pattern="yyyy-MM-dd'T'HH:mm" />">
+				    </div>
+				</c:if>
+				
+				<c:if test="${not empty event.eventEnd}">
+				    <fmt:parseDate value="${event.eventEnd}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedEnd" type="both"/>
+				    <div class="form-group">
+				        <label for="end">End:</label>
+				        <input type="datetime-local" id="end" name="end" class="form-control" value="<fmt:formatDate value="${parsedEnd}" pattern="yyyy-MM-dd'T'HH:mm" />">
+				    </div>
+				</c:if>
+								                
                 <div class="form-group">
                     <label for="eventType">Event Type</label>
                     <select class="form-control" id="eventType" name="eventType" required>
@@ -54,6 +63,39 @@
                             <option value="${type.id}" ${type.id == event.eventType.id ? 'selected' : ''}>${type.type}</option>
                         </c:forEach>
                     </select>
+                </div>
+                
+                 <!-- Location Description -->
+                <div class="form-group">
+                    <label for="locationDescription">Location Description</label>
+                    <input type="text" class="form-control" id="locationDescription" name="locationDescription" value="${event.locationDescription}">
+                </div>
+                <!-- Image URL -->
+                <div class="form-group">
+                    <label for="imageUrl">Image URL</label>
+                    <input type="text" class="form-control" id="imageUrl" name="imageUrl" value="${event.imageUrl}">
+                </div>
+                
+                <!-- Address (Street, City, State, Postal Code, Phone Number) -->
+                <div class="form-group">
+                    <label for="street">Street</label>
+                    <input type="text" class="form-control" id="street" name="street" value="${event.address.street}" required>
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" id="city" name="city" value="${event.address.city}" required>
+                </div>
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <input type="text" class="form-control" id="state" name="state" value="${event.address.state}" required>
+                </div>
+                <div class="form-group">
+                    <label for="postalCode">Postal Code</label>
+                    <input type="text" class="form-control" id="postalCode" name="postalCode" value="${event.address.postalCode}">
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="${event.address.phoneNumber}">
                 </div>
                 
                            <!-- Buttons for navigation -->

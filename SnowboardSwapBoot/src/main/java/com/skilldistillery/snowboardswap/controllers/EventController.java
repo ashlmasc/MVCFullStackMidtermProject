@@ -123,26 +123,61 @@ public class EventController {
 	        return "addEvent";
 	    }
 	}
-
-//	Update an event: This method will update an existing event in the database.
+	
 	@GetMapping("updateEvent")
 	public String showUpdateEventForm(@RequestParam("eventId") int eventId, Model model) {
-		Event event = eventDAO.findEventById(eventId);
+	    Event event = eventDAO.findEventById(eventId);
 
-		if (event != null) {
-			model.addAttribute("event", event);
+	    if (event != null) {
+	        // Prepare necessary data for the update form
+	        List<EventType> eventTypes = eventTypeDAO.findAllEventTypes();
+	        model.addAttribute("event", event);
+	        model.addAttribute("eventTypes", eventTypes);
 
-			// i think i need to add other attributes required by the form according to FKs
-			List<EventType> eventTypes = eventTypeDAO.findAllEventTypes();
-			model.addAttribute("eventTypes", eventTypes);
-
-			return "updateEvent";
-		} else {
-			return "event";
-		}
+	        return "updateEvent"; // Return the update form
+	    } else {
+	        // If event is not found, handle the error appropriately
+	        throw new RuntimeException("Event not found with ID: " + eventId);
+	    }
 	}
 
-	// still need POST for updateEvent:
+	// POST for updateEvent:
+	@PostMapping("updateEvent")
+	public String updateEvent(@ModelAttribute("event") Event updatedEvent, 
+	                          BindingResult result, 
+	                          @RequestParam("eventTypeId") int eventTypeId, 
+	                          @ModelAttribute("address") Address address, 
+	                          Model model) {
+	    // Retrieve the event type from the database
+	    EventType eventType = eventTypeDAO.findEventTypeById(eventTypeId);
+	    if (eventType == null) {
+	        model.addAttribute("error", "Invalid event type.");
+	        return "updateEvent";
+	    }
+	    
+	    // Set the updated event's type
+	    updatedEvent.setEventType(eventType);
+	    
+	    // Update the event's address
+	    Address savedAddress = addressDAO.addAddress(address);
+	    if (savedAddress == null) {
+	        model.addAttribute("error", "Failed to save the address.");
+	        return "updateEvent";
+	    }
+	    updatedEvent.setAddress(savedAddress);
+	    
+	    // try/catch to handle any exceptions
+	    try {
+	        Event updatedEventResult = eventDAO.updateEvent(eventTypeId, updatedEvent);
+	        if (updatedEventResult == null) {
+	            throw new RuntimeException("Failed to update event.");
+	        }
+	        return "redirect:/eventDetail?eventId=" + updatedEventResult.getId();
+	    } catch (Exception e) {
+	        model.addAttribute("error", e.getMessage());
+	        return "updateEvent";
+	    }
+	}
 
 //	Delete an event: This method will remove an event from the database.
     @PostMapping("deleteEvent")

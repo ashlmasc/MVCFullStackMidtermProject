@@ -25,6 +25,7 @@
     	
     	 <!-- User id -->
 		<input type="hidden" name="userId" value="${userId}">
+		
 		    
         <!-- Event Name -->
         <div class="form-group">
