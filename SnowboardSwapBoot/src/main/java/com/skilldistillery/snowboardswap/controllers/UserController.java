@@ -1,5 +1,6 @@
 package com.skilldistillery.snowboardswap.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +17,10 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class UserController {
 
+	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
 	private AddressDAO addressDAO;
 
 	public UserController(UserDAO userDAO, AddressDAO addressDAO) {
@@ -26,20 +30,25 @@ public class UserController {
 	
 	@GetMapping("login.do")
 	  public String showLoginForm(HttpSession session) {
-		if(session == null) {
-			return "home";
+		if(session.getAttribute("loggedInUser") != null) {
+			return "redirect: profile";
 		}
 		return "profile";
 	  }
 
 	
+	
 	@PostMapping("login.do")
-	public String login(User user, HttpSession session, Model model) {
+	public String login(User user, HttpSession session) {
 		User authenticatedUser = userDAO.authenticateUser(user.getUsername(), user.getPassword());
 		if (authenticatedUser != null) {
 			session.setAttribute("loggedInUser", authenticatedUser);
+		return "redirect:/profile";
+		} else {
+		session.setAttribute("loggedInUser", null);
 		}
-		return "profile";
+		return "redirect:/login.do";
+		
 	}
 	
 	@GetMapping("logout.do")
@@ -47,7 +56,9 @@ public class UserController {
 		session.removeAttribute("loggedInUser");
 		//session.removeAttribute("loginTime");
 		//session.removeAttribute("timeOnSite");
-		return "logout";
+		
+		session.invalidate();
+		return "redirect:/login";
 	}
 	
 
@@ -62,23 +73,9 @@ public class UserController {
 		user.setUsername(username);
 		user.setPassword(password);
 		user.setAddress(address);
-		
 		userDAO.registerUser(user);
-		return "profile";
-	}
-	
-	@PostMapping({"updateProfile.do"})
-	public String updateProfile(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("username") String username, @RequestParam("password") String password, Address address,  Model model) {
-		User user = new User();
-		address = addressDAO.addAddress(address);
-		user.setFirstName(firstName);
-		user.setLastName(lastName);
-		user.setUsername(username);
-		user.setPassword(password);
-		user.setAddress(address);
+		return "redirect:/profile";
 		
-		userDAO.registerUser(user);
-		return "profile";
 		
 	}
 }

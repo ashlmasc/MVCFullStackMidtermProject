@@ -26,13 +26,15 @@ public class UserDAOImpl implements UserDAO {
 				.setParameter("username", username)
 				.setParameter("password", password)
 				.getResultList();
-		User authenticatedUser = null;
 		
-		if(!queryResult.isEmpty())
-		{
-			authenticatedUser = queryResult.get(0);
-		}
-		return authenticatedUser;
+		return queryResult.isEmpty() ? null : queryResult.get(0);
+	//	User authenticatedUser = null;
+		
+//		if(!queryResult.isEmpty())
+//		{
+//			authenticatedUser = queryResult.get(0);
+//		}
+//		return authenticatedUser;
 	}
 
 	@Override
@@ -44,6 +46,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User updateUserProfile(User user, Address address) {
 		User updateUser = em.find(User.class, user);
+		updateUser.setFirstName(user.getFirstName());
 		updateUser.setLastName(user.getLastName());
 		updateUser.setUsername(user.getUsername());
 		updateUser.setPassword(user.getPassword());
