@@ -19,7 +19,7 @@ public class UserController {
 
 	@Autowired
 	private UserDAO userDAO;
-	
+
 	@Autowired
 	private AddressDAO addressDAO;
 
@@ -27,45 +27,48 @@ public class UserController {
 		this.userDAO = userDAO;
 		this.addressDAO = addressDAO;
 	}
-	
+
 	@GetMapping("login.do")
-	  public String showLoginForm(HttpSession session) {
-		if(session.getAttribute("loggedInUser") != null) {
+	public String showLoginForm(HttpSession session) {
+		if (session.getAttribute("loggedInUser") != null) {
 			return "redirect: profile";
 		}
 		return "profile";
-	  }
-
-	
-	
-	@PostMapping("login.do")
-	public String login(User user, HttpSession session) {
-		User authenticatedUser = userDAO.authenticateUser(user.getUsername(), user.getPassword());
-		if (authenticatedUser != null) {
-			session.setAttribute("loggedInUser", authenticatedUser);
-		return "redirect:/profile";
-		} else {
-		session.setAttribute("loggedInUser", null);
-		}
-		return "redirect:/login.do";
-		
 	}
-	
+
+	@PostMapping("login.do")
+	public String login(@RequestParam("userName") String username, @RequestParam("password") String password,
+			HttpSession session, Model model) {
+		User loggedInUser = (User) session.getAttribute("loggedInUser");
+
+		if (loggedInUser != null) {
+			return "login";
+		} else {
+			User authenticatedUser = userDAO.authenticateUser(username, password);
+			if (authenticatedUser != null) {
+				session.setAttribute("loggedInUser", authenticatedUser);
+				return "profile";
+			} else {
+				return "login";
+			}
+		}
+
+	}
+
 	@GetMapping("logout.do")
 	public String logout(HttpSession session) {
 		session.removeAttribute("loggedInUser");
-		//session.removeAttribute("loginTime");
-		//session.removeAttribute("timeOnSite");
-		
+		// session.removeAttribute("loginTime");
+		// session.removeAttribute("timeOnSite");
+
 		session.invalidate();
 		return "redirect:/login";
 	}
-	
 
-	
-	
-	@PostMapping({"register.do"})
-	public String showRegistrationForm(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("username") String username, @RequestParam("password") String password, Address address,  Model model) {
+	@PostMapping({ "register.do" })
+	public String showRegistrationForm(@RequestParam("firstName") String firstName,
+			@RequestParam("lastName") String lastName, @RequestParam("username") String username,
+			@RequestParam("password") String password, Address address, Model model) {
 		User user = new User();
 		address = addressDAO.addAddress(address);
 		user.setFirstName(firstName);
@@ -75,7 +78,6 @@ public class UserController {
 		user.setAddress(address);
 		userDAO.registerUser(user);
 		return "redirect:/profile";
-		
-		
+
 	}
 }
