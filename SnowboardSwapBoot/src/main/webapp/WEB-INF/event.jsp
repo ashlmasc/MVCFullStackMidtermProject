@@ -7,7 +7,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Events/Meetups List</title>
-    <!-- Bootstrap CSS for consistency with other pages -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Favicon -->
     <link rel="icon" href="<c:url value='/resources/images/favicon.ico'/>" type="image/x-icon">
@@ -39,6 +38,7 @@
                         <div><strong>Location:</strong> ${event.locationDescription}</div>
                         <div><strong>Type:</strong> ${event.eventType.type}</div>
                         <div><strong>Active:</strong> ${event.active ? 'Yes' : 'No'}</div>
+                        
                         <!-- Update and View Details buttons for each record -->
                         <div class="mt-2">
                             <a href="updateEvent?eventId=${event.id}" class="btn btn-primary btn-sm">Update</a>

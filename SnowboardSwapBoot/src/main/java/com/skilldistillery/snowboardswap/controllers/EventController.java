@@ -72,6 +72,7 @@ public class EventController {
 	    return "addEvent";
 	}
 	
+	// still untested, I think the user authentication needs to work first, but not sure
 	@PostMapping("addEvent")
 	public String createEvent(@ModelAttribute("event") Event event, 
 	                          BindingResult result, 
@@ -95,9 +96,30 @@ public class EventController {
 	    event.setAddress(savedAddress);
 
 	    eventDAO.createEvent(event); // Save the event
-	    return "redirect:/eventDetail"; // redirect event details page
+	    return "eventDetail"; 
 	}
 	
 //	Update an event: This method will update an existing event in the database.
+	@GetMapping("updateEvent")
+    public String showUpdateEventForm(@RequestParam("eventId") int eventId, Model model) {
+        Event event = eventDAO.findEventById(eventId);
+
+        if (event != null) {
+            model.addAttribute("event", event);
+
+            // i think i need to add other attributes required by the form according to FKs
+            List<EventType> eventTypes = eventTypeDAO.findAllEventTypes();
+            model.addAttribute("eventTypes", eventTypes);
+
+            return "updateEvent"; 
+        } else {
+            return "event"; 
+        }
+    }
+	
+	//still need POST for updateEvent:
+	
+
+	
 //	Delete an event: This method will remove an event from the database.
 }
