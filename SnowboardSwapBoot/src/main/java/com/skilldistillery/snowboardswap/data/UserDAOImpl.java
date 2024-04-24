@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.snowboardswap.entities.Address;
 import com.skilldistillery.snowboardswap.entities.User;
 
 import jakarta.persistence.EntityManager;
@@ -14,22 +13,20 @@ import jakarta.transaction.Transactional;
 @Service
 @Transactional
 public class UserDAOImpl implements UserDAO {
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
 	@Override
 	public User authenticateUser(String username, String password) {
 		String jpql = "SELECT user FROM User user WHERE user.username = :username AND user.password = :password AND user.enabled = true";
-		
-		List<User> queryResult = em.createQuery(jpql, User.class)
-				.setParameter("username", username)
-				.setParameter("password", password)
-				.getResultList();
-		
+
+		List<User> queryResult = em.createQuery(jpql, User.class).setParameter("username", username)
+				.setParameter("password", password).getResultList();
+
 		return queryResult.isEmpty() ? null : queryResult.get(0);
-	//	User authenticatedUser = null;
-		
+		// User authenticatedUser = null;
+
 //		if(!queryResult.isEmpty())
 //		{
 //			authenticatedUser = queryResult.get(0);
@@ -44,20 +41,32 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User updateUserProfile(User user, Address address) {
-		User updateUser = em.find(User.class, user);
-		updateUser.setFirstName(user.getFirstName());
-		updateUser.setLastName(user.getLastName());
-		updateUser.setUsername(user.getUsername());
-		updateUser.setPassword(user.getPassword());
-		updateUser.setAddress(user.getAddress());
-		
-		return updateUser;
+	public User updateUserProfile(int id, User updatedUser) {
+	    User existingUser = em.find(User.class, id);
+	    if (existingUser != null && updatedUser != null) {
+	        existingUser.setFirstName(updatedUser.getFirstName());
+	        existingUser.setLastName(updatedUser.getLastName());
+	        existingUser.setBio(updatedUser.getBio());
+	        existingUser.setImageUrl(updatedUser.getImageUrl());
+	        existingUser.setPassword(updatedUser.getPassword()); // not sure if its this simple to change password?
+	        
+	        em.flush();
+	    }
+	    return existingUser;
 	}
 	
-	// Find a user by their ID
-    @Override
-    public User findById(int id) {
-        return em.find(User.class, id);
+	@Override
+	public User findById(int id) {
+		return em.find(User.class, id);
+	}
+	
+	@Override
+    public boolean deleteUser(int userId) {
+        User user = em.find(User.class, userId);
+        if (user != null) {
+            em.remove(user);
+            return true;
+        }
+        return false;
     }
 }

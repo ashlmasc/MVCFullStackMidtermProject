@@ -1,88 +1,82 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" --%>
-<%-- 	pageEncoding="UTF-8"%> --%>
-<%-- <%@ taglib prefix="c" uri="jakarta.tags.core"%> --%>
-
-<!-- <!DOCTYPE html> -->
-<!-- <html> -->
-<!-- <head> -->
-<!-- <title>User Profile</title> -->
-<!-- </head> -->
-<!-- <body> -->
-<%-- 	<%--Edit the file nav.jsp to change nav links --%> 
-<%-- 	<jsp:include page="nav.jsp" /> --%>
-
-<!-- 	<h1> -->
-<!-- 		Welcome, -->
-<%-- 		<c:out value="${loggedInUser.username}" /> --%>
-<!-- 		! -->
-<!-- 	</h1> -->
-<!-- 	<p>Your details are below:</p> -->
-
-<!-- 	<div class="container"> -->
-<!--     <div class="form-container"> -->
-<!--         <h2></h2> -->
-<%--         <form id="updateProfile" action="updateProfile.do?=${loggedInUser}" method="POST"> --%>
-<!--             <label for="username">User Name:</label> -->
-<%--             <input type="text" id="userName" name="userName" value="${loggedInUser.username}"/> --%>
-<%--             <label for="logDate">Date of Log Entry:</label>
-<%--             <input type="text" id="logDate" name="logDate" value="${healthLog.logDate}"/> --%>
-<%--             <label for="totalSteps">Total Steps:</label> --%>
-<%--             <input type="text" id="totalSteps" name="totalSteps" value="${healthLog.totalSteps}"/> --%>
-<%--             <label for="sleepMinutes">Sleep in Minutes:</label> --%>
-<%--             <input type="text" id="sleepMinutes" name="sleepMinutes" value="${healthLog.sleepMinutes}"/> --%>
-<%--             <label for="waterOunces">Ounces of Water:</label> --%>
-<%--             <input type="text" id="waterOunces" name="waterOunces"value="${healthLog.waterOunces}" /> --%>
-<%--             <label for="mood">Mood:</label> --%>
-<%--             <input type="text" id="mood" name="mood" value="${healthLog.mood}"/> --%> 
-<!--             <input type="submit" value= "Update"> -->
-<!--         </form> -->
-<!--     </div> -->
-<!-- <div> -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>User Profile</title>
-    <!-- Bootstrap CSS for styling -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons for icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Include your navigation bar here -->
-    <jsp:include page="nav.jsp" />
+<jsp:include page="nav.jsp" />
 
-    <div class="container mt-4">
-        <h1>Profile Details</h1>
-        <div class="mb-3">
-            <label class="form-label"><strong>First Name:</strong></label>
-            <p>${loggedInUser.firstName}</p>
-        </div>
+<div class="container mt-5">
+    <h1>Welcome, <c:out value="${loggedInUser.username}" /></h1>
+    <p>Your details are below:</p>
 
-        <div class="mb-3">
-            <label class="form-label"><strong>Last Name:</strong></label>
-            <p>${loggedInUser.lastName}</p>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label"><strong>Bio:</strong></label>
-            <p>${loggedInUser.bio}</p>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label"><strong>Image URL:</strong></label>
-            <p>${loggedInUser.imageUrl}</p>
-        </div>
-
-        <a href="editProfile.jsp" class="btn btn-primary" role="button">Edit Profile</a>
+    <form action="login.do" method="post">
+    
+    <!-- Hidden field for user ID -->
+	    <input type="hidden" name="userId" value="${user.id}">
+	    <!-- Hidden field for address ID -->
+	    <input type="hidden" name="addressId" value="${user.address.id}">
+    
+    <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" class="form-control" id="firstName" name="firstName" value="${loggedInUser.firstName}" disabled>
     </div>
+    <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" class="form-control" id="lastName" name="lastName" value="${loggedInUser.lastName}" disabled>
+    </div>
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" name="username" value="${loggedInUser.username}" disabled>
+    </div>
+    <div class="form-group">
+        <label for="bio">Bio:</label>
+        <textarea class="form-control" id="bio" name="bio" rows="3" disabled>${loggedInUser.bio}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="imageUrl">Image URL:</label>
+        <input type="text" class="form-control" id="imageUrl" name="imageUrl" value="${loggedInUser.imageUrl}" disabled>
+    </div>
+	</form>
+	
+	<!-- Address details display -->
+    <div class="form-group">
+        <label for="street">Street:</label>
+        <input type="text" class="form-control" id="street" name="street" value="${loggedInUser.address.street}" disabled>
+    </div>
+    <div class="form-group">
+        <label for="city">City:</label>
+        <input type="text" class="form-control" id="city" name="city" value="${loggedInUser.address.city}" disabled>
+    </div>
+    <div class="form-group">
+        <label for="state">State:</label>
+        <input type="text" class="form-control" id="state" name="state" value="${loggedInUser.address.state}" disabled>
+    </div>
+    <div class="form-group">
+        <label for="postalCode">Postal Code:</label>
+        <input type="text" class="form-control" id="postalCode" name="postalCode" value="${loggedInUser.address.postalCode}" disabled>
+    </div>
+    <div class="form-group">
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="${loggedInUser.address.phoneNumber}" disabled>
+    </div>
+	
+	<!-- Edit Profile Button -->
+    <a href="updateProfile" class="btn btn-primary">Edit Profile</a>
 
-    <!-- Bootstrap JS and Popper.js, including jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+</div>
+
+<!-- Bootstrap JS, Popper.js, and jQuery for tooltips -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 </body>
 </html>

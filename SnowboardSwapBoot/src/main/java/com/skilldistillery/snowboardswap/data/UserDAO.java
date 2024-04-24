@@ -12,5 +12,7 @@ public interface UserDAO {
 	// Method to find a user by ID
     User findById(int id);
 
-	User updateUserProfile(User user, Address address);
+	boolean deleteUser(int id);
+
+	User updateUserProfile(int id, User updatedUser);
 }
