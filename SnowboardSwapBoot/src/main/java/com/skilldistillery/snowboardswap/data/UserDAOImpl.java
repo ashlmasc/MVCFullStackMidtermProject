@@ -25,13 +25,6 @@ public class UserDAOImpl implements UserDAO {
 				.setParameter("password", password).getResultList();
 
 		return queryResult.isEmpty() ? null : queryResult.get(0);
-		// User authenticatedUser = null;
-
-//		if(!queryResult.isEmpty())
-//		{
-//			authenticatedUser = queryResult.get(0);
-//		}
-//		return authenticatedUser;
 	}
 
 	@Override
@@ -42,31 +35,31 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User updateUserProfile(int id, User updatedUser) {
-	    User existingUser = em.find(User.class, id);
-	    if (existingUser != null && updatedUser != null) {
-	        existingUser.setFirstName(updatedUser.getFirstName());
-	        existingUser.setLastName(updatedUser.getLastName());
-	        existingUser.setBio(updatedUser.getBio());
-	        existingUser.setImageUrl(updatedUser.getImageUrl());
-	        existingUser.setPassword(updatedUser.getPassword()); // not sure if its this simple to change password?
-	        
-	        em.flush();
-	    }
-	    return existingUser;
+		User existingUser = em.find(User.class, id);
+		if (existingUser != null && updatedUser != null) {
+			existingUser.setFirstName(updatedUser.getFirstName());
+			existingUser.setLastName(updatedUser.getLastName());
+			existingUser.setBio(updatedUser.getBio());
+			existingUser.setImageUrl(updatedUser.getImageUrl());
+			existingUser.setPassword(updatedUser.getPassword()); // not sure if its this simple to change password?
+
+			em.flush();
+		}
+		return existingUser;
 	}
-	
+
 	@Override
 	public User findById(int id) {
 		return em.find(User.class, id);
 	}
-	
+
 	@Override
-    public boolean deleteUser(int userId) {
-        User user = em.find(User.class, userId);
-        if (user != null) {
-            em.remove(user);
-            return true;
-        }
-        return false;
-    }
+	public boolean deleteUser(int userId) {
+		User user = em.find(User.class, userId);
+		if (user != null) {
+			em.remove(user);
+			return true;
+		}
+		return false;
+	}
 }

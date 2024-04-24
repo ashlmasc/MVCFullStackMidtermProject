@@ -1,6 +1,5 @@
 package com.skilldistillery.snowboardswap.data;
 
-import com.skilldistillery.snowboardswap.entities.Address;
 import com.skilldistillery.snowboardswap.entities.User;
 
 public interface UserDAO {

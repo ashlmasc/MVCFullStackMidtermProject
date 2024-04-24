@@ -28,15 +28,6 @@ public class UserController {
 		this.addressDAO = addressDAO;
 	}
 
-	// Old one
-//	@GetMapping("login.do")
-//	public String showLoginForm(HttpSession session) {
-//		if (session.getAttribute("loggedInUser") != null) {
-//			return "redirect: profile";
-//		}
-//		return "profile";
-//	}
-
 	// Ash update
 	@GetMapping("login.do")
 	public String showLoginForm(HttpSession session) {
@@ -49,19 +40,17 @@ public class UserController {
 	@PostMapping("login.do")
 	public String login(@RequestParam("userName") String username, @RequestParam("password") String password,
 	                    HttpSession session, Model model) {
-	    User loggedInUser = (User) session.getAttribute("loggedInUser");
+	    if (session.getAttribute("loggedInUser") != null) {
+	        return "redirect:profile";
+	    }
 
-	    if (loggedInUser != null) {
+	    User authenticatedUser = userDAO.authenticateUser(username, password);
+	    if (authenticatedUser != null) {
+	        session.setAttribute("loggedInUser", authenticatedUser);
 	        return "redirect:profile";
 	    } else {
-	        User authenticatedUser = userDAO.authenticateUser(username, password);
-	        if (authenticatedUser != null) {
-	            session.setAttribute("loggedInUser", authenticatedUser);
-	            return "redirect:profile";
-	        } else {
-	            model.addAttribute("errorMessage", "Invalid username or password.");
-	            return "login";
-	        }
+	        model.addAttribute("errorMessage", "Invalid username or password.");
+	        return "login";
 	    }
 	}
 
@@ -75,21 +64,56 @@ public class UserController {
 		return "redirect:/login";
 	}
 
-	@PostMapping({ "register.do" })
-	public String showRegistrationForm(@RequestParam("firstName") String firstName,
-			@RequestParam("lastName") String lastName, @RequestParam("username") String username,
-			@RequestParam("password") String password, Address address, Model model) {
-		User user = new User();
-		address = addressDAO.addAddress(address);
-		user.setFirstName(firstName);
-		user.setLastName(lastName);
-		user.setUsername(username);
-		user.setPassword(password);
-		user.setAddress(address);
-		userDAO.registerUser(user);
-		return "redirect:/profile";
+//	@PostMapping({ "register.do" })
+//	public String showRegistrationForm(@RequestParam("firstName") String firstName,
+//			@RequestParam("lastName") String lastName, @RequestParam("username") String username,
+//			@RequestParam("password") String password, Address address, Model model) {
+//		User user = new User();
+//		address = addressDAO.addAddress(address);
+//		user.setFirstName(firstName);
+//		user.setLastName(lastName);
+//		user.setUsername(username);
+//		user.setPassword(password);
+//		user.setAddress(address);
+//		userDAO.registerUser(user);
+//		return "redirect:/profile";
+//
+//	}
+	
+	@PostMapping("register.do")
+	public String register(@RequestParam("firstName") String firstName,
+	                       @RequestParam("lastName") String lastName,
+	                       @RequestParam("username") String username,
+	                       @RequestParam("password") String password,
+	                       @ModelAttribute("address") Address address, 
+	                       Model model) {
+	    User newUser = new User();
+	    
+	    // set properties for user
+	    newUser.setFirstName(firstName);
+	    newUser.setLastName(lastName);
+	    newUser.setUsername(username);
+	    newUser.setPassword(password);
+	    newUser.setEnabled(true); // Explicitly set the enabled field to true
+	    newUser.setRole("standard"); // Set a default role if needed
 
+	    // persist Address object and set it to the User
+	    Address persistedAddress = addressDAO.addAddress(address);
+	    newUser.setAddress(persistedAddress);
+	    
+	    // attempt to register new user
+	    User registeredUser = userDAO.registerUser(newUser);
+	    
+	    // check if user registration was successful
+	    if (registeredUser != null) {
+	        model.addAttribute("successMessage", "Registration successful!");
+	        return "login"; 
+	    } else {
+	        model.addAttribute("errorMessage", "Registration failed. Please try again.");
+	        return "register"; 
+	    }
 	}
+
 
 	@GetMapping("profile")
 	public String showProfile(HttpSession session, Model model) {
