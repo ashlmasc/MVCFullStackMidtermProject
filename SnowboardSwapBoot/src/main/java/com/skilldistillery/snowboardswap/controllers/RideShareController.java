@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class RideShareController {
-
+	
 	private RideShareDAO rideShareDAO;
 	private AddressDAO addressDAO;
 	private ResortDAO resortDAO;
@@ -44,42 +44,27 @@ public class RideShareController {
 	@PostMapping("rideshare")
 	public String createRideShare(@RequestParam("sponsorid") int id, @RequestParam("resortid") int resortId,
 			@RequestParam("street1") String street1, @RequestParam("city1") String city1,
-			@RequestParam("state1") String state1, @RequestParam("postalCode1") int postalCode1,
+			@RequestParam("state1") String state1, 
 			@RequestParam("street2") String street2, @RequestParam("city2") String city2,
-			@RequestParam("state2") String state2, @RequestParam("postalCode2") int postalCode2, Model model,
+			@RequestParam("state2") String state2, Model model,
 			BindingResult result, HttpSession session) {
 
 		User loggedInUser = (User) session.getAttribute("loggedInUser");
 
 		Ride ride = new Ride();
 		ride.setUser(loggedInUser);
+		
+		Address departureAddress = addressDAO.createAddress(street1, city1, state1);
+		Address arrivalAddress = addressDAO.createAddress(street2, city2, state2);
+		
+		ride.setDepartureAddress(departureAddress);
+		ride.setArrivalAddress(arrivalAddress);
 
-		Address departureAddress = new Address();
-
-		departureAddress.setStreet(street1);
-		departureAddress.setCity(city1);
-		departureAddress.setState(state1);
-		departureAddress.setPostalCode(postalCode1);
-
-		Address arrivalAddress = new Address();
-
-		arrivalAddress.setStreet(street2);
-		arrivalAddress.setCity(city2);
-		arrivalAddress.setState(state2);
-		arrivalAddress.setPostalCode(postalCode2);
-
-		ride.setDepartureAddress(addressDAO.addAddress(departureAddress));
-
-		ride.setArrivalAddress(addressDAO.addAddress(arrivalAddress));
 
 		ride.setResort(resortDAO.getResortByID(resortId));
 
 		rideShareDAO.createRideShare(ride);
 
-//		System.err.println(ride.getUser().getFirstName());
-//		System.err.println(ride.getDepartureAddress());
-//		System.err.println(ride.getArrivalAddress());
-//		System.err.println(ride.getResort().getId());
 
 		return "rideshare";
 	}

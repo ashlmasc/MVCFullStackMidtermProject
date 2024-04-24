@@ -19,6 +19,8 @@ import jakarta.transaction.Transactional;
 
 		@Override
 		public Ride createRideShare(Ride ride) {
+			 
+			
 			em.persist(ride);
 			return ride;
 		}
@@ -44,10 +46,5 @@ import jakarta.transaction.Transactional;
 			// TODO Auto-generated method stub
 			return null;
 		}
-		
-		
-	
-	
-	
-	
+
 }

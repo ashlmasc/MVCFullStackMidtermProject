@@ -8,4 +8,6 @@ public interface AddressDAO {
 
 	Address editAddress(Address address);
 
+	Address createAddress(String street, String city, String state);
+
 }

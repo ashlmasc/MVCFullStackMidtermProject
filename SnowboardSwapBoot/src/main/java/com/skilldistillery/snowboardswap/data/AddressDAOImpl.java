@@ -3,6 +3,7 @@ package com.skilldistillery.snowboardswap.data;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.snowboardswap.entities.Address;
+import com.skilldistillery.snowboardswap.entities.Ride;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -41,5 +42,16 @@ public class AddressDAOImpl implements AddressDAO {
 
 		return editAddress;
 	}
+	
+	@Override
+    public Address createAddress(String street, String city, String state) {
+        Address address = new Address();
+        address.setStreet(street);
+        address.setCity(city);
+        address.setState(state);
+        addAddress(address);
+        
+        return address;
+    }
 
 }

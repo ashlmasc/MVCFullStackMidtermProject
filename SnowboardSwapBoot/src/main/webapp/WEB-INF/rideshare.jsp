@@ -160,7 +160,6 @@
                     <input type="text" name="street1">
                     <input type="text" name="city1">
                     <input type="text" name="state1">
-                    <input type="text" name="postalCode1">
                 </div>
 
                 <div class="form-group">
@@ -168,7 +167,6 @@
   					 <input type="text" name="street2">
                     <input type="text" name="city2">
                     <input type="text" name="state2">
-                    <input type="text" name="postalCode2">
                 </div>
                 
                 <div class="form-group">
