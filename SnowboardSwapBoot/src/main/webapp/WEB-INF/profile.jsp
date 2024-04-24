@@ -17,7 +17,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<link rel="stylesheet" type="text/css" href="css/site.css">
+<link rel="stylesheet" type="text/css" href="css/profile.css">
 
 
 </head>
@@ -25,6 +25,23 @@
 	<header></header>
 	<jsp:include page="nav.jsp" />
 	<main>
+
+
+		<h2 style="text-align: center">${loggedInUser.username}</h2>
+
+		<div class="card">
+			<img src="${loggedInUser.imageUrl}" alt="${loggedInUser.firstName}"
+				style="width: 100%">
+			<h1>${loggedInUser.firstName}${loggedInUser.lastName}</h1>
+			<p class="title">${loggedInUser.bio}</p>
+			<p>${loggedInUser.address.street}</p>
+			<p>${loggedInUser.address.city},${loggedInUser.address.state}
+				${loggedInUser.address.postalCode}</p>
+			<div style="margin: 24px 0;"></div>
+			<p>
+				<a href="updateProfile" class="btn btn-primary">Edit Profile</a>
+			</p>
+		</div>
 
 
 		<div class="container mt-5">

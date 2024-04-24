@@ -1,12 +1,12 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Log In</title>
-    <!-- Bootstrap CSS -->
+<title>Log In</title>
+<!-- Bootstrap CSS -->
 
 
 <link
@@ -18,46 +18,59 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<link rel="stylesheet" type="text/css" href="css/site.css">
+<link rel="stylesheet" type="text/css" href="css/login.css">
 
 
 
 
 <style>
-        .form-signin {
-            max-width: 400px;
-            padding: 15px;
-            margin: auto;
-        }
-    </style>
+.form-signin {
+	max-width: 400px;
+	padding: 15px;
+	margin: auto;
+}
+</style>
 </head>
 <body>
+	<header></header>
 
-<jsp:include page="nav.jsp" />
+	<jsp:include page="nav.jsp" />
+	<main>
+		<div class="container">
+			<form class="form-signin" action="login.do" method="post">
+				<h2 class="form-signin-heading">Sign In</h2>
 
-<div class="container">
-    <form class="form-signin" action="login.do" method="post">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        
-        <%-- Display error message if present --%>
-        <c:if test="${not empty errorMessage}">
-            <div class="alert alert-danger" role="alert">
-                <c:out value="${errorMessage}" />
-            </div>
-        </c:if>
-        
-        <label for="inputUsername" class="sr-only">Username</label>
-        <input type="text" id="inputUsername" class="form-control" placeholder="Username" name="userName" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    </form>
-</div> <!-- /container -->
+				<%-- Display error message if present --%>
+				<c:if test="${not empty errorMessage}">
+					<div class="alert alert-danger" role="alert">
+						<c:out value="${errorMessage}" />
+					</div>
+				</c:if>
 
-<!-- Bootstrap JS, Popper.js, and jQuery -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+				<div class="form-floating mb-3">
+					<input type="text" id="inputUsername" class="form-control"
+						placeholder="Username" name="userName" required autofocus>
+
+					<label for="inputUsername">Username</label>
+				</div>
+				<div class="form-floating mb-3">
+					<input type="password" id="inputPassword" class="form-control"
+						placeholder="Password" name="password" required>
+					<label for="inputPassword">Password</label>
+				</div>
+
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
+					in</button>
+			</form>
+		</div>
+	</main>
+	<footer></footer>
+	<!-- Bootstrap JS, Popper.js, and jQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </body>
 </html>
