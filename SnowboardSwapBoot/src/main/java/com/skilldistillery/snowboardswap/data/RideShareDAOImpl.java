@@ -49,8 +49,8 @@ import jakarta.transaction.Transactional;
 		}
 
 		@Override
-		public boolean deleteRideShare(int id) {
-			Ride ride = em.find(Ride.class, id);
+		public boolean deleteRideShare(Ride ride) {
+			ride = em.find(Ride.class, ride.getId());
 			if (ride != null) {
 				em.remove(ride);
 				return true;
@@ -59,15 +59,14 @@ import jakarta.transaction.Transactional;
 		}
 
 		@Override
-		public Ride updateRideShare(Ride ride, int id) {
-			Ride updateRide = em.find(Ride.class, id);
+		public Ride updateRideShare(Ride ride) {
+			Ride updateRide = em.find(Ride.class, ride.getId());
 			updateRide.setDeparture(ride.getDeparture());
 			updateRide.setDetail(ride.getDetail());
 			updateRide.setVehicleCapacity(ride.getVehicleCapacity());
 			updateRide.setVehicleMake(ride.getVehicleMake());
 			updateRide.setVehicleModel(ride.getVehicleModel());
 			
-		
 			
 			
 			
