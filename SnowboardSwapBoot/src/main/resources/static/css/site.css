@@ -1,3 +1,9 @@
-.siteWidthWrapper{
+.siteWidthWrapper {
 	max-width: 750px;
+}
+
+nav {
+	.dropdown-toggle::after{
+    display: none;
+}
 }
