@@ -11,32 +11,20 @@
 	    <h2 class="display-4 text-center mb-4">Edit Current Ride Share</h2>
             <form action="updateRideShare" method="post" enctype="multipart/form-data">
                 <!-- User id -->
-                <input type="hidden" name="id" value="1">
-                <input type="hidden" name="sponsorid" value="1">
-                <input type="hidden" name="resortid" value="1">
+                
+                				<input type="hidden" name="sponsorid" value="1"> <input
+					type="hidden" name="resortid" value="1"> 
             
                 <div class="form-group">
-                    <label for="departure">Post Id:</label>
-                    <input value="${ride.id}" type="text" id="id" name="id" required>
+                    <label for="id">Post Id:</label>
+                    <input value="${ride.id}" type="text" id="id" name="id" readonly required>
                 </div>
                 <div class="form-group">
                     <label for="departure">Departure date and time:</label>
                     <input value="${ride.departure}" type="datetime-local" id="departure" name="departure" required>
                 </div>
-
-               <!--  <div class="form-group">
-                    <label for="departureAddress">Departure Address:</label>
-                    <input type="text" name="street1">
-                    <input type="text" name="city1">
-                    <input type="text" name="state1">
-                </div>
-
-                <div class="form-group">
-                    <label for="arrivalAddress">Arrival Address:</label>
-  					 <input type="text" name="street2">
-                    <input type="text" name="city2">
-                    <input type="text" name="state2">
-                </div> -->
+                
+         
                 
                 <div class="form-group">
                     <label for="detail">Details:</label>

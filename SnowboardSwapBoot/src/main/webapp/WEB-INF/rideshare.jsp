@@ -65,24 +65,18 @@ body {
 			<div>
 				<ul>
 
-					<li>Id: <br> ${ride.id}
-					</li>
-
-
+					<li>Id: ${ride.id}</li>
 					<li>Departure Date and Time: ${ride.departure}</li>
-                                  <%--   <li>Departure Address: ${ride.departureAddress}</li>
-                                    <li>Arrival Address:${ride.arrivalAddress}</li>
-                                    <li>Resort Destination:${ride.resort}</li>
                                     <li>Vehicle Capacity: ${ride.vehicleCapacity}</li>
                                     <li>Vehicle Make: ${ride.vehicleMake}</li>
-                                    <li>Vehicle Model:${ride.vehicleModel}</li> --%>
+                                    <li>Vehicle Model:${ride.vehicleModel}</li>
 
 
 				</ul>
 				
 				<a href="editRideShare?id=${ride.id}" class="btn btn-primary"></a>
 				
-	<form action="deleteRideShare.do" onsubmit="return window.confirm('Are you sure you want to delete this log?');" method="POST">
+	<form action="deleteRideShare" onsubmit="return window.confirm('Are you sure you want to delete this log?');" method="POST">
                                             <div class="form-group">
                                                 <input type="hidden" class="form-control" id="id" name="id" value="<c:out value='${ride.id}' />">
                                             </div>
@@ -97,11 +91,11 @@ body {
 
 		<div class="container mt-5">
 			<h2 class="display-4 text-center mb-4">Post New Ride Share</h2>
-			<form action="createRideShare" method="post"
+			<form action="rideshare" method="post"
 				enctype="multipart/form-data">
 				<!-- User id -->
 				<input type="hidden" name="sponsorid" value="1"> <input
-					type="hidden" name="resortid" value="1">
+					type="hidden" name="resortid" value="1"> 
 
 				<div class="form-group">
 					<label for="departure">Departure date and time:</label> <input
@@ -122,8 +116,8 @@ body {
 
 				<div class="form-group">
 					<label for="detail">Details:</label>
-					<textarea class="form-control" id="detail" name="detail"
-						placeholder="Details" required></textarea>
+					<input class="form-control" id="detail" name="detail"
+						placeholder="Details" required>
 				</div>
 
 				<div class="form-group">
@@ -150,22 +144,7 @@ body {
 		</div>
 		<div>
 
-			<form action="showPostsById" method="POST">
-				<h2>
-					<b> Search for posts by Id: </b>
-				</h2>
-
-				<input type="text" name="id" /> <input type="submit" value="Submit" />
-			</form>
-		</div>
-		<br>
-		<form action="getRideUser.do" method="GET">
-			<h2>
-				<b> Search for posts by User: </b>
-			</h2>
-			<input type="text" name="userName" /> <input type="submit"
-				value="Submit" />
-		</form>
+		
 
 		<form action="joinRideShare.do" method="post">
 			<!-- Form inputs for joining a ride share -->
