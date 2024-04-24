@@ -49,8 +49,7 @@ public class ResortController {
 
 		Resort resort = resortDAO.getResortByID(id);
 		List<LiftType> liftTypes = liftTypeDAO.getLiftTypeList(id);
-		System.out.println(liftTypes.size());
-		System.out.println(resort.getName() + "yep");
+
 		mv.addObject("resort", resort);
 		mv.addObject("liftTypes", liftTypes);
 		mv.setViewName("resortInfo");
