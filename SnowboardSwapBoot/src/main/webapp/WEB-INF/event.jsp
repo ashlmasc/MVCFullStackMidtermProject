@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -24,11 +23,21 @@
 <link rel="icon" href="<c:url value='/resources/images/favicon.ico'/>"
 	type="image/x-icon">
 
+<!-- need to move to site.css for uniformity; need this to limit size of image to fit within event list box -->
+<style>
+  .event-image {
+    max-width: 100%; /* Limit image width to 100% of its parent container */
+    height: auto; /* Keep the aspect ratio of the image */
+    display: block; /* Display block to prevent unwanted margins */
+    margin: 0 auto; /* Center align the image */
+    border-radius: 5px; /* Optional: adds rounded corners to the image */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Optional: adds shadow for a bit of depth */
+  }
+</style>
 
 </head>
 
 <jsp:include page="nav.jsp" />
-
 
 <body>
 
@@ -43,60 +52,63 @@
 					<ul class="list-group">
 						<c:forEach items="${allEvents}" var="event">
 							<li class="list-group-item">
-								<div>
-									<strong>Name:</strong> ${event.name}
-								</div>
+								
+								<c:if test="${not empty event.name}">
+				                 	<div><strong>Name:</strong> <c:out value="${event.name}" /></div>
+				                </c:if>
+								
+								<c:if test="${not empty event.eventType}">
+                  					<div><strong>Type:</strong> <c:out value="${event.eventType.type}" /></div>
+                				</c:if>	
+                					
+								<!-- 	not sure if we want displayed, but at least for testing -->
 								<div>
 									<strong>Event ID:</strong> ${event.id}
+								</div>
+									
+								<c:if test="${not empty event.description}">
+					            	<div><strong>Description:</strong> <c:out value="${event.description}" /></div>
+					            </c:if>				
+									
+								<!-- Display formatted event start and end dates, using parse and format -->
+								<c:if test="${not empty event.eventStart}">
+									<fmt:parseDate value="${event.eventStart}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedStart" type="both" />
 									<div>
-										<div>
-											<strong>Description:</strong> ${event.description}
-										</div>
-										<!-- Display formatted event start and end dates, using parse and format -->
-										<c:if test="${not empty event.eventStart}">
-											<fmt:parseDate value="${event.eventStart}"
-												pattern="yyyy-MM-dd'T'HH:mm" var="parsedStart" type="both" />
-											<div>
-												Start:
-												<fmt:formatDate value="${parsedStart}"
-													pattern="yyyy-MM-dd HH:mm:ss" />
-											</div>
-										</c:if>
+										<strong>Start:</strong>
+										<fmt:formatDate value="${parsedStart}" pattern="MMMM d, yyyy 'at' h:mm a" />
+									</div>
+								</c:if>
 
-										<c:if test="${not empty event.eventEnd}">
-											<fmt:parseDate value="${event.eventEnd}"
-												pattern="yyyy-MM-dd'T'HH:mm" var="parsedEnd" type="both" />
-											<div>
-												End:
-												<fmt:formatDate value="${parsedEnd}"
-													pattern="yyyy-MM-dd HH:mm:ss" />
-											</div>
-										</c:if>
+								<c:if test="${not empty event.eventEnd}">
+									<fmt:parseDate value="${event.eventEnd}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedEnd" type="both" />
+									<div>
+										<strong>End:</strong>
+										<fmt:formatDate value="${parsedEnd}" pattern="MMMM d, yyyy 'at' h:mm a" />
+									</div>
+								</c:if>
+								
+								<c:if test="${not empty event.locationDescription}">
+                  					<div><strong>Location:</strong> <c:out value="${event.locationDescription}" /></div>
+                				</c:if>
 
-										<div>
-											<strong>Location:</strong> ${event.locationDescription}
-										</div>
-										<div>
-											<strong>Type:</strong> ${event.eventType.type}
-										</div>
-										<div>
-											<strong>Active:</strong> ${event.active ? 'Yes' : 'No'}
-										</div>
+								<c:if test="${not empty event.active}">
+                  					<div><strong>Active:</strong> ${event.active ? 'Yes' : 'No'} </div>
+                				</c:if>
 
-										<!-- Update and View Details buttons for each record -->
+                				<c:if test="${not empty event.imageUrl}">
+  									<div><strong>Image:</strong> <img class="event-image" src="<c:out value="${event.imageUrl}"/>" alt="Event Image"></div>
+								</c:if>
 
-										<div class="mt-2">
-											<c:if
-												test="${sessionScope.loggedInUser ne null && loggedInUser.id eq event.sponsor.id}">
-												<a href="updateEvent?eventId=${event.id}"
-													class="btn btn-primary btn-sm">Update</a>
+								<!-- Update and View Details buttons for each record -->
 
-											</c:if>
+								<div class="mt-2">
+									<c:if
+										test="${sessionScope.loggedInUser ne null && loggedInUser.id eq event.sponsor.id}">
+										<a href="updateEvent?eventId=${event.id}" class="btn btn-primary btn-sm">Update</a>
+									</c:if>
 
-
-											<a href="eventDetail?eventId=${event.id}"
-												class="btn btn-secondary btn-sm">View Details</a>
-										</div>
+									<a href="eventDetail?eventId=${event.id}" class="btn btn-secondary btn-sm">View Details</a>
+								</div>
 							</li>
 						</c:forEach>
 					</ul>
