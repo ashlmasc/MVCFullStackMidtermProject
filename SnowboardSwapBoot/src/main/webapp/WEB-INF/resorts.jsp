@@ -31,35 +31,35 @@
 				data-bs-toggle="offcanvas" data-bs-target="#addResortForm"
 				aria-controls="offcanvasWithBothOptions">Add new resort</button>
 
-				<jsp:include page="resort/resortAddForm.jsp" />
-			
+			<jsp:include page="resort/resortAddForm.jsp" />
+
 		</c:if>
 
+		<div class="section">
+			<div class="resortsContainer siteWidthWrapper">
+				<c:forEach var="resort" items="${resorts}">
 
-		<c:forEach var="resort" items="${resorts}">
-
-			<div class="resort-card">
-				<img
-					src="https://www.coppercolorado.com/_gatsby/image/7c52b160aea9dcc37c0af3dccb45e77d/37ff55ff33e858b62e6b9a28a9c49586/CM_Winter_Center%20Village%20Drone_3-2-23_CD_01.webp?u=https%3A%2F%2Fcms.coppercolorado.com%2Fsites%2Fdefault%2Ffiles%2F2023-11%2FCM_Winter_Center%2520Village%2520Drone_3-2-23_CD_01.jpg&a=w%3D1920%26h%3D1279%26fm%3Dwebp%26q%3D90&cd=ad3c7a103795f406e21b7d566b88eea5"
-					alt="${resort.name} image"> <a href="resort?id=${resort.id}">Link
-					to resort info</a>
-				<p>${resort.name}</p>
-				<p>${resort.address.street},${resort.address.city},
-					${resort.address.state} ${resort.address.postalCode}</p>
-
-				<p>${resort.address.phoneNumber}</p>
-				
-
+					<div class="card resort-card" style="width: 18rem;">
+						<div class="imgCont">
+							<img src="${resort.imageUrl}" class="card-img-top" alt="...">
+						</div>
+						<div class="card-body">
+							<h5 class="card-title">${resort.name}</h5>
+							<p class="card-text limit-text">${resort.description}</p>
+							<a href="resort?id=${resort.id}" class="btn btn-primary">More
+								Info</a>
+						</div>
+					</div>
+					
+				</c:forEach>
 			</div>
+		</div>
 
 
-		</c:forEach>
-		
-		
-		
+
+
 	</main>
-	<footer>
-	</footer>
+	<footer> </footer>
 
 </body>
 </html>
