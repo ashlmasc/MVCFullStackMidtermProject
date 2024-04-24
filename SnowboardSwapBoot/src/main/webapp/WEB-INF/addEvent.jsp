@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<jsp:include page="nav.jsp" />
+<main>
 <div class="container mt-5">
     <h2 class="display-4 text-center mb-4">Add New Event</h2>
     
@@ -92,15 +94,14 @@
 <!--         <div class="text-center"> -->
 <!--         <a href="home.do" class="btn btn-secondary" data-toggle="tooltip" title="Cancel and return to the homepage">Cancel</a> -->
 
+</main>
+
+
 <!-- Bootstrap JS, Popper.js, and jQuery for tooltips -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script>
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip(); // Initialize tooltips
-    });
-</script>
+<script> $(function () {$('[data-toggle="tooltip"]').tooltip(); // Initialize tooltips});</script>
 
 </body>
 </html>

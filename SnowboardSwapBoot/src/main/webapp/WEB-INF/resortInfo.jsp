@@ -18,8 +18,11 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+<link rel="stylesheet" type="text/css" href="css/site.css">
 
 </head>
+
+
 <body>
 
 	<header></header>
@@ -56,6 +59,11 @@
 				data-bs-target="#addTrailForm" aria-controls="addTrailForm">
 
 				Add Trail</button>
+
+			<i class="bi bi-plus-circle btn btn-primary btn-i"
+				data-bs-toggle="offcanvas" data-bs-target="#addTrailForm"
+				aria-controls="addTrailForm"></i>
+
 		</c:if>
 
 
@@ -150,24 +158,34 @@
 		<p>Lifts</p>
 
 		<c:if test="${sessionScope.loggedInUser ne null }">
-			<button type="button" data-bs-toggle="offcanvas"
-				data-bs-target="#addLiftForm" aria-controls="addLiftForm">
 
-				Add Lift</button>
+
+
+			<i class="bi bi-plus-circle btn btn-primary btn-i"
+				data-bs-toggle="offcanvas" data-bs-target="#addLiftForm"
+				aria-controls="addLiftForm"></i>
+				
+				Add Lift
 
 			<jsp:include page="resort/resortEditForm.jsp" />
 		</c:if>
 
 		<c:forEach var="lift" items="${resort.lifts}">
 
-			<li>${lift.name}|${lift.liftType.type}<c:if
-					test="${lift.getStatuses().size() > 0}">
+			<div>
+				<h5>${lift.name}</h5>
+				<p>${lift.liftType.type}</p>
+				
+				<c:if test="${lift.getStatuses().size() > 0}">
 							 | ${lift.getStatuses().get(lift.getStatuses().size() - 1).status};
-			</c:if> <c:if test="${sessionScope.loggedInUser ne null }">
+	 
+				</c:if>
+				
+				<c:if test="${sessionScope.loggedInUser ne null }">
 					<button type="button" data-bs-toggle="offcanvas"
 						data-bs-target="#editLiftForm${lift.id}" aria-controls="">Edit</button>
 				</c:if>
-			</li>
+			</div>
 			<c:if test="${sessionScope.loggedInUser ne null }">
 				<div class="offcanvas offcanvas-start" data-bs-scroll="true"
 					tabindex="-1" id="editLiftForm${lift.id}" aria-labelledby="">
@@ -212,9 +230,6 @@
 				</div>
 			</c:if>
 		</c:forEach>
-
-
-
 
 		<c:if test="${sessionScope.loggedInUser ne null }">
 			<jsp:include page="trail/trailsAddForm.jsp" />
