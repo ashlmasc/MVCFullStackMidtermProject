@@ -12,8 +12,8 @@
             <form action="updateRideShare" method="post" enctype="multipart/form-data">
                 <!-- User id -->
                 
-                				<input type="hidden" name="sponsorid" value="1"> <input
-					type="hidden" name="resortid" value="1"> 
+                				<input type="hidden" name="sponsorid" value="1"> 
+                				<input type="hidden" name="resortid" value="1"> 
             
                 <div class="form-group">
                     <label for="id">Post Id:</label>
@@ -23,8 +23,6 @@
                     <label for="departure">Departure date and time:</label>
                     <input value="${ride.departure}" type="datetime-local" id="departure" name="departure" required>
                 </div>
-                
-         
                 
                 <div class="form-group">
                     <label for="detail">Details:</label>

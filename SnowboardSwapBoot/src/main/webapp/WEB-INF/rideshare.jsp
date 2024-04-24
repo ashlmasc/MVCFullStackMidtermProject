@@ -8,46 +8,13 @@
 <title>Ride Share</title>
 <link
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	href="https://www.cssportal.com/css-color-converter/00B3BA"
 	rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/rideshare.css">
 </head>
 <body>
 	<jsp:include page="nav.jsp" />
 
-	<style>
-body {
-	font: 12px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
-	text-transform: inherit;
-	color: #333;
-	background: #21a2d1;
-	width: 100%;
-}
-
-.wrap {
-	width: 720px;
-	margin: 15px auto;
-	padding: 15px 10px;
-	background: white;
-	border: 2px solid #DBDBDB;
-	border-radius: 5px;
-}
-
-.title, .userName {
-	font-weight: 700;
-}
-
-.post {
-	border-bottom: 1px solid black;
-	padding-bottom: 5px;
-}
-
-.post .title {
-	font-style: italic;
-}
-
-.post .body {
-	margin-top: 5px;
-}
-</style>
 
 	<h1 align="center">Ride Share Page/Message Board</h1>
 	<section>
@@ -56,37 +23,49 @@ body {
 	</section>
 
 	<section>
-		<h2>Message Board</h2>
+<div class="header">
+		<h2>Message Board</h2></div>
 
-		<c:forEach var="ride" items="${allRides}">
-			<h2>
-				<b>New Post!</b>
-			</h2>
-			<div>
-				<ul>
+		<div class="row">
+			<div class="leftcolumn">
+				<div class="card">
+					<h2>New Post</h2>
 
-					<li>Id: ${ride.id}</li>
-					<li>Departure Date and Time: ${ride.departure}</li>
-                                    <li>Vehicle Capacity: ${ride.vehicleCapacity}</li>
-                                    <li>Vehicle Make: ${ride.vehicleMake}</li>
-                                    <li>Vehicle Model:${ride.vehicleModel}</li>
+					<c:forEach var="ride" items="${allRides}">
+						<h2></h2>
+						<div>
+						
+							<ul>
 
-
-				</ul>
-				
-				<a href="editRideShare?id=${ride.id}" class="btn btn-primary"></a>
-				
-	<form action="deleteRideShare" onsubmit="return window.confirm('Are you sure you want to delete this log?');" method="POST">
-                                            <div class="form-group">
-                                                <input type="hidden" class="form-control" id="id" name="id" value="<c:out value='${ride.id}' />">
-                                            </div>
-                                            <button type="submit"value="Delete Ride Share">Delete Entry</button>
-                                        </form> </div>
-			
-
-		</c:forEach>
+								<li>Id: ${ride.id}</li>
+								<li>Departure Date and Time: ${ride.departure}</li>
+								<li>Vehicle Capacity: ${ride.vehicleCapacity}</li>
+								<li>Vehicle Make: ${ride.vehicleMake}</li>
+								<li>Vehicle Model:${ride.vehicleModel}</li>
 
 
+							</ul>
+
+							<a href="editRideShare?id=${ride.id}" class="btn btn-primary"></a>
+
+							<form action="deleteRideShare"
+								onsubmit="return window.confirm('Are you sure you want to delete this log?');"
+								method="POST">
+								<div class="form-group">
+									<input type="hidden" class="form-control" id="id" name="id"
+										value="<c:out value='${ride.id}' />">
+								</div>
+								<button type="submit" value="Delete Ride Share">Delete
+									Entry</button>
+							</form>
+						</div>
+
+
+					</c:forEach>
+
+				</div>
+			</div>
+		</div>
 		<p>People can post looking for a ride or offering a ride...</p>
 
 		<div class="container mt-5">
