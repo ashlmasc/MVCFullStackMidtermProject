@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `last_name` VARCHAR(45) NULL,
   `bio` VARCHAR(1000) NULL,
   `image_url` VARCHAR(2000) NULL,
-  `address_id` INT NOT NULL,
+  `address_id` INT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
   INDEX `fk_user_address1_idx` (`address_id` ASC),
@@ -66,8 +66,10 @@ DROP TABLE IF EXISTS `resort` ;
 CREATE TABLE IF NOT EXISTS `resort` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `address_id` INT NOT NULL,
-  `website` VARCHAR(1000) NULL,
   `name` VARCHAR(200) NULL,
+  `website` VARCHAR(1000) NULL,
+  `image_url` TEXT NULL,
+  `description` TEXT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_resort_address1_idx` (`address_id` ASC),
   CONSTRAINT `fk_resort_address1`
@@ -86,17 +88,17 @@ CREATE TABLE IF NOT EXISTS `ride` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `sponsor_id` INT NOT NULL,
   `departure_address_id` INT NOT NULL,
-  `departure` DATETIME NOT NULL,
-  `created_at` DATETIME NULL,
-  `resort_id` INT NOT NULL,
-  `active` TINYINT NULL,
+  `arrival_address_id` INT NOT NULL,
+  `resort_id` INT NULL,
+  `image_url` TEXT NULL,
   `detail` VARCHAR(1000) NULL,
+  `departure` DATETIME NOT NULL,
   `vehicle_capacity` INT(2) NULL,
   `vehicle_make` VARCHAR(45) NULL,
   `vehicle_model` VARCHAR(45) NULL,
-  `arrival_address_id` INT NULL,
+  `active` TINYINT NULL,
+  `created_at` DATETIME NULL,
   `updated_at` DATETIME NULL,
-  `image_url` TEXT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_ride_user1_idx` (`sponsor_id` ASC),
   INDEX `fk_ride_address1_idx` (`departure_address_id` ASC),
@@ -142,18 +144,18 @@ DROP TABLE IF EXISTS `event` ;
 
 CREATE TABLE IF NOT EXISTS `event` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` INT NOT NULL,
-  `event_start` DATETIME NOT NULL,
-  `description` TEXT NULL,
-  `created_at` DATETIME NULL,
-  `event_type_id` INT NOT NULL,
-  `active` TINYINT NOT NULL,
-  `updated_at` DATETIME NULL,
-  `address_id` INT NOT NULL,
-  `location_description` TEXT NULL,
-  `name` TEXT NULL,
-  `event_end` DATETIME NULL,
   `image_url` TEXT NULL,
+  `name` TEXT NULL,
+  `description` TEXT NULL,
+  `event_start` DATETIME NOT NULL,
+  `event_end` DATETIME NULL,
+  `location_description` TEXT NULL,
+  `user_id` INT NOT NULL,
+  `event_type_id` INT NULL,
+  `address_id` INT NOT NULL,
+  `active` TINYINT NOT NULL,
+  `created_at` DATETIME NULL,
+  `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_event_user1_idx` (`user_id` ASC),
   INDEX `fk_event_event_type1_idx` (`event_type_id` ASC),
@@ -334,6 +336,8 @@ START TRANSACTION;
 USE `snowswapdb`;
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `postal_code`, `phone_number`) VALUES (1, '509 Copper Rd', 'Frisco', 'Colorado', 80443, '866-841-2549');
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `postal_code`, `phone_number`) VALUES (2, '6701 W Alameda Ave', 'Lakewood', 'Colorado', 80226, '235-324-5324');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `postal_code`, `phone_number`) VALUES (3, '10001 Minaret Rd', 'Mammoth Lakes', 'CA', 93546, '800.MAMMOTH');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `postal_code`, `phone_number`) VALUES (4, '1 Sun Valley Rd', 'Sun Valley', 'Idaho', 83353, '(888) 490-5950');
 
 COMMIT;
 
@@ -344,6 +348,9 @@ COMMIT;
 START TRANSACTION;
 USE `snowswapdb`;
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `created_at`, `update_at`, `first_name`, `last_name`, `bio`, `image_url`, `address_id`) VALUES (1, 'admin', 'sspass', 1, 'standard', '2024-03-13', '2024-03-20', 'Kim', 'Possible', 'A high school cheerleader moonlighting as a teenage crime fighter, special agent, and spy.', 'https://static.wikia.nocookie.net/theunitedorganizationtoonsheroes/images/b/b3/Kim_Possible_portrait.jpg/revision/latest?cb=20170430000636', 2);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `created_at`, `update_at`, `first_name`, `last_name`, `bio`, `image_url`, `address_id`) VALUES (2, 'NatureLover23', 'Green2024!', 1, NULL, '2024-04-23 09:42:15', NULL, 'Emma', 'Johnson', 'Passionate about nature and wildlife conservation. Always looking for new ways to protect our planet and promote sustainability.', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `created_at`, `update_at`, `first_name`, `last_name`, `bio`, `image_url`, `address_id`) VALUES (3, 'TechEnthusiast99', 'CodeGeek2024@', 1, NULL, '2024-04-23 14:57:38', NULL, 'Alex', 'Smith', 'Technology enthusiast and software developer. Love exploring new gadgets and tinkering with code. Building the future, one line at a time.', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `created_at`, `update_at`, `first_name`, `last_name`, `bio`, `image_url`, `address_id`) VALUES (4, 'FoodieAdventurer', 'YummyFood123', 1, NULL, '2024-04-23 21:10:04', NULL, 'Mia', 'Chen', 'Foodie and avid traveler. Always on the hunt for delicious cuisine and hidden culinary gems around the world. Life motto: Eat well, travel often.', NULL, NULL);
 
 COMMIT;
 
@@ -353,7 +360,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `snowswapdb`;
-INSERT INTO `resort` (`id`, `address_id`, `website`, `name`) VALUES (1, 1, 'https://www.coppercolorado.com/', 'Copper Mountain');
+INSERT INTO `resort` (`id`, `address_id`, `name`, `website`, `image_url`, `description`) VALUES (1, 1, 'Copper Mountain', 'https://www.coppercolorado.com/', NULL, '\nLocated in the heart of the Colorado Rockies, Copper Mountain Resort offers premier skiing and snowboarding experiences across its expansive 2,450-acre terrain. With abundant snowfall and diverse trails catering to all skill levels, it\'s a haven for winter sports enthusiasts. Beyond the slopes, visitors can enjoy a vibrant village atmosphere, complete with dining, shopping, and entertainment options.');
+INSERT INTO `resort` (`id`, `address_id`, `name`, `website`, `image_url`, `description`) VALUES (2, 3, 'Mammoth Mountain', 'https://www.mammothmountain.com/', 'https://www.mammothmountain.com/_next/image?url=%2F-%2Fmedia%2Fproject%2Fmammoth%2Fhp_images%2Fseasonal_stats%2F7x10%2F2021-12-17_mm_cp_decemberstorm_jpeg_0012_945x1350.jpg%3Fh%3D1350%26iar%3D0%26w%3D945%26rev%3Ddce17fc688194490a9b13bd4847d71cd%26hash%3D8DD76A1E5E57614C5A121858ABC591B3&w=1200&q=75', 'Perched majestically in the Sierra Nevada range of California, Mammoth Mountain Resort is a premier destination for skiing and snowboarding enthusiasts. Boasting over 3,500 acres of skiable terrain and a summit elevation of 11,053 feet, it offers breathtaking views and unparalleled winter sports experiences. With an average annual snowfall of over 400 inches, Mammoth guarantees excellent conditions throughout the season. Beyond the slopes, visitors can explore charming alpine villages, indulge in diverse dining options, and discover a variety of outdoor adventures, making Mammoth Mountain a year-round destination for adventure seekers and nature lovers alike.');
+INSERT INTO `resort` (`id`, `address_id`, `name`, `website`, `image_url`, `description`) VALUES (3, 4, 'Sun Valley Resort', 'https://www.sunvalley.com/', 'https://www.sunvalley.com/azure/sunvalley/media/sunvalley/hd-files/homepage/carousel-world-class-skiing.jpg?w=560&h=800&mode=crop&scale=both&anchor=&quality=75', 'Nestled amidst the stunning landscapes of central Idaho, Sun Valley Resort beckons outdoor enthusiasts with its legendary skiing and outdoor recreational opportunities. With over 2,000 acres of skiable terrain and abundant sunshine, it\'s a haven for winter sports enthusiasts seeking pristine slopes and breathtaking mountain vistas. Beyond skiing and snowboarding, Sun Valley offers a wealth of year-round activities, including hiking, mountain biking, and world-class golfing. The resort\'s charming village boasts fine dining, upscale shopping, and vibrant cultural events, creating an unforgettable experience for visitors seeking adventure and relaxation in the heart of the Rocky Mountains.');
 
 COMMIT;
 
@@ -363,7 +372,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `snowswapdb`;
-INSERT INTO `ride` (`id`, `sponsor_id`, `departure_address_id`, `departure`, `created_at`, `resort_id`, `active`, `detail`, `vehicle_capacity`, `vehicle_make`, `vehicle_model`, `arrival_address_id`, `updated_at`, `image_url`) VALUES (1, 1, 2, '2024-11-12 08:00', '2024-04-12 13:00', 1, 1, 'Meet up infrom of home depot', 6, 'Kia', 'Rondo', 1, '2024-04-20 13:00', 'https://corporate.homedepot.com/sites/default/files/image_gallery/Company_Home%20Depot_Storefront.jpg');
+INSERT INTO `ride` (`id`, `sponsor_id`, `departure_address_id`, `arrival_address_id`, `resort_id`, `image_url`, `detail`, `departure`, `vehicle_capacity`, `vehicle_make`, `vehicle_model`, `active`, `created_at`, `updated_at`) VALUES (1, 1, 2, 1, 1, 'https://corporate.homedepot.com/sites/default/files/image_gallery/Company_Home%20Depot_Storefront.jpg', 'Meet up infront of home depot', '2024-11-12 08:00', 6, 'Kia', 'Rondo', 1, '2024-04-12 13:00', '2024-04-20 13:00');
+INSERT INTO `ride` (`id`, `sponsor_id`, `departure_address_id`, `arrival_address_id`, `resort_id`, `image_url`, `detail`, `departure`, `vehicle_capacity`, `vehicle_make`, `vehicle_model`, `active`, `created_at`, `updated_at`) VALUES (2, 2, 2, 1, 2, NULL, NULL, '2024-09-25 09:00:00', 7, 'Ford', 'Explorer', 1, '2024-04-12 13:00', NULL);
+INSERT INTO `ride` (`id`, `sponsor_id`, `departure_address_id`, `arrival_address_id`, `resort_id`, `image_url`, `detail`, `departure`, `vehicle_capacity`, `vehicle_make`, `vehicle_model`, `active`, `created_at`, `updated_at`) VALUES (3, 3, 2, 1, 1, NULL, NULL, '2024-09-10 11:00:00', 5, 'Toyota', 'Camry', 1, '2024-04-12 13:00', NULL);
 
 COMMIT;
 
@@ -375,6 +386,10 @@ START TRANSACTION;
 USE `snowswapdb`;
 INSERT INTO `event_type` (`id`, `type`) VALUES (1, 'Meetup');
 INSERT INTO `event_type` (`id`, `type`) VALUES (2, 'Board Waxing');
+INSERT INTO `event_type` (`id`, `type`) VALUES (3, 'Slush Cup Competition');
+INSERT INTO `event_type` (`id`, `type`) VALUES (4, 'Big Air Competition');
+INSERT INTO `event_type` (`id`, `type`) VALUES (5, 'Snowball Fight');
+INSERT INTO `event_type` (`id`, `type`) VALUES (6, 'Community Cleanup');
 
 COMMIT;
 
@@ -384,7 +399,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `snowswapdb`;
-INSERT INTO `event` (`id`, `user_id`, `event_start`, `description`, `created_at`, `event_type_id`, `active`, `updated_at`, `address_id`, `location_description`, `name`, `event_end`, `image_url`) VALUES (1, 1, '2024-05-14 09:00', 'Lets enjou the slopes together.', '2024-04-14 09:00', 1, 1, '2024-04-14 10:00', 1, 'In the lobby of Copper Mountain', 'Group get together', '2024-04-14 17:00', 'https://cdn.ski/seq5OnNnD6LfpXu0.jpg');
+INSERT INTO `event` (`id`, `image_url`, `name`, `description`, `event_start`, `event_end`, `location_description`, `user_id`, `event_type_id`, `address_id`, `active`, `created_at`, `updated_at`) VALUES (1, 'https://cdn.ski/seq5OnNnD6LfpXu0.jpg', 'Group get together', 'Lets enjou the slopes together.', '2024-05-14 09:00', '2024-04-14 17:00', 'In the lobby of Copper Mountain', 1, 1, 1, 1, '2024-04-14 09:00', '2024-04-14 10:00');
+INSERT INTO `event` (`id`, `image_url`, `name`, `description`, `event_start`, `event_end`, `location_description`, `user_id`, `event_type_id`, `address_id`, `active`, `created_at`, `updated_at`) VALUES (2, NULL, 'Snowboarder\'s Slush Cup', 'Prepare for a splash-tastic event as riders attempt to skim across a giant pool of slush on their snowboards! Whether you make it across or take a chilly dip, it\'s guaranteed to be a hilarious and unforgettable experience.', '2024-07-15 12:00:00', '2024-07-15 16:00:00', NULL, 3, 3, 1, 1, '2024-08-05 10:00:00', NULL);
+INSERT INTO `event` (`id`, `image_url`, `name`, `description`, `event_start`, `event_end`, `location_description`, `user_id`, `event_type_id`, `address_id`, `active`, `created_at`, `updated_at`) VALUES (3, NULL, 'Snowboarder\'s Big Air Bash', 'Get ready to catch some serious air at the Snowboarder\'s Big Air Bash! Watch as riders soar through the sky, performing jaw-dropping tricks and stunts that will leave you breathless. It\'s an adrenaline-fueled spectacle you won\'t want to miss.', '2024-08-05 10:00:00', '2024-08-05 18:00:00', NULL, 4, 4, 1, 1, '2024-08-05 10:00:00', NULL);
+INSERT INTO `event` (`id`, `image_url`, `name`, `description`, `event_start`, `event_end`, `location_description`, `user_id`, `event_type_id`, `address_id`, `active`, `created_at`, `updated_at`) VALUES (4, NULL, 'Snowboarder\'s Snowball Fight', 'Let the snowball battle begin! Join us for a friendly (but competitive) snowball fight on the slopes. Gather your team, build your forts, and prepare to unleash a flurry of snowballs in this epic showdown.', '2024-09-10 11:00:00', '2024-09-10 15:00:00', NULL, 2, 5, 1, 1, '2024-08-05 10:00:00', NULL);
+INSERT INTO `event` (`id`, `image_url`, `name`, `description`, `event_start`, `event_end`, `location_description`, `user_id`, `event_type_id`, `address_id`, `active`, `created_at`, `updated_at`) VALUES (5, NULL, 'Snowboarder\'s Slope Cleanup Crew', 'Help keep our slopes pristine! Join fellow snowboarders for a day of volunteer work as we clean up litter and debris from the mountain. Together, we can make a difference and ensure our beloved slopes stay beautiful for generations to come.', '2024-09-25 09:00:00', '2024-09-25 13:00:00', NULL, 3, 6, 1, 1, '2024-08-05 10:00:00', NULL);
 
 COMMIT;
 
@@ -399,6 +418,15 @@ INSERT INTO `trail` (`id`, `name`, `difficulty`, `resort_id`) VALUES (2, 'Americ
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `resort_id`) VALUES (3, 'Bridgeway', 'Easiest', 1);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `resort_id`) VALUES (4, 'Carefree (L)', 'More Difficult', 1);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `resort_id`) VALUES (5, 'Lower Enchanted Forest', 'Extreme Terrain', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `resort_id`) VALUES (6, 'AGEE\'S RUN\n\n', 'Most Difficult', 2);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `resort_id`) VALUES (7, 'ANDY\'S DOUBLE GOLD\n\n', 'Most Difficult', 2);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `resort_id`) VALUES (8, 'APPLE PIE', 'Easiest', 2);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `resort_id`) VALUES (9, 'ARRIBA (LOWER)\n\n', 'More Difficult', 2);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `resort_id`) VALUES (10, 'ARRIBA (UPPER)\n\n', 'More Difficult', 2);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `resort_id`) VALUES (11, 'CLIMAX', 'Extreme', 3);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `resort_id`) VALUES (12, 'THE HEMLOCKS\n\n', 'More Difficult', 3);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `resort_id`) VALUES (13, 'SKYLINE', 'Most Difficult', 3);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `resort_id`) VALUES (14, 'SURPRISE', 'Extreme', 3);
 
 COMMIT;
 
@@ -430,6 +458,17 @@ INSERT INTO `lift` (`id`, `name`, `lift_type_id`, `resort_id`) VALUES (3, 'Excel
 INSERT INTO `lift` (`id`, `name`, `lift_type_id`, `resort_id`) VALUES (4, 'Kokomo Express', 4, 1);
 INSERT INTO `lift` (`id`, `name`, `lift_type_id`, `resort_id`) VALUES (5, 'Lumberjack', 3, 1);
 INSERT INTO `lift` (`id`, `name`, `lift_type_id`, `resort_id`) VALUES (6, 'Rugrat', 6, 1);
+INSERT INTO `lift` (`id`, `name`, `lift_type_id`, `resort_id`) VALUES (7, 'BROADWAY EXPRESS 1', 5, 2);
+INSERT INTO `lift` (`id`, `name`, `lift_type_id`, `resort_id`) VALUES (8, 'GOLD RUSH EXPRESS 10', 2, 2);
+INSERT INTO `lift` (`id`, `name`, `lift_type_id`, `resort_id`) VALUES (9, 'FACE LIFT EXPRESS 3', 4, 2);
+INSERT INTO `lift` (`id`, `name`, `lift_type_id`, `resort_id`) VALUES (10, 'STUMP ALLEY EXPRESS 2\n\n', 4, 2);
+INSERT INTO `lift` (`id`, `name`, `lift_type_id`, `resort_id`) VALUES (11, 'UNBOUND EXPRESS 6\n\n', 4, 2);
+INSERT INTO `lift` (`id`, `name`, `lift_type_id`, `resort_id`) VALUES (12, 'DISCOVERY EXPRESS 11\n\n', 4, 2);
+INSERT INTO `lift` (`id`, `name`, `lift_type_id`, `resort_id`) VALUES (13, 'CHAIR 12\n\n', 2, 2);
+INSERT INTO `lift` (`id`, `name`, `lift_type_id`, `resort_id`) VALUES (14, 'CLOUD NINE EXPRESS 9\n\n', 5, 3);
+INSERT INTO `lift` (`id`, `name`, `lift_type_id`, `resort_id`) VALUES (15, 'CHAIR 20\n\n', 3, 3);
+INSERT INTO `lift` (`id`, `name`, `lift_type_id`, `resort_id`) VALUES (16, 'VILLAGE GONDOLA\n\n', 4, 3);
+INSERT INTO `lift` (`id`, `name`, `lift_type_id`, `resort_id`) VALUES (17, 'CHAIR 25\n\n', 5, 3);
 
 COMMIT;
 

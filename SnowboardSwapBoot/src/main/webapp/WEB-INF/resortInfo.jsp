@@ -37,6 +37,9 @@
 
 		<p>${resort.name}</p>
 		<a href="${resort.website}">To Website</a>
+		<p>${resort.description}</p>
+		<p>${resort.imageUrl}</p>
+
 		<p>${resort.address.street},${resort.address.city},
 			${resort.address.state} ${resort.address.postalCode}</p>
 		<p>${resort.address.phoneNumber}</p>
@@ -61,6 +64,8 @@
 
 			<li>${trail.name}|${trail.difficulty}<c:if
 					test="${sessionScope.loggedInUser ne null }">
+
+
 					<button type="button" data-bs-toggle="offcanvas"
 						data-bs-target="#editTrailForm${trail.id}" aria-controls="">Edit</button>
 
@@ -125,13 +130,6 @@
 										</c:if>
 											value="Extreme Terrain">Extreme Terrain</option>
 
-
-
-
-
-
-
-
 									</select>
 									<label for="floatingSelect">Difficulty</label>
 								</div>
@@ -165,54 +163,54 @@
 			<li>${lift.name}|${lift.liftType.type}<c:if
 					test="${lift.getStatuses().size() > 0}">
 							 | ${lift.getStatuses().get(lift.getStatuses().size() - 1).status};
-			</c:if>
-
-				<button type="button" data-bs-toggle="offcanvas"
-					data-bs-target="#editLiftForm${lift.id}" aria-controls="">Edit</button>
-
+			</c:if> <c:if test="${sessionScope.loggedInUser ne null }">
+					<button type="button" data-bs-toggle="offcanvas"
+						data-bs-target="#editLiftForm${lift.id}" aria-controls="">Edit</button>
+				</c:if>
 			</li>
+			<c:if test="${sessionScope.loggedInUser ne null }">
+				<div class="offcanvas offcanvas-start" data-bs-scroll="true"
+					tabindex="-1" id="editLiftForm${lift.id}" aria-labelledby="">
 
-			<div class="offcanvas offcanvas-start" data-bs-scroll="true"
-				tabindex="-1" id="editLiftForm${lift.id}" aria-labelledby="">
+					<div class="offcanvas-header">
+						<h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
 
-				<div class="offcanvas-header">
-					<h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">
+							Edit Trail</h5>
 
-						Edit Trail</h5>
+						<button type="button" class="btn-close"
+							data-bs-dismiss="offcanvas" aria-label="Close"></button>
+					</div>
 
-					<button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-						aria-label="Close"></button>
+					<div class="offcanvas-body">
+
+						<form action="editLift" method="post">
+							<input type="hidden" name="id" value="${lift.id}">
+
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="liftName"
+									placeholder="Name" name="name" value="${lift.name}">
+								<label for="liftName">Lift Name</label>
+							</div>
+
+							<div class="form-floating">
+								<select class="form-select" id="liftType" aria-label=""
+									name="liftTypeId">
+									<c:forEach var="type" items="${liftTypes}">
+										<option
+											<c:if test="${lift.liftType.type eq type.type}">selected</c:if>
+											value="${type.id}">${type.type}</option>
+									</c:forEach>
+								</select>
+								<label for="liftType">Type</label>
+							</div>
+
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+
+
+					</div>
 				</div>
-
-				<div class="offcanvas-body">
-
-					<form action="editLift" method="post">
-						<input type="hidden" name="id" value="${lift.id}">
-
-						<div class="form-floating mb-3">
-							<input type="text" class="form-control" id="liftName"
-								placeholder="Name" name="name" value="${lift.name}">
-							<label for="liftName">Lift Name</label>
-						</div>
-
-						<div class="form-floating">
-							<select class="form-select" id="liftType" aria-label=""
-								name="liftTypeId">
-								<c:forEach var="type" items="${liftTypes}">
-									<option
-										<c:if test="${lift.liftType.type eq type.type}">selected</c:if>
-										value="${type.id}">${type.type}</option>
-								</c:forEach>
-							</select>
-							<label for="liftType">Type</label>
-						</div>
-
-						<button type="submit" class="btn btn-primary">Submit</button>
-					</form>
-
-
-				</div>
-			</div>
+			</c:if>
 		</c:forEach>
 
 

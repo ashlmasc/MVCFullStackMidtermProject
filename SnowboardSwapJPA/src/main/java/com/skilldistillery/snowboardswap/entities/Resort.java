@@ -5,6 +5,7 @@ import java.net.URLEncoder;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +24,27 @@ public class Resort {
 	private String website;
 
 	private String name;
+
+	private String description;
+
+	@Column(name = "image_url")
+	private String imageUrl;
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 
 	@OneToMany(mappedBy = "resort")
 	private List<Trail> trails;

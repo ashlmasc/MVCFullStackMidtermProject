@@ -45,6 +45,8 @@ public class ResortDAOImpl implements ResortDAO {
 
 		edResort.setName(resort.getName());
 		edResort.setWebsite(resort.getWebsite());
+		edResort.setImageUrl(resort.getImageUrl());
+		edResort.setDescription(resort.getDescription());
 
 		return edResort;
 	}
