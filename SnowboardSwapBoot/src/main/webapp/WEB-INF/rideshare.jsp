@@ -21,7 +21,7 @@
 <body>
 	<div class="header">
 
-		<h1 align="center">Ride Share Message Board</h1>
+		<h1 align="center">Ride Share</h1>
 
 	</div>
 	<div class="centertextbox">
@@ -44,7 +44,7 @@
 	</div>
 	<br>
 
-		<div class="post heading" style="box-align: center"><h1>Post New Ride Share</h1></div>
+		<div class="post heading"><h1>Post New Ride Share</h1></div>
 		<div class="container">
 		<div class="post body"><h5>
 				<form action="rideshare" method="post" enctype="multipart/form-data">
@@ -56,12 +56,13 @@
 						<label for="departure">Departure date and time:</label> <input
 							type="datetime-local" id="departure" name="departure" required>
 					</div>
-
+<br>
 					<div class="form-group">
 						<label for="departureAddress">Departure Address:</label> <input
 							type="text" name="street1" placeholder="Street"> <input type="text"
 							name="city1" placeholder="City"> <input type="text" name="state1" placeholder="State">
 					</div>
+<br>
 
 					<div class="form-group">
 						<label for="arrivalAddress">Arrival Address:</label> <input
@@ -69,13 +70,14 @@
 							name="city2" placeholder="City"> <input type="text" name="state2" placeholder="State">
 					</div>
 
+<br>
 					<div class="form-group">
 						<label for="detail">Details:</label> <input class="form-control"
 							id="detail" name="detail" placeholder="Details" required>
 					</div>
 
 					<div class="form-group">
-						<label for="vehicleCapacity">Vehicle capacity:</label> <input
+						<label for="vehicleCapacity">Vehicle capacity:</label> <input 
 							type="number" class="form-control" id="vehicleCapacity"
 							name="vehicleCapacity" placeholder="Capacity of vehicle" required>
 					</div>
