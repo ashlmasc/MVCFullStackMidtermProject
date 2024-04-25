@@ -46,9 +46,9 @@ To start using Powder Pals:
 Powder Pals is deployed on AWS, showcasing a full-stack application using Spring MVC and JPA in a cloud-based environment, ensuring seamless accessibility and management.
 
 ## Contributors
-- [Mary Hudner](#https://github.com/mhudner)
-- [Michael Ventura](#https://github.com/mventura14)
-- [Ashley Mascarenas](#https://github.com/ashlmasc)
+- [Mary Hudner](https://github.com/mhudner)
+- [Michael Ventura](https://github.com/mventura14)
+- [Ashley Mascarenas](https://github.com/ashlmasc)
 
 ## Powder Pals: A Place for Snowboarders to Connect
 Powder Pals is more than just an app; it's a community where snowboarders can find camaraderie, support, and shared passion for snowboarding adventures.
