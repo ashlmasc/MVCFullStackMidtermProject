@@ -9,6 +9,8 @@ a {
 	font-size: 40px;
 	color: white;
 	text-align: center;
+	background-image:
+		url('https://www.freevector.com/uploads/vector/preview/23261/abstract_winter_landscape.jpg');
 }
 
 body {
@@ -17,7 +19,7 @@ body {
 	letter-spacing: 0px;
 	line-height: 20px;
 	background-image:
-		url('https://images.pexels.com/photos/3737419/pexels-photo-3737419.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+		url('https://live.staticflickr.com/1234/5105344392_6f306142d7_b.jpg');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;

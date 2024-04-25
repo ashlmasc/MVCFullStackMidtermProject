@@ -2,8 +2,6 @@
 
 
 a {
-  float: right;
-  padding: 8px;
   color: #f9f9f9;
 		font-weight: normal
 }
@@ -14,7 +12,7 @@ body {
 	letter-spacing: 0px;
 	line-height: 20px;
 	background-image:
-		url('https://images.pexels.com/photos/3737419/pexels-photo-3737419.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+		url('https://awe365.com/wp-content/uploads/2020/10/group-snowboarding-course-in-Avoriaz-Morzine-Les-Gets-with-Mint-Snowboarding.jpg');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
@@ -24,10 +22,10 @@ body {
 .header {
 	padding: 10px;
 	font-size: 40px;
-	color: #16485a;
+	color: #fbf7ff;
 	text-align: center;
-	background: white;
-		font-weight: bold;
+		background-image:
+		url('https://www.freevector.com/uploads/vector/preview/23261/abstract_winter_landscape.jpg');
 }
 
 .centertextbox {
@@ -37,7 +35,7 @@ body {
 	text-align: center;
 	padding: 50px;
 color: #000000;
-	opacity: 0.75;
+	opacity: 0.8;
 	background:white;
 }
 
@@ -55,12 +53,15 @@ div.background {
 }
 
 div.transbox {
-	opacity: 0.75;
-	margin: 0px;
+	margin: 10px;
 	border: 1px solid black;
 	font-weight: bold;
-	opacity: 0.75;
+	opacity: 0.8;
 	color: black;
+}
+
+div a{
+	margin: 10px;
 }
 
 
@@ -77,6 +78,7 @@ div.transbox p {
 	margin: 5%;
 	font-weight: normal;
 	color: #000000;
+	margin: 10px;
 }
 
 div.post h1 {
@@ -88,10 +90,11 @@ div.post h1 {
 }
 
 div.post h5 {
+	padding: 10px;
 	color: #030303;
 	font-weight: normal;
 	text-transform: uppercase;
-	opacity: 0.9;
+	opacity: 0.8;
 	background: white;
 	font-size: 20px;
 }

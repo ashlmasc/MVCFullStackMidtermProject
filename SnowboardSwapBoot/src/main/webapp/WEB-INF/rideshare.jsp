@@ -113,10 +113,8 @@
 						Date and Time: ${ride.departure} <br> Vehicle Capacity:
 						${ride.vehicleCapacity} <br> Vehicle Make:
 						${ride.vehicleMake} <br> Vehicle Model:${ride.vehicleModel} 
-						<br>
-						<br>
-				<a href="editRideShare?id=${ride.id}" class="btn btn-primary" type="submit">Edit Ride Share</a>
-
+				
+				<div><a href="editRideShare?id=${ride.id}" class="btn btn-primary" type="submit">Edit Ride Share</a></div>
 						<form action="deleteRideShare"
 							onsubmit="return window.confirm('Are you sure you want to delete this log?');"
 							method="POST">
