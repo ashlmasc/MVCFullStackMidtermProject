@@ -39,3 +39,20 @@ img{
 	min-width: 150px;
 	max-width: 200px;
 }
+
+body {
+ background-image:
+  url('https://images.pexels.com/photos/3737419/pexels-photo-3737419.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+ background-repeat: no-repeat;
+ background-attachment: fixed;
+ background-size: cover;
+}
+
+ .event-detail-box {
+    background-color: #fff; /* White background */
+    border-radius: 4px; /* Rounded corners */
+    padding: 20px; /* Padding inside the box */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    margin-bottom: 20px; /* Space below the box */
+    margin-top: 20px; /* Space above the box */
+  }

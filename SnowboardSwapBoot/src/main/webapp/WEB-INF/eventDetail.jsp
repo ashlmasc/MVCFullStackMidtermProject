@@ -1,96 +1,116 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Event Details</title>
-
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-	crossorigin="anonymous">
-
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-	
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" type="text/css" href="css/eventDetail.css">
-
 </head>
-<header></header>
+
+<body style="background-image: url('https://images.pexels.com/photos/3737419/pexels-photo-3737419.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
 
 <jsp:include page="nav.jsp" />
 
-<main>
-	<body>
-	
-		<div class="container mt-5">
-			<c:if test="${not empty event}">
-				<h1 class="display-4 text-center mb-4">${event.name}Details</h1>
-				<p>
-					<strong>Event ID:</strong> ${event.id}
-				</p>
-				<p>
-					<strong>Description:</strong> ${event.description}
-				</p>
-
+<main class="mt-5">
+  <div class="container">
+    <c:if test="${not empty event}">
+      <div class="card">
+      
+        <c:if test="${not empty event.imageUrl}">
+          <img src="${event.imageUrl}" class="card-img-top" alt="${event.name} Image">
+        </c:if>
+        
+        <div class="card-body">
+          <h1 class="card-title text-center">${event.name} Details</h1>
+          <p><strong>Event ID:</strong> ${event.id}</p>
+          
+          <div>
+          <c:if test="${not empty event.description}">
+            <strong>Description:</strong> ${event.description}
+          </c:if>
+          </div>
+          
+          <div>
+          <c:if test="${not empty event.eventType}">
+            <p><strong>Event Type:</strong> ${event.eventType.type}</p>
+          </c:if>
+          </div>
+        		
 				<!-- Display formatted event start and end dates, using parse and format -->
 				<c:if test="${not empty event.eventStart}">
-					<fmt:parseDate value="${event.eventStart}"
-						pattern="yyyy-MM-dd'T'HH:mm" var="parsedStart" type="both" />
+					<fmt:parseDate value="${event.eventStart}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedStart" type="both" />
 					<div>
-						Start:
-						<fmt:formatDate value="${parsedStart}"
-							pattern="yyyy-MM-dd HH:mm:ss" />
+						<strong>Start:</strong>
+						<fmt:formatDate value="${parsedStart}" pattern="MMMM d, yyyy 'at' h:mm a" />
 					</div>
 				</c:if>
 
 				<c:if test="${not empty event.eventEnd}">
-					<fmt:parseDate value="${event.eventEnd}"
-						pattern="yyyy-MM-dd'T'HH:mm" var="parsedEnd" type="both" />
+					<fmt:parseDate value="${event.eventEnd}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedEnd" type="both" />
 					<div>
-						End:
-						<fmt:formatDate value="${parsedEnd}" pattern="yyyy-MM-dd HH:mm:ss" />
+						<strong>End:</strong>
+						<fmt:formatDate value="${parsedEnd}" pattern="MMMM d, yyyy 'at' h:mm a" />
 					</div>
+					<br>
 				</c:if>
+				
+				<div>
+				<c:if test="${sessionScope.loggedInUser ne null}">
+  					<c:if test="${not empty event.locationDescription}">
+    					<strong>Location Description:</strong> ${event.locationDescription}
+  					</c:if>
+  				
+  				<c:if test="${not empty event.address}">
+   				 <p><strong>Address:</strong>
+    				<c:out value="${event.address.street}" />, 
+    				<c:out value="${event.address.city}" />, 
+    				<c:out value="${event.address.state}" /> 
+    				<c:out value="${event.address.postalCode}" /></p>
+				</c:if>
+				</c:if>
+				</div>
+				
+				<!-- Display formatted event create and update dates, using parse and format -->
+				<c:if test="${sessionScope.loggedInUser ne null}">
+    			<c:if test="${not empty event.createdAt}">
+        			<fmt:parseDate value="${event.createdAt}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedCreate" type="both" />
+        			<div>
+            			<strong>Created at:</strong>
+            			<fmt:formatDate value="${parsedCreate}" pattern="MMMM d, yyyy 'at' h:mm a" />
+        			</div>
+    			</c:if>
 
-				<p>
-					<strong>Location Description:</strong> ${event.locationDescription}
-				</p>
-				<p>
-					<strong>Event Type:</strong> ${event.eventType.type}
-				</p>
-				<p>
-					<strong>Address:</strong> ${event.address.street},
-					${event.address.city}, ${event.address.state}
-					${event.address.postalCode}
-				</p>
-				<%--             <p><strong>Created At:</strong> <c:if test="${not empty event.createdAt}">${event.createdAt.format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))}</c:if></p> --%>
-				<%--             <p><strong>Updated At:</strong> <c:if test="${not empty event.updatedAt}">${event.updatedAt.format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))}</c:if></p> --%>
-				<p>
+    			<!-- Display formatted update date, using parse and format -->
+    			<c:if test="${not empty event.updatedAt}">
+        			<fmt:parseDate value="${event.updatedAt}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedUpdated" type="both" />
+        			<div>
+            			<strong>Updated at:</strong>
+            			<fmt:formatDate value="${parsedUpdated}" pattern="MMMM d, yyyy 'at' h:mm a" />
+        			</div>
+    				</c:if>
+				</c:if>
+				
+				<div>
 					<strong>Active:</strong> ${event.active ? 'Yes' : 'No'}
-				</p>
-				<p>
-					<strong>Image:</strong>
-					<c:if test="${not empty event.imageUrl}">
-						<img src="${event.imageUrl}" alt="Event Image"
-							style="width: 300px;" />
-					</c:if>
-				</p>
-
-				<!-- List of attendees -->
-				<p>
-					<strong>Attendees:</strong>
-				</p>
-				<ul>
-					<c:forEach items="${event.eventAttendees}" var="attendee">
-						<li>${attendee.firstName}${attendee.lastName}</li>
-					</c:forEach>
-				</ul>
+				</div>
+				
+              <!-- only logged in user should be able to view list of attendees -->
+				<c:if test="${sessionScope.loggedInUser ne null}">
+  				<strong>Attendees:</strong>
+  				<ul>
+    				<c:forEach items="${event.eventAttendees}" var="attendee">
+     				 <li>${attendee.firstName} ${attendee.lastName}</li>
+    				</c:forEach>
+  				</ul>
+				</c:if>
+				
+			</div>
+		</div>
 
 				<!-- Update, Delete, and Return Links -->
 
@@ -112,6 +132,7 @@
 				</div>
 			</c:if>
 
+		
 		</div>
 </main>
 
