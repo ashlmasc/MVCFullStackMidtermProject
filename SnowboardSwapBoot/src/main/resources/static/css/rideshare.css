@@ -1,11 +1,18 @@
 @import url('site.css');
 
+li {
+  float: left;
+}
+
+a {
+  display: block;
+  padding: 8px;
+  color: #f9f9f9;
+		font-weight: normal;
+}
+
 body {
 	font-family: verdana, sans-serif;
-	font-size: 19px;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
 	text-align: center;
 	letter-spacing: 0px;
 	line-height: 20px;
@@ -14,79 +21,93 @@ body {
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
+		font-weight: bold;
 }
 
-
-
-
-/* Header/Blog Title */
 .header {
-  padding: 10px;
-  font-size: 40px;
-  color: black;
-  text-align: center;
-  	text-shadow: 1px 1px 3px white;
-  	background: white;
-  
+	padding: 10px;
+	font-size: 40px;
+	color: #16485a;
+	text-align: center;
+	background: white;
+		font-weight: bold;
 }
 
 .centertextbox {
-  margin: auto;
-  width: 50%;
-  text-align: center;
-  border: 3px solid green;
-  padding: 40px;
-  margin-top: 50px;
+	margin: auto;
+	margin-top: 20px;
+	width: 60%;
+	text-align: center;
+	padding: 50px;
+color: #000000;
+	opacity: 0.75;
+	background:white;
+}
 
-  
+.text-box{
+	color: #16485a ;
+	text-transform: uppercase;
 }
 
 ul {
-  list-style-type: none;
+	list-style-type: none;
 }
 
 div.background {
-  border: 2px solid black;
+	border: 2px solid black;
 }
 
 div.transbox {
-  background: url('https://www.freevector.com/uploads/vector/preview/23261/abstract_winter_landscape.jpg') repeat;
-  margin: 0px;
-  border: 1px solid black;
-	text-shadow: 1px 1px 2px black;
-  opacity: 0.75;
-  
+	opacity: 0.75;
+	margin: 0px;
+	border: 1px solid black;
+	font-weight: bold;
+	opacity: 0.75;
+	color: black;
 }
+
+
 div.tableheader h2 {
-  padding: 10px;
-  font-size: 40px;
-  color: white;
-  text-align: center;
-  background-image: url('https://www.freevector.com/uploads/vector/preview/23261/abstract_winter_landscape.jpg');
+	padding: 10px;
+	font-size: 40px;
+	color: white;
+	text-align: center;
+	background-image:
+		url('https://www.freevector.com/uploads/vector/preview/23261/abstract_winter_landscape.jpg');
 }
 
 div.transbox p {
-  margin: 5%;
-  font-weight: normal;
-  color: #000000;
+	margin: 5%;
+	font-weight: normal;
+	color: #000000;
 }
 
-div.post{
-	text-shadow: 1px 1px 3px white;
+div.post h1 {
+	background-image:
+		url('https://www.freevector.com/uploads/vector/preview/23261/abstract_winter_landscape.jpg');
+	padding: 10px;
+	color: white;
+	font-weight: normal;
 }
 
-
+div.post h5 {
+	color: #030303;
+	font-weight: normal;
+	text-transform: uppercase;
+	opacity: 0.9;
+	background: white;
+	font-size: 20px;
+}
 
 /* Footer */
 .footer {
-  padding: 20px;
-  text-align: center;
-  background: #ddd;
-  margin-top: 20px;
-   text-align: center;
- background-image: url('https://www.freevector.com/uploads/vector/preview/23261/abstract_winter_landscape.jpg');
-	  background-attachment: fixed;
+	padding: 20px;
+	text-align: center;
+	background: #ddd;
+	margin-top: 20px;
+	text-align: center;
+	background-image:
+		url('https://www.freevector.com/uploads/vector/preview/23261/abstract_winter_landscape.jpg');
+	background-attachment: fixed;
 	background-size: cover;
 }
-
-

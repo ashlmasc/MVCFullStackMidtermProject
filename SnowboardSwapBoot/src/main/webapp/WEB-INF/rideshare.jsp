@@ -11,29 +11,37 @@
 	href="https://www.cssportal.com/css-color-converter/00B3BA"
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/rideshare.css">
+	<jsp:include page="nav.jsp" />
 </head>
 <body>
-	<jsp:include page="nav.jsp" />
 	<div class="header">
 
 		<h1 align="center">Ride Share Message Board</h1>
 
 	</div>
 	<div class="centertextbox">
-		<section>
-			<h2 align="center">Rules of Ride Share to Participate</h2>
-		</section>
+		
+	<h2><u>Rules of Ride Share to Participate</u></h2>
+			
+			
+			<div class="text-box">
+ <p style="text-align: center">All passengers must wear seat belts while car is in motion
+ <br>
+ There will be absolutely NO HARRASSING of drivers OR passengers
+ <br>
+ Passengers must split gas price with drivers
+ <br>
+ Drivers must drive safely and with caution
+ <br>
+ Everyone in car MUST treat each other with kindness and respect
+ </p>
+</div>
 	</div>
+	<br>
 
-	<section>
-
-
-
-
-		<p>People can post looking for a ride or offering a ride...</p>
-		<div class="post">
-			<div class="container mt-5">
-				<h2 class="display-4 text-center mb-4">Post New Ride Share</h2>
+		<div class="post heading" style="box-align: center"><h1>Post New Ride Share</h1></div>
+		<div class="container">
+		<div class="post body"><h5>
 				<form action="rideshare" method="post" enctype="multipart/form-data">
 					<!-- User id -->
 					<input type="hidden" name="sponsorid" value="1"> <input
@@ -46,14 +54,14 @@
 
 					<div class="form-group">
 						<label for="departureAddress">Departure Address:</label> <input
-							type="text" name="street1"> <input type="text"
-							name="city1"> <input type="text" name="state1">
+							type="text" name="street1" placeholder="Street"> <input type="text"
+							name="city1" placeholder="City"> <input type="text" name="state1" placeholder="State">
 					</div>
 
 					<div class="form-group">
 						<label for="arrivalAddress">Arrival Address:</label> <input
-							type="text" name="street2"> <input type="text"
-							name="city2"> <input type="text" name="state2">
+							type="text" name="street2" placeholder="Street"> <input type="text"
+							name="city2" placeholder="City"> <input type="text" name="state2" placeholder="State">
 					</div>
 
 					<div class="form-group">
@@ -81,11 +89,10 @@
 
 					<input type="submit" value="Post New Ride Share"
 						class="btn btn-primary">
-				</form>
+				</form></h5>
 			</div>
-		</div>
+		</div>		
 
-	</section>
 	<br>
 	<br>
 	<div class="background">
@@ -103,7 +110,7 @@
 						${ride.vehicleMake} <br> Vehicle Model:${ride.vehicleModel} 
 						<br>
 						<br>
-						<a href="editRideShare?id=${ride.id}" class="btn btn-primary" type="submit" value="edit ride share">Edit Ride Share</a>
+				<a href="editRideShare?id=${ride.id}" class="btn btn-primary" type="submit">Edit Ride Share</a>
 
 						<form action="deleteRideShare"
 							onsubmit="return window.confirm('Are you sure you want to delete this log?');"
@@ -112,7 +119,7 @@
 								<input type="hidden" class="form-control" id="id" name="id"
 									value="<c:out value='${ride.id}' />">
 							</div>
-							<button type="submit" value="Delete Ride Share">Delete
+							<button type="submit" class="btn btn-primary" value="Delete Ride Share">Delete
 								Entry</button>
 						</form>
 					</li>
