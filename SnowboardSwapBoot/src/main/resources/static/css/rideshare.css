@@ -52,7 +52,6 @@ ul {
 div.background {
 	border: 2px solid black;
 	 text-align: center;
-	 padding-left: 170px;
 }
 
 div.transbox {
@@ -76,6 +75,7 @@ div.tableheader h2 {
 	background-color: #0061a6;
 	opacity: 0.8;
 	padding: 10px;
+	padding-left: 2em;
 
 	
 }
