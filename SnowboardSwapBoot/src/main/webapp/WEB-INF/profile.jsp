@@ -44,7 +44,7 @@
 		</div>
 
 
-		<div class="container mt-5">
+		<%-- <div class="container mt-5">
 			<h1>
 				Welcome,
 				<c:out value="${loggedInUser.username}" />
@@ -117,7 +117,7 @@
 			<!-- Edit Profile Button -->
 			<a href="updateProfile" class="btn btn-primary">Edit Profile</a>
 
-		</div>
+		</div> --%>
 	</main>
 	<footer></footer>
 	<!-- Bootstrap JS, Popper.js, and jQuery for tooltips -->
