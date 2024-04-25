@@ -33,7 +33,7 @@ To start using Powder Pals:
 - **JSP**: Dynamic content integration with HTML.
 - **Gradle**: Dependency management and build automation.
 - **Git/GitHub**: Source control and project repository hosting.
-- **IDE**: Development environment (e.g., Eclipse, IntelliJ).
+- **IDE**: Spring Tool Suite 4
 
 ## Lessons Learned
 - **JPA and Spring MVC**: Enhanced knowledge of integrating JPA in Spring applications.
