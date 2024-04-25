@@ -16,7 +16,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<link rel="stylesheet" type="text/css" href="css/site.css">
+<link rel="stylesheet" type="text/css" href="css/updateProfile.css">
 
 
 
@@ -27,7 +27,7 @@
 	<jsp:include page="nav.jsp" />
 	
 	<main>
-		<div class="container mt-5">
+		<div class="form-cont mt-5">
 			<h2>Update Profile</h2>
 			<form action="updateProfile" method="post">
 
