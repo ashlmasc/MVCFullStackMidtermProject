@@ -1,14 +1,11 @@
 @import url('site.css');
 
-li {
-  float: left;
-}
 
 a {
-  display: block;
+  float: right;
   padding: 8px;
   color: #f9f9f9;
-		font-weight: normal;
+		font-weight: normal
 }
 
 body {
