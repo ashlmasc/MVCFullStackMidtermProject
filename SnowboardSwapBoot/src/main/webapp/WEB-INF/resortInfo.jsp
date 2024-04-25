@@ -18,7 +18,7 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<link rel="stylesheet" type="text/css" href="css/site.css">
+<link rel="stylesheet" type="text/css" href="css/resort.css">
 
 </head>
 
@@ -175,12 +175,12 @@
 			<div>
 				<h5>${lift.name}</h5>
 				<p>${lift.liftType.type}</p>
-				
+
 				<c:if test="${lift.getStatuses().size() > 0}">
 							 | ${lift.getStatuses().get(lift.getStatuses().size() - 1).status};
 	 
 				</c:if>
-				
+
 				<c:if test="${sessionScope.loggedInUser ne null }">
 					<button type="button" data-bs-toggle="offcanvas"
 						data-bs-target="#editLiftForm${lift.id}" aria-controls="">Edit</button>
@@ -239,5 +239,9 @@
 
 	</main>
 	<footer></footer>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
 </body>
 </html>
