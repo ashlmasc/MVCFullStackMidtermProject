@@ -38,8 +38,8 @@
 			</div>
 
 			<div class="form-floating mb-3">
-				<textarea rows="50" cols="30" class="form-control"
-					id="resortDescription" placeholder="Website" name="description"></textarea>
+				<textarea rows="50" cols="30" class="form-control" style="height: 200px;"
+					id="resortDescription" placeholder="" name="description"></textarea>
 				<label for="resortDescription">Description</label>
 			</div>
 
@@ -76,7 +76,6 @@
 				<label for="resortPhone">Phone Number</label>
 			</div>
 	</div>
-
 
 	<button type="submit" class="btn btn-primary">Submit</button>
 

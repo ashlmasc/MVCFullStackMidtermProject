@@ -36,7 +36,8 @@
 				<!-- Hidden field for address ID -->
 				<input type="hidden" name="addressId" value="${user.address.id}">
 
-				<div class="form-group">
+				
+				<div class="form-floating mb-3">
 					<label for="username">Username</label>
 					<input type="text" class="form-control" id="username"
 						name="username" value="${user.username}" required>
@@ -62,7 +63,7 @@
 				<div class="form-group">
 					<label for="lastName">Last Name</label>
 					<input type="text" class="form-control" id="lastName"
-						name="lastName" value="${user.lastName}" required>
+						name="lastName" value="${user.lastName}" required placeholder="">
 				</div>
 				<div class="form-group">
 					<label for="bio">Bio</label>
