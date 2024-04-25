@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 
@@ -36,115 +35,82 @@
 			<h1 class="display-4 text-center mb-4">Events/Meetups List</h1>
 
 			<!-- List of Events -->
+			<div class="row">
+				<div class="col-md-12">
+					<ul class="list-group">
+						<c:forEach items="${allEvents}" var="event">
+							<li class="list-group-item">
+								
+								<c:if test="${not empty event.name}">
+				                 	<div><strong>Name:</strong> <c:out value="${event.name}" /></div>
+				                </c:if>
+								
+								<c:if test="${not empty event.eventType}">
+                  					<div><strong>Type:</strong> <c:out value="${event.eventType.type}" /></div>
+                				</c:if>	
+                					
+								<!-- 	not sure if we want displayed, but at least for testing -->
+								<div>
+									<strong>Event ID:</strong> ${event.id}
+								</div>
+									
+								<c:if test="${not empty event.description}">
+					            	<div><strong>Description:</strong> <c:out value="${event.description}" /></div>
+					            </c:if>				
+									
+								<!-- Display formatted event start and end dates, using parse and format -->
+								<c:if test="${not empty event.eventStart}">
+									<fmt:parseDate value="${event.eventStart}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedStart" type="both" />
+									<div>
+										<strong>Start:</strong>
+										<fmt:formatDate value="${parsedStart}" pattern="MMMM d, yyyy 'at' h:mm a" />
+									</div>
+								</c:if>
 
-			<c:forEach items="${allEvents}" var="event">
+								<c:if test="${not empty event.eventEnd}">
+									<fmt:parseDate value="${event.eventEnd}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedEnd" type="both" />
+									<div>
+										<strong>End:</strong>
+										<fmt:formatDate value="${parsedEnd}" pattern="MMMM d, yyyy 'at' h:mm a" />
+									</div>
+								</c:if>
+								
+								<c:if test="${not empty event.locationDescription}">
+                  					<div><strong>Location:</strong> <c:out value="${event.locationDescription}" /></div>
+                				</c:if>
 
-				<div class="event Card">
-					<div class="image-cont">
-						<c:if test="${not empty event.imageUrl}">
-							<img class="event-image" src="<c:out value="${event.imageUrl}"/>"
-								alt="Event Image">
-						</c:if>
-					</div>
-					<div class="event-info">
-						<c:if test="${not empty event.name}">
-							<h3>
-								<c:out value="${event.name}" />
-							</h3>
-						</c:if>
+								<c:if test="${not empty event.active}">
+                  					<div><strong>Active:</strong> ${event.active ? 'Yes' : 'No'} </div>
+                				</c:if>
 
+                				<c:if test="${not empty event.imageUrl}">
+  									<div><strong>Image:</strong> <img class="event-image" src="<c:out value="${event.imageUrl}"/>" alt="Event Image"></div>
+								</c:if>
 
+								<!-- Update and View Details buttons for each record -->
 
+								<div class="mt-2">
+									<c:if
+										test="${sessionScope.loggedInUser ne null && loggedInUser.id eq event.sponsor.id}">
+										<a href="updateEvent?eventId=${event.id}" class="btn btn-primary btn-sm">Update</a>
+									</c:if>
 
-
-
-
-
-
-						<c:if test="${not empty event.description}">
-							<div>
-								<strong>Description:</strong>
-								<c:out value="${event.description}" />
-							</div>
-						</c:if>
-
-						<c:if test="${not empty event.eventStart}">
-							<fmt:parseDate value="${event.eventStart}"
-								pattern="yyyy-MM-dd'T'HH:mm" var="parsedStart" type="both" />
-							<div>
-								<strong>Start:</strong>
-								<fmt:formatDate value="${parsedStart}"
-									pattern="MMMM d, yyyy 'at' h:mm a" />
-							</div>
-						</c:if>
-					</div>
-					<c:if test="${not empty event.eventType}">
-						<div>
-							<strong>Type:</strong>
-							<c:out value="${event.eventType.type}" />
-						</div>
-					</c:if>
-
-
-
-
-
-
-					<!-- Display formatted event start and end dates, using parse and format -->
-					<c:if test="${not empty event.eventStart}">
-						<fmt:parseDate value="${event.eventStart}"
-							pattern="yyyy-MM-dd'T'HH:mm" var="parsedStart" type="both" />
-						<div>
-							<strong>Start:</strong>
-							<fmt:formatDate value="${parsedStart}"
-								pattern="MMMM d, yyyy 'at' h:mm a" />
-						</div>
-					</c:if>
-
-					<c:if test="${not empty event.eventEnd}">
-						<fmt:parseDate value="${event.eventEnd}"
-							pattern="yyyy-MM-dd'T'HH:mm" var="parsedEnd" type="both" />
-						<div>
-							<strong>End:</strong>
-							<fmt:formatDate value="${parsedEnd}"
-								pattern="MMMM d, yyyy 'at' h:mm a" />
-						</div>
-					</c:if>
-
-					<c:if test="${not empty event.locationDescription}">
-						<div>
-							<strong>Location:</strong>
-							<c:out value="${event.locationDescription}" />
-						</div>
-					</c:if>
+									<a href="eventDetail?eventId=${event.id}" class="btn btn-secondary btn-sm">View Details</a>
+								</div>
+							</li>
+						</c:forEach>
+					</ul>
 				</div>
+			</div>
 
-				<!-- Update and View Details buttons for each record -->
-
-				<div class="mt-2">
-					<c:if
-						test="${sessionScope.loggedInUser ne null && loggedInUser.id eq event.sponsor.id}">
-						<a href="updateEvent?eventId=${event.id}"
-							class="btn btn-primary btn-sm">Update</a>
-					</c:if>
-
-					<a href="eventDetail?eventId=${event.id}"
-						class="btn btn-secondary btn-sm">View Details</a>
-				</div>
-				</li>
-			</c:forEach>
-			</ul>
-		</div>
-		</div>
-
-		<!-- Navigation Button to Add New Event -->
-		<div class="text-center mt-4">
-			<a href="addEvent" class="btn btn-outline-primary">Add New Event</a>
-		</div>
+			<!-- Navigation Button to Add New Event -->
+			<div class="text-center mt-4">
+				<a href="addEvent" class="btn btn-outline-primary">Add New Event</a>
+			</div>
 		</div>
 	</main>
 	<!-- Bootstrap JS and dependencies -->
-
+	
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
