@@ -3,6 +3,7 @@
 }
 
 nav {
+	position: fixed;
 	.dropdown-toggle::after{
     display: none;
 }

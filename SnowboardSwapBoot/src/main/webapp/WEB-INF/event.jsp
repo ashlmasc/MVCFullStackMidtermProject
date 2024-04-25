@@ -17,23 +17,11 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<link rel="stylesheet" type="text/css" href="css/site.css">
+<link rel="stylesheet" type="text/css" href="css/event.css">
 
 <!-- Favicon -->
 <link rel="icon" href="<c:url value='/resources/images/favicon.ico'/>"
 	type="image/x-icon">
-
-<!-- need to move to site.css for uniformity; need this to limit size of image to fit within event list box -->
-<style>
-  .event-image {
-    max-width: 100%; /* Limit image width to 100% of its parent container */
-    height: auto; /* Keep the aspect ratio of the image */
-    display: block; /* Display block to prevent unwanted margins */
-    margin: 0 auto; /* Center align the image */
-    border-radius: 5px; /* Optional: adds rounded corners to the image */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Optional: adds shadow for a bit of depth */
-  }
-</style>
 
 </head>
 
@@ -122,11 +110,10 @@
 		</div>
 	</main>
 	<!-- Bootstrap JS and dependencies -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	
 	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
 </body>
 </html>
