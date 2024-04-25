@@ -3,11 +3,9 @@
 body {
 	font-family: verdana, sans-serif;
 	font-size: 19px;
-	color: #f7f7f7;
 	font-style: normal;
 	font-weight: normal;
 	font-variant: normal;
-	text-shadow: 1px 1px 2px black;
 	text-align: center;
 	letter-spacing: 0px;
 	line-height: 20px;
@@ -19,62 +17,65 @@ body {
 }
 
 
+
+
+/* Header/Blog Title */
+.header {
+  padding: 10px;
+  font-size: 40px;
+  color: black;
+  text-align: center;
+  	text-shadow: 1px 1px 3px white;
+  	background: white;
+  
+}
+
+.centertextbox {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  border: 3px solid green;
+  padding: 40px;
+  margin-top: 50px;
+
+  
+}
+
 ul {
   list-style-type: none;
 }
 
-* {
-  box-sizing: border-box;
+div.background {
+  border: 2px solid black;
 }
 
-body {
-  font-family: Arial;
-  padding: 20px;
-  background: #f1f1f1;
+div.transbox {
+  background: url('https://www.freevector.com/uploads/vector/preview/23261/abstract_winter_landscape.jpg') repeat;
+  margin: 0px;
+  border: 1px solid black;
+	text-shadow: 1px 1px 2px black;
+  opacity: 0.75;
+  
 }
-
-/* Header/Blog Title */
-.header {
-  padding: 30px;
+div.tableheader h2 {
+  padding: 10px;
   font-size: 40px;
+  color: white;
   text-align: center;
-  background: white;
+  background-image: url('https://www.freevector.com/uploads/vector/preview/23261/abstract_winter_landscape.jpg');
 }
 
-/* Create two unequal columns that floats next to each other */
-/* Left column */
-.leftcolumn {
-  float: left;
-  width: 75%;
+div.transbox p {
+  margin: 5%;
+  font-weight: normal;
+  color: #000000;
 }
 
-/* Right column */
-.rightcolumn {
-  float: left;
-  width: 25%;
-  padding-left: 20px;
+div.post{
+	text-shadow: 1px 1px 3px white;
 }
 
-/* Fake image */
-.fakeimg {
-  background-color: #aaa;
-  width: 100%;
-  padding: 20px;
-}
 
-/* Add a card effect for articles */
-.card {
-  background-color: white;
-  padding: 20px;
-  margin-top: 20px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
 
 /* Footer */
 .footer {
@@ -82,12 +83,10 @@ body {
   text-align: center;
   background: #ddd;
   margin-top: 20px;
+   text-align: center;
+ background-image: url('https://www.freevector.com/uploads/vector/preview/23261/abstract_winter_landscape.jpg');
+	  background-attachment: fixed;
+	background-size: cover;
 }
 
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 800px) {
-  .leftcolumn, .rightcolumn {
-    width: 100%;
-    padding: 0;
-  }
-}
+
