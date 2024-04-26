@@ -42,7 +42,7 @@ public class RideShareController {
 
 		User loggedInUser = (User) session.getAttribute("loggedInUser");
 
-	//	Ride ride = new Ride();
+		// Ride ride = new Ride();
 		ride.setUser(loggedInUser);
 
 		Address departureAddress = addressDAO.createAddress(street1, city1, state1);
@@ -81,11 +81,9 @@ public class RideShareController {
 	public ModelAndView updateRideShare(Ride ride, HttpSession session) {
 
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("rideshare");
+		mv.setViewName("redirect:/rideshare");
 
 		rideShareDAO.updateRideShare(ride);
-
-
 
 		// Update the rideshare with the new information
 
@@ -96,7 +94,7 @@ public class RideShareController {
 	public ModelAndView deleteRidePost(Ride ride) {
 		ModelAndView mv = new ModelAndView();
 		rideShareDAO.deleteRideShare(ride);
-		mv.setViewName("rideshare");
+		mv.setViewName("redirect:/rideshare");
 		return mv;
 	}
 

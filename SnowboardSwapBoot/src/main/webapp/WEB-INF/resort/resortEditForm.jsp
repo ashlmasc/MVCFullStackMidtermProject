@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
 
+
+
 <div class="offcanvas offcanvas-start" data-bs-scroll="true"
 	tabindex="-1" id="addResortForm"
 	aria-labelledby="offcanvasWithBothOptionsLabel">
@@ -39,8 +41,8 @@
 			</div>
 			
 			<div class="form-floating mb-3">
-				<textarea rows="50" cols="30" class="form-control"
-					id="resortDescription" placeholder="Website" name="description">${resort.description}</textarea>
+				<textarea rows="50" cols="30" class="form-control" style="height: 200px;"
+					id="resortDescription" placeholder="" name="description">${resort.description}</textarea>
 				<label for="resortDescription">Description</label>
 			</div>
 

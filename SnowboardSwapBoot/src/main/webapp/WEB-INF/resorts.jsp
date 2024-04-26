@@ -17,7 +17,7 @@
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-	
+
 <link rel="stylesheet" type="text/css" href="css/resorts.css">
 
 </head>
@@ -27,13 +27,9 @@
 	<jsp:include page="nav.jsp" />
 
 	<main>
-		<c:if test="${sessionScope.loggedInUser ne null }">
-			
-				
-				
-				
-				
-				<i class="bi bi-plus-circle btn btn-primary btn-i" type="button"
+		<c:if test="${sessionScope.loggedInUser ne null && sessionScope.loggedInUser.role eq 'standard'}">
+
+			<i class="bi bi-plus-circle btn btn-primary btn-i" type="button"
 				data-bs-toggle="offcanvas" data-bs-target="#addResortForm"
 				aria-controls="offcanvasWithBothOptions"></i>
 
@@ -42,7 +38,7 @@
 		</c:if>
 
 		<div class="section">
-			<div class="resortsContainer siteWidthWrapper">
+			<div class="resortsContainer">
 				<c:forEach var="resort" items="${resorts}">
 
 					<div class="card resort-card" style="width: 18rem;">
@@ -52,15 +48,21 @@
 						<div class="card-body">
 							<h5 class="card-title">${resort.name}</h5>
 							<p class="card-text limit-text">${resort.description}</p>
-							<a href="resort?id=${resort.id}" class="btn btn-primary">More
+							<a href="resort?id=${resort.id}" class="btn btn-primary col-12">More
 								Info</a>
 						</div>
 					</div>
-					
+
 				</c:forEach>
 			</div>
 		</div>
 	</main>
-	<footer> </footer>
+
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
+
 </body>
 </html>
