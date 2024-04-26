@@ -4,9 +4,10 @@ body{
 	background: rgb(23,109,155);
 	background: linear-gradient(0deg, rgba(23,109,155,1) 16%, rgb(33, 183, 221) 64%);
 	
-	background-repeat: none;
+	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
+	min-height: 100svh;
 }
 
 .img-container {

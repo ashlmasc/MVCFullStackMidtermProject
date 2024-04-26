@@ -115,8 +115,10 @@
 						Date and Time: ${ride.departure} <br> Vehicle Capacity:
 						${ride.vehicleCapacity} <br> Vehicle Make:
 						${ride.vehicleMake} <br> Vehicle Model:${ride.vehicleModel} 
-				
+				<c:if test="${sessionScope.loggedInUser ne null && loggedInUser.id eq ride.user.id}">
 				<div><a href="editRideShare?id=${ride.id}" class="btn btn-primary" type="submit">Edit Ride Share</a></div>
+				</c:if>
+				<c:if test="${sessionScope.loggedInUser ne null && loggedInUser.id eq ride.user.id}">
 						<form action="deleteRideShare"
 							onsubmit="return window.confirm('Are you sure you want to delete this log?');"
 							method="POST">
@@ -124,19 +126,20 @@
 								<input type="hidden" class="form-control" id="id" name="id"
 									value="<c:out value='${ride.id}' />">
 							</div>
-							<button type="submit" class="btn btn-primary" value="Delete Ride Share">Delete
+							
+								<button type="submit" class="btn btn-primary" value="Delete Ride Share">Delete
 								Entry</button>
 						</form>
+				</c:if>
 					</li>
 				</c:forEach>
 			</ul>
 		</div>
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
 </body>
 </html>

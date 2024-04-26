@@ -27,7 +27,7 @@
 	<jsp:include page="nav.jsp" />
 
 	<main>
-		<c:if test="${sessionScope.loggedInUser ne null }">
+		<c:if test="${sessionScope.loggedInUser ne null && sessionScope.loggedInUser.role eq 'standard'}">
 
 			<i class="bi bi-plus-circle btn btn-primary btn-i" type="button"
 				data-bs-toggle="offcanvas" data-bs-target="#addResortForm"

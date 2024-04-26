@@ -29,7 +29,7 @@
 	<jsp:include page="nav.jsp" />
 	<main>
 
-		<c:if test="${sessionScope.loggedInUser ne null }">
+		<c:if test="${sessionScope.loggedInUser ne null && sessionScope.loggedInUser.role eq 'standard'}">
 			
 				
 				
@@ -73,7 +73,7 @@
 				<div class="trail-cont">
 					<h4>
 						Trails
-						<c:if test="${sessionScope.loggedInUser ne null }">
+						<c:if test="${sessionScope.loggedInUser ne null && sessionScope.loggedInUser.role eq 'standard'}">
 							<i class="bi bi-plus-circle btn btn-primary btn-i"
 								data-bs-toggle="offcanvas" data-bs-target="#addTrailForm"
 								aria-controls="addTrailForm"></i>
@@ -87,7 +87,7 @@
 							<p>${trail.difficulty}</p>
 
 
-							<c:if test="${sessionScope.loggedInUser ne null }">
+							<c:if test="${sessionScope.loggedInUser ne null && sessionScope.loggedInUser.role eq 'standard'}">
 								<i class="bi bi-pencil btn btn-primary btn-i"
 									data-bs-toggle="offcanvas"
 									data-bs-target="#editTrailForm${trail.id}" aria-controls=""></i>
@@ -173,7 +173,7 @@
 				<div class="lift-cont">
 					<h4>
 						Lifts
-						<c:if test="${sessionScope.loggedInUser ne null }">
+						<c:if test="${sessionScope.loggedInUser ne null && sessionScope.loggedInUser.role eq 'standard'}">
 							<i class="bi bi-plus-circle btn btn-primary btn-i"
 								data-bs-toggle="offcanvas" data-bs-target="#addLiftForm"
 								aria-controls="addLiftForm"></i>
@@ -186,7 +186,7 @@
 							<h6>${lift.name}</h5>
 							<p>${lift.liftType.type}</p>
 
-							<c:if test="${sessionScope.loggedInUser ne null }">
+							<c:if test="${sessionScope.loggedInUser ne null && sessionScope.loggedInUser.role eq 'standard'}">
 								<i class="bi bi-plus-circle btn btn-primary btn-i" data-bs-toggle="offcanvas"
 									data-bs-target="#editLiftForm${lift.id}" aria-controls=""></i>
 							</c:if>
@@ -239,7 +239,7 @@
 			</div>
 		</div>
 
-		<c:if test="${sessionScope.loggedInUser ne null }">
+		<c:if test="${sessionScope.loggedInUser ne null && sessionScope.loggedInUser.role eq 'standard'}">
 			<jsp:include page="trail/trailsAddForm.jsp" />
 			<jsp:include page="lift/addLiftForm.jsp" />
 			<jsp:include page="resort/resortEditForm.jsp" />
