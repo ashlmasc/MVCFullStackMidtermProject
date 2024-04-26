@@ -119,18 +119,21 @@
 							</c:if>
 						</c:if>
 
-						<div>
-							<strong>Active:</strong> ${event.active ? 'Yes' : 'No'}
-						</div>
+<!-- 						<div> -->
+<%-- 							<strong>Active:</strong> ${event.active ? 'Yes' : 'No'} --%>
+<!-- 						</div> -->
 
 						<!-- only logged in user should be able to view list of attendees -->
+
 						<c:if test="${sessionScope.loggedInUser ne null}">
-							<strong>Attendees:</strong>
-							<ul>
-								<c:forEach items="${event.eventAttendees}" var="attendee">
-									<li>${attendee.firstName}${attendee.lastName}</li>
-								</c:forEach>
-							</ul>
+   						 <c:if test="${not empty event.eventAttendees}">
+        						<strong>Attendees:</strong>
+        						<ul>
+            						<c:forEach items="${event.eventAttendees}" var="attendee">
+               						 <li>${attendee.firstName} ${attendee.lastName}</li>
+           						 </c:forEach>
+        						</ul>
+    						</c:if>
 						</c:if>
 
 					</div>

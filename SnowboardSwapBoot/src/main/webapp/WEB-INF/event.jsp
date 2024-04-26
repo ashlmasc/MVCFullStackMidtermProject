@@ -103,9 +103,9 @@ body {
 								</c:if>
   								</div>
 
-								<c:if test="${not empty event.active}">
-                  					<div><strong>Active:</strong> ${event.active ? 'Yes' : 'No'} </div>
-                				</c:if>
+<%-- 								<c:if test="${not empty event.active}"> --%>
+<%--                   					<div><strong>Active:</strong> ${event.active ? 'Yes' : 'No'} </div> --%>
+<%--                 				</c:if> --%>
 
                 				<c:if test="${not empty event.imageUrl}">
   									<div><img class="event-image" src="<c:out value="${event.imageUrl}"/>" alt="Event Image"></div>
