@@ -187,7 +187,7 @@
 							<p>${lift.liftType.type}</p>
 
 							<c:if test="${sessionScope.loggedInUser ne null && sessionScope.loggedInUser.role eq 'standard'}">
-								<i class="bi bi-plus-circle btn btn-primary btn-i" data-bs-toggle="offcanvas"
+								<i class="bi bi-pencil btn btn-primary btn-i" data-bs-toggle="offcanvas"
 									data-bs-target="#editLiftForm${lift.id}" aria-controls=""></i>
 							</c:if>
 						</div>

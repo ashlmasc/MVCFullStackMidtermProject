@@ -115,10 +115,10 @@
 						Date and Time: ${ride.departure} <br> Vehicle Capacity:
 						${ride.vehicleCapacity} <br> Vehicle Make:
 						${ride.vehicleMake} <br> Vehicle Model:${ride.vehicleModel} 
-				<c:if test="${sessionScope.loggedInUser ne null && loggedInUser.id eq ride.user.id}">
+				<c:if test="${sessionScope.loggedInUser ne null && loggedInUser.id eq event.user.id}">
 				<div><a href="editRideShare?id=${ride.id}" class="btn btn-primary" type="submit">Edit Ride Share</a></div>
 				</c:if>
-				<c:if test="${sessionScope.loggedInUser ne null && loggedInUser.id eq ride.user.id}">
+				<c:if test="${sessionScope.loggedInUser ne null && loggedInUser.id eq event.sponsor.id}">
 						<form action="deleteRideShare"
 							onsubmit="return window.confirm('Are you sure you want to delete this log?');"
 							method="POST">
